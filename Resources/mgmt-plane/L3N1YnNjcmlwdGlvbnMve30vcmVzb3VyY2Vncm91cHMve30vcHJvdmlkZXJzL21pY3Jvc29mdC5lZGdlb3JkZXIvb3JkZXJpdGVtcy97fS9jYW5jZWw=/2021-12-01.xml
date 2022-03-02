@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen timestamp="2022-03-02T06:23:04.650890Z" plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems/{}/cancel" version="2021-12-01" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZU9yZGVyL29yZGVySXRlbXMve29yZGVySXRlbU5hbWV9L2NhbmNlbA==/V/MjAyMS0xMi0wMQ=="/>
+  <commandGroup name="edge-order order item">
+    <command name="cancel" version="2021-12-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems/{}/cancel" version="2021-12-01" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZU9yZGVyL29yZGVySXRlbXMve29yZGVySXRlbU5hbWV9L2NhbmNlbA==/V/MjAyMS0xMi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.orderItemName" options="order-item-name" required="True">
+          <help short="The name of the order item"/>
+        </arg>
+        <arg type="resourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True"/>
+        <arg type="subscriptionId" var="$Path.subscriptionId" options="subscription" required="True"/>
+        <arg type="string" var="$cancellationReason.reason" options="reason" required="True">
+          <help short="Reason for cancellation."/>
+        </arg>
+      </argGroup>
+      <operation operationId="CancelOrderItem">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EdgeOrder/orderItems/{orderItemName}/cancel">
+          <request method="post">
+            <path>
+              <param type="string" name="orderItemName" arg="$Path.orderItemName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" type="string" name="api-version" required="True">
+                <default value="2021-12-01"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="cancellationReason" clientFlatten="True">
+                  <prop type="string" name="reason" arg="$cancellationReason.reason" required="True"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>

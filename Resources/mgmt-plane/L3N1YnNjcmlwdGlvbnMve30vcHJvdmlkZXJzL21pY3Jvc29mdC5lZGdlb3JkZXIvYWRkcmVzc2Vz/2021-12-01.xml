@@ -1,0 +1,255 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen timestamp="2022-03-02T06:23:04.650890Z" plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.edgeorder/addresses" version="2021-12-01" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2VPcmRlci9hZGRyZXNzZXM=/V/MjAyMS0xMi0wMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/addresses" version="2021-12-01" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZU9yZGVyL2FkZHJlc3Nlcw==/V/MjAyMS0xMi0wMQ=="/>
+  <commandGroup name="edge-order address">
+    <command name="list" version="2021-12-01">
+      <resource id="/subscriptions/{}/providers/microsoft.edgeorder/addresses" version="2021-12-01" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2VPcmRlci9hZGRyZXNzZXM=/V/MjAyMS0xMi0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/addresses" version="2021-12-01" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZU9yZGVyL2FkZHJlc3Nlcw==/V/MjAyMS0xMi0wMQ=="/>
+      <argGroup name="">
+        <arg type="resourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True"/>
+        <arg type="subscriptionId" var="$Path.subscriptionId" options="subscription" required="True"/>
+        <arg type="string" var="$Query.filter" options="filter">
+          <help short="$filter is supported to filter based on shipping address properties. Filter supports only equals operation."/>
+        </arg>
+        <arg type="string" var="$Query.skipToken" options="skip-token">
+          <help short="$skipToken is supported on Get list of addresses, which provides the next page in the list of addresses."/>
+        </arg>
+      </argGroup>
+      <condition var="$Condition_ListAddressesAtResourceGroupLevel">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <condition var="$Condition_ListAddressesAtSubscriptionLevel">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <operation when="$Condition_ListAddressesAtResourceGroupLevel" operationId="ListAddressesAtResourceGroupLevel">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EdgeOrder/addresses">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <param type="string" name="$filter" arg="$Query.filter"/>
+              <param type="string" name="$skipToken" arg="$Query.skipToken"/>
+              <const readOnly="True" type="string" name="api-version" required="True">
+                <default value="2021-12-01"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="array<object>" name="value">
+                    <item readOnly="True" type="object">
+                      <prop readOnly="True" type="resourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.EdgeOrder/addresses/{}"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop readOnly="True" type="string" name="type"/>
+                      <prop readOnly="True" type="object" name="tags">
+                        <additionalProp readOnly="True">
+                          <item readOnly="True" type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="resourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="object" name="properties" required="True" clientFlatten="True">
+                        <prop readOnly="True" type="object" name="shippingAddress">
+                          <prop readOnly="True" type="string" name="streetAddress1" required="True"/>
+                          <prop readOnly="True" type="string" name="streetAddress2"/>
+                          <prop readOnly="True" type="string" name="streetAddress3"/>
+                          <prop readOnly="True" type="string" name="city"/>
+                          <prop readOnly="True" type="string" name="stateOrProvince"/>
+                          <prop readOnly="True" type="string" name="country" required="True"/>
+                          <prop readOnly="True" type="string" name="postalCode"/>
+                          <prop readOnly="True" type="string" name="zipExtendedCode"/>
+                          <prop readOnly="True" type="string" name="companyName"/>
+                          <prop readOnly="True" type="string" name="addressType">
+                            <enum>
+                              <item value="None"/>
+                              <item value="Residential"/>
+                              <item value="Commercial"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="object" name="contactDetails" required="True">
+                          <prop readOnly="True" type="string" name="contactName" required="True"/>
+                          <prop readOnly="True" type="string" name="phone" required="True"/>
+                          <prop readOnly="True" type="string" name="phoneExtension"/>
+                          <prop readOnly="True" type="string" name="mobile"/>
+                          <prop readOnly="True" type="array<string>" name="emailList" required="True">
+                            <item readOnly="True" type="string"/>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="string" name="addressValidationStatus">
+                          <enum>
+                            <item value="Valid"/>
+                            <item value="Invalid"/>
+                            <item value="Ambiguous"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop readOnly="True" type="string" name="createdBy"/>
+                        <prop readOnly="True" type="string" name="createdByType">
+                          <enum>
+                            <item value="User"/>
+                            <item value="Application"/>
+                            <item value="ManagedIdentity"/>
+                            <item value="Key"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="createdAt"/>
+                        <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                        <prop readOnly="True" type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="User"/>
+                            <item value="Application"/>
+                            <item value="ManagedIdentity"/>
+                            <item value="Key"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="lastModifiedAt"/>
+                      </prop>
+                    </item>
+                  </prop>
+                  <prop type="string" name="nextLink"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_ListAddressesAtSubscriptionLevel" operationId="ListAddressesAtSubscriptionLevel">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.EdgeOrder/addresses">
+          <request method="get">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <param type="string" name="$filter" arg="$Query.filter"/>
+              <param type="string" name="$skipToken" arg="$Query.skipToken"/>
+              <const readOnly="True" type="string" name="api-version" required="True">
+                <default value="2021-12-01"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="array<object>" name="value">
+                    <item readOnly="True" type="object">
+                      <prop readOnly="True" type="resourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.EdgeOrder/addresses/{}"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop readOnly="True" type="string" name="type"/>
+                      <prop readOnly="True" type="object" name="tags">
+                        <additionalProp readOnly="True">
+                          <item readOnly="True" type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="resourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="object" name="properties" required="True" clientFlatten="True">
+                        <prop readOnly="True" type="object" name="shippingAddress">
+                          <prop readOnly="True" type="string" name="streetAddress1" required="True"/>
+                          <prop readOnly="True" type="string" name="streetAddress2"/>
+                          <prop readOnly="True" type="string" name="streetAddress3"/>
+                          <prop readOnly="True" type="string" name="city"/>
+                          <prop readOnly="True" type="string" name="stateOrProvince"/>
+                          <prop readOnly="True" type="string" name="country" required="True"/>
+                          <prop readOnly="True" type="string" name="postalCode"/>
+                          <prop readOnly="True" type="string" name="zipExtendedCode"/>
+                          <prop readOnly="True" type="string" name="companyName"/>
+                          <prop readOnly="True" type="string" name="addressType">
+                            <enum>
+                              <item value="None"/>
+                              <item value="Residential"/>
+                              <item value="Commercial"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="object" name="contactDetails" required="True">
+                          <prop readOnly="True" type="string" name="contactName" required="True"/>
+                          <prop readOnly="True" type="string" name="phone" required="True"/>
+                          <prop readOnly="True" type="string" name="phoneExtension"/>
+                          <prop readOnly="True" type="string" name="mobile"/>
+                          <prop readOnly="True" type="array<string>" name="emailList" required="True">
+                            <item readOnly="True" type="string"/>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="string" name="addressValidationStatus">
+                          <enum>
+                            <item value="Valid"/>
+                            <item value="Invalid"/>
+                            <item value="Ambiguous"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop readOnly="True" type="string" name="createdBy"/>
+                        <prop readOnly="True" type="string" name="createdByType">
+                          <enum>
+                            <item value="User"/>
+                            <item value="Application"/>
+                            <item value="ManagedIdentity"/>
+                            <item value="Key"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="createdAt"/>
+                        <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                        <prop readOnly="True" type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="User"/>
+                            <item value="Application"/>
+                            <item value="ManagedIdentity"/>
+                            <item value="Key"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="lastModifiedAt"/>
+                      </prop>
+                    </item>
+                  </prop>
+                  <prop type="string" name="nextLink"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

@@ -1,0 +1,483 @@
+{
+  "root": {
+    "names": [
+      "aaz"
+    ],
+    "commandGroups": {
+      "edge-order": {
+        "names": [
+          "edge-order"
+        ],
+        "help": {
+          "short": "Manage edge order."
+        },
+        "commandGroups": {
+          "address": {
+            "names": [
+              "edge-order",
+              "address"
+            ],
+            "help": {
+              "short": "Manage the address of edge order."
+            },
+            "commands": {
+              "list": {
+                "names": [
+                  "edge-order",
+                  "address",
+                  "list"
+                ],
+                "help": {
+                  "short": "List the addresses of the edge order."
+                },
+                "versions": [
+                  {
+                    "name": "2021-12-01",
+                    "stage": "Experimental",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/providers/microsoft.edgeorder/addresses",
+                        "version": "2021-12-01"
+                      },
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/addresses",
+                        "version": "2021-12-01"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "show": {
+                "names": [
+                  "edge-order",
+                  "address",
+                  "show"
+                ],
+                "help": {
+                  "short": "Gets information about the specified address."
+                },
+                "versions": [
+                  {
+                    "name": "2021-12-01",
+                    "stage": "Preview",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/addresses/{}",
+                        "version": "2021-12-01"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "delete": {
+                "names": [
+                  "edge-order",
+                  "address",
+                  "delete"
+                ],
+                "help": {
+                  "short": "Deletes an address."
+                },
+                "versions": [
+                  {
+                    "name": "2021-12-01",
+                    "stage": "Preview",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/addresses/{}",
+                        "version": "2021-12-01"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "create": {
+                "names": [
+                  "edge-order",
+                  "address",
+                  "create"
+                ],
+                "help": {
+                  "short": "Creates a new address with the specified parameters. Existing address can be updated with this API"
+                },
+                "versions": [
+                  {
+                    "name": "2021-12-01",
+                    "stage": "Preview",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/addresses/{}",
+                        "version": "2021-12-01"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "update": {
+                "names": [
+                  "edge-order",
+                  "address",
+                  "update"
+                ],
+                "help": {
+                  "short": "Creates a new address with the specified parameters. Existing address can be updated with this API"
+                },
+                "versions": [
+                  {
+                    "name": "2021-12-01",
+                    "stage": "Preview",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/addresses/{}",
+                        "version": "2021-12-01"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "order": {
+            "names": [
+              "edge-order",
+              "order"
+            ],
+            "help": {
+              "short": "Manage the order of edge order."
+            },
+            "commandGroups": {
+              "item": {
+                "names": [
+                  "edge-order",
+                  "order",
+                  "item"
+                ],
+                "help": {
+                  "short": "Manage the order item of edge order."
+                },
+                "commands": {
+                  "list": {
+                    "names": [
+                      "edge-order",
+                      "order",
+                      "item",
+                      "list"
+                    ],
+                    "help": {
+                      "short": "List order item of edge order."
+                    },
+                    "versions": [
+                      {
+                        "name": "2021-12-01",
+                        "stage": "Preview",
+                        "resources": [
+                          {
+                            "plane": "mgmt-plane",
+                            "id": "/subscriptions/{}/providers/microsoft.edgeorder/orderitems",
+                            "version": "2021-12-01"
+                          },
+                          {
+                            "plane": "mgmt-plane",
+                            "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems",
+                            "version": "2021-12-01"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "show": {
+                    "names": [
+                      "edge-order",
+                      "order",
+                      "item",
+                      "show"
+                    ],
+                    "help": {
+                      "short": "Gets an order item."
+                    },
+                    "versions": [
+                      {
+                        "name": "2021-12-01",
+                        "stage": "Preview",
+                        "resources": [
+                          {
+                            "plane": "mgmt-plane",
+                            "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems/{}",
+                            "version": "2021-12-01"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "delete": {
+                    "names": [
+                      "edge-order",
+                      "order",
+                      "item",
+                      "delete"
+                    ],
+                    "help": {
+                      "short": "Deletes an order item."
+                    },
+                    "versions": [
+                      {
+                        "name": "2021-12-01",
+                        "stage": "Preview",
+                        "resources": [
+                          {
+                            "plane": "mgmt-plane",
+                            "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems/{}",
+                            "version": "2021-12-01"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "create": {
+                    "names": [
+                      "edge-order",
+                      "order",
+                      "item",
+                      "create"
+                    ],
+                    "help": {
+                      "short": "Creates an order item. Existing order item cannot be updated with this api and should instead be updated with the Update order item API."
+                    },
+                    "versions": [
+                      {
+                        "name": "2021-12-01",
+                        "stage": "Preview",
+                        "resources": [
+                          {
+                            "plane": "mgmt-plane",
+                            "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems/{}",
+                            "version": "2021-12-01"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "update": {
+                    "names": [
+                      "edge-order",
+                      "order",
+                      "item",
+                      "update"
+                    ],
+                    "help": {
+                      "short": "Creates an order item. Existing order item cannot be updated with this api and should instead be updated with the Update order item API."
+                    },
+                    "versions": [
+                      {
+                        "name": "2021-12-01",
+                        "stage": "Preview",
+                        "resources": [
+                          {
+                            "plane": "mgmt-plane",
+                            "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems/{}",
+                            "version": "2021-12-01"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "cancel": {
+                    "names": [
+                      "edge-order",
+                      "order",
+                      "item",
+                      "cancel"
+                    ],
+                    "help": {
+                      "short": "Cancel order item."
+                    },
+                    "versions": [
+                      {
+                        "name": "2021-12-01",
+                        "stage": "Preview",
+                        "resources": [
+                          {
+                            "plane": "mgmt-plane",
+                            "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems/{}/cancel",
+                            "version": "2021-12-01"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "return": {
+                    "names": [
+                      "edge-order",
+                      "order",
+                      "item",
+                      "return"
+                    ],
+                    "help": {
+                      "short": "Return order item."
+                    },
+                    "versions": [
+                      {
+                        "name": "2021-12-01",
+                        "stage": "Preview",
+                        "resources": [
+                          {
+                            "plane": "mgmt-plane",
+                            "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems/{}/return",
+                            "version": "2021-12-01"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "commands": {
+              "list": {
+                "names": [
+                  "edge-order",
+                  "order",
+                  "list"
+                ],
+                "help": {
+                  "short": "List the orders of the edge order."
+                },
+                "versions": [
+                  {
+                    "name": "2021-12-01",
+                    "stage": "Experimental",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/providers/microsoft.edgeorder/orders",
+                        "version": "2021-12-01"
+                      },
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orders",
+                        "version": "2021-12-01"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "show": {
+                "names": [
+                  "edge-order",
+                  "order",
+                  "show"
+                ],
+                "help": {
+                  "short": "Gets an order."
+                },
+                "versions": [
+                  {
+                    "name": "2021-12-01",
+                    "stage": "Preview",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/locations/{}/orders/{}",
+                        "version": "2021-12-01"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "product-family": {
+            "names": [
+              "edge-order",
+              "product-family"
+            ],
+            "help": {
+              "short": "Manage the product family of edge order."
+            },
+            "commands": {
+              "list": {
+                "names": [
+                  "edge-order",
+                  "product-family",
+                  "list"
+                ],
+                "help": {
+                  "short": "List the product families of the edge order."
+                },
+                "versions": [
+                  {
+                    "name": "2021-12-01",
+                    "stage": "Experimental",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/providers/microsoft.edgeorder/listproductfamilies",
+                        "version": "2021-12-01"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "list-metadata": {
+                "names": [
+                  "edge-order",
+                  "product-family",
+                  "list-metadata"
+                ],
+                "help": {
+                  "short": "List the product families metadata of the edge order."
+                },
+                "versions": [
+                  {
+                    "name": "2021-12-01",
+                    "stage": "Experimental",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/providers/microsoft.edgeorder/productfamiliesmetadata",
+                        "version": "2021-12-01"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "commands": {
+          "list-configuration": {
+            "names": [
+              "edge-order",
+              "list-configuration"
+            ],
+            "help": {
+              "short": "List the configuration of the edge order.",
+              "lines": [
+                "Provides the list of configurations for the given product family, product line and product."
+              ]
+            },
+            "versions": [
+              {
+                "name": "2021-12-01",
+                "stage": "Experimental",
+                "resources": [
+                  {
+                    "plane": "mgmt-plane",
+                    "id": "/subscriptions/{}/providers/microsoft.edgeorder/listconfigurations",
+                    "version": "2021-12-01"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

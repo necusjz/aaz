@@ -1,0 +1,263 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen timestamp="2022-03-02T06:23:04.650890Z" plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.edgeorder/productfamiliesmetadata" version="2021-12-01" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2VPcmRlci9wcm9kdWN0RmFtaWxpZXNNZXRhZGF0YQ==/V/MjAyMS0xMi0wMQ=="/>
+  <commandGroup name="edge-order product-family">
+    <command name="list-metadata" version="2021-12-01">
+      <resource id="/subscriptions/{}/providers/microsoft.edgeorder/productfamiliesmetadata" version="2021-12-01" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2VPcmRlci9wcm9kdWN0RmFtaWxpZXNNZXRhZGF0YQ==/V/MjAyMS0xMi0wMQ=="/>
+      <argGroup name="">
+        <arg type="subscriptionId" var="$Path.subscriptionId" options="subscription" required="True"/>
+        <arg type="string" var="$Query.skipToken" options="skip-token">
+          <help short="$skipToken is supported on list of product families metadata, which provides the next page in the list of product families metadata."/>
+        </arg>
+      </argGroup>
+      <operation operationId="ListProductFamiliesMetadata">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.EdgeOrder/productFamiliesMetadata">
+          <request method="post">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <param type="string" name="$skipToken" arg="$Query.skipToken"/>
+              <const readOnly="True" type="string" name="api-version" required="True">
+                <default value="2021-12-01"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="array<object>" name="value">
+                    <item readOnly="True" type="object">
+                      <prop readOnly="True" type="object" name="properties" clientFlatten="True">
+                        <prop readOnly="True" type="string" name="displayName"/>
+                        <prop readOnly="True" type="object" name="description" cls="Description_read">
+                          <prop readOnly="True" type="string" name="descriptionType">
+                            <enum>
+                              <item value="Base"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="string" name="shortDescription"/>
+                          <prop readOnly="True" type="string" name="longDescription"/>
+                          <prop readOnly="True" type="array<string>" name="keywords">
+                            <item readOnly="True" type="string"/>
+                          </prop>
+                          <prop readOnly="True" type="array<string>" name="attributes">
+                            <item readOnly="True" type="string"/>
+                          </prop>
+                          <prop readOnly="True" type="array<object>" name="links">
+                            <item readOnly="True" type="object">
+                              <prop readOnly="True" type="string" name="linkType">
+                                <enum>
+                                  <item value="Generic"/>
+                                  <item value="TermsAndConditions"/>
+                                  <item value="Specification"/>
+                                  <item value="Documentation"/>
+                                  <item value="KnowMore"/>
+                                  <item value="SignUp"/>
+                                </enum>
+                              </prop>
+                              <prop readOnly="True" type="string" name="linkUrl"/>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="imageInformation">
+                          <item readOnly="True" type="object" cls="ImageInformation_read">
+                            <prop readOnly="True" type="string" name="imageType">
+                              <enum>
+                                <item value="MainImage"/>
+                                <item value="BulletImage"/>
+                                <item value="GenericImage"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="string" name="imageUrl"/>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="object" name="costInformation" cls="CostInformation_read">
+                          <prop readOnly="True" type="array<object>" name="billingMeterDetails">
+                            <item readOnly="True" type="object">
+                              <prop readOnly="True" type="string" name="name"/>
+                              <prop readOnly="True" type="object" name="meterDetails">
+                                <prop readOnly="True" type="string" name="billingType" required="True">
+                                  <enum>
+                                    <item value="Pav2"/>
+                                    <item value="Purchase"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="float64" name="multiplier"/>
+                                <prop readOnly="True" type="string" name="chargingType">
+                                  <enum>
+                                    <item value="PerOrder"/>
+                                    <item value="PerDevice"/>
+                                  </enum>
+                                </prop>
+                                <discriminator property="billingType" value="Pav2">
+                                  <prop readOnly="True" type="string" name="meterGuid"/>
+                                </discriminator>
+                                <discriminator property="billingType" value="Purchase">
+                                  <prop readOnly="True" type="string" name="productId"/>
+                                  <prop readOnly="True" type="string" name="skuId"/>
+                                  <prop readOnly="True" type="string" name="termId"/>
+                                </discriminator>
+                              </prop>
+                              <prop readOnly="True" type="string" name="meteringType">
+                                <enum>
+                                  <item value="OneTime"/>
+                                  <item value="Recurring"/>
+                                  <item value="Adhoc"/>
+                                </enum>
+                              </prop>
+                              <prop readOnly="True" type="string" name="frequency"/>
+                            </item>
+                          </prop>
+                          <prop readOnly="True" type="string" name="billingInfoUrl"/>
+                        </prop>
+                        <prop readOnly="True" type="object" name="availabilityInformation" cls="AvailabilityInformation_read">
+                          <prop readOnly="True" type="string" name="availabilityStage">
+                            <enum>
+                              <item value="Available"/>
+                              <item value="ComingSoon"/>
+                              <item value="Preview"/>
+                              <item value="Deprecated"/>
+                              <item value="Signup"/>
+                              <item value="Unavailable"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="string" name="disabledReason">
+                            <enum>
+                              <item value="None"/>
+                              <item value="Country"/>
+                              <item value="Region"/>
+                              <item value="Feature"/>
+                              <item value="OfferType"/>
+                              <item value="NoSubscriptionInfo"/>
+                              <item value="NotAvailable"/>
+                              <item value="OutOfStock"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="string" name="disabledReasonMessage"/>
+                        </prop>
+                        <prop readOnly="True" type="object" name="hierarchyInformation" cls="HierarchyInformation_read">
+                          <prop readOnly="True" type="string" name="productFamilyName"/>
+                          <prop readOnly="True" type="string" name="productLineName"/>
+                          <prop readOnly="True" type="string" name="productName"/>
+                          <prop readOnly="True" type="string" name="configurationName"/>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="filterableProperties">
+                          <item readOnly="True" type="object" cls="FilterableProperty_read">
+                            <prop readOnly="True" type="string" name="type" required="True">
+                              <enum>
+                                <item value="ShipToCountries"/>
+                                <item value="DoubleEncryptionStatus"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="array<string>" name="supportedValues" required="True">
+                              <item readOnly="True" type="string"/>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="productLines">
+                          <item readOnly="True" type="object">
+                            <prop readOnly="True" type="object" name="properties" clientFlatten="True">
+                              <prop readOnly="True" type="string" name="displayName"/>
+                              <prop readOnly="True" type="@Description_read" name="description"/>
+                              <prop readOnly="True" type="array<@ImageInformation_read>" name="imageInformation">
+                                <item readOnly="True" type="@ImageInformation_read"/>
+                              </prop>
+                              <prop readOnly="True" type="@CostInformation_read" name="costInformation"/>
+                              <prop readOnly="True" type="@AvailabilityInformation_read" name="availabilityInformation"/>
+                              <prop readOnly="True" type="@HierarchyInformation_read" name="hierarchyInformation"/>
+                              <prop readOnly="True" type="array<@FilterableProperty_read>" name="filterableProperties">
+                                <item readOnly="True" type="@FilterableProperty_read"/>
+                              </prop>
+                              <prop readOnly="True" type="array<object>" name="products">
+                                <item readOnly="True" type="object">
+                                  <prop readOnly="True" type="object" name="properties" clientFlatten="True">
+                                    <prop readOnly="True" type="string" name="displayName"/>
+                                    <prop readOnly="True" type="@Description_read" name="description"/>
+                                    <prop readOnly="True" type="array<@ImageInformation_read>" name="imageInformation">
+                                      <item readOnly="True" type="@ImageInformation_read"/>
+                                    </prop>
+                                    <prop readOnly="True" type="@CostInformation_read" name="costInformation"/>
+                                    <prop readOnly="True" type="@AvailabilityInformation_read" name="availabilityInformation"/>
+                                    <prop readOnly="True" type="@HierarchyInformation_read" name="hierarchyInformation"/>
+                                    <prop readOnly="True" type="array<@FilterableProperty_read>" name="filterableProperties">
+                                      <item readOnly="True" type="@FilterableProperty_read"/>
+                                    </prop>
+                                    <prop readOnly="True" type="array<object>" name="configurations">
+                                      <item readOnly="True" type="object">
+                                        <prop readOnly="True" type="object" name="properties" clientFlatten="True">
+                                          <prop readOnly="True" type="string" name="displayName"/>
+                                          <prop readOnly="True" type="@Description_read" name="description"/>
+                                          <prop readOnly="True" type="array<@ImageInformation_read>" name="imageInformation">
+                                            <item readOnly="True" type="@ImageInformation_read"/>
+                                          </prop>
+                                          <prop readOnly="True" type="@CostInformation_read" name="costInformation"/>
+                                          <prop readOnly="True" type="@AvailabilityInformation_read" name="availabilityInformation"/>
+                                          <prop readOnly="True" type="@HierarchyInformation_read" name="hierarchyInformation"/>
+                                          <prop readOnly="True" type="array<@FilterableProperty_read>" name="filterableProperties">
+                                            <item readOnly="True" type="@FilterableProperty_read"/>
+                                          </prop>
+                                          <prop readOnly="True" type="array<object>" name="specifications">
+                                            <item readOnly="True" type="object">
+                                              <prop readOnly="True" type="string" name="name"/>
+                                              <prop readOnly="True" type="string" name="value"/>
+                                            </item>
+                                          </prop>
+                                          <prop readOnly="True" type="object" name="dimensions">
+                                            <prop readOnly="True" type="float64" name="length"/>
+                                            <prop readOnly="True" type="float64" name="height"/>
+                                            <prop readOnly="True" type="float64" name="width"/>
+                                            <prop readOnly="True" type="string" name="lengthHeightUnit">
+                                              <enum>
+                                                <item value="IN"/>
+                                                <item value="CM"/>
+                                              </enum>
+                                            </prop>
+                                            <prop readOnly="True" type="float64" name="weight"/>
+                                            <prop readOnly="True" type="float64" name="depth"/>
+                                            <prop readOnly="True" type="string" name="weightUnit">
+                                              <enum>
+                                                <item value="LBS"/>
+                                                <item value="KGS"/>
+                                              </enum>
+                                            </prop>
+                                          </prop>
+                                        </prop>
+                                      </item>
+                                    </prop>
+                                  </prop>
+                                </item>
+                              </prop>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="resourceProviderDetails">
+                          <item readOnly="True" type="object">
+                            <prop readOnly="True" type="string" name="resourceProviderNamespace"/>
+                          </item>
+                        </prop>
+                      </prop>
+                    </item>
+                  </prop>
+                  <prop readOnly="True" type="string" name="nextLink"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
