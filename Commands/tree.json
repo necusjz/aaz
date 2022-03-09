@@ -1,0 +1,525 @@
+{
+  "root": {
+    "names": [
+      "aaz"
+    ],
+    "commandGroups": {
+      "elastic": {
+        "names": [
+          "elastic"
+        ],
+        "help": {
+          "short": "Manage Microsoft Elastic."
+        },
+        "commandGroups": {
+          "monitor": {
+            "names": [
+              "elastic",
+              "monitor"
+            ],
+            "help": {
+              "short": "Manage monitor with Elastic."
+            },
+            "commandGroups": {
+              "tag-rule": {
+                "names": [
+                  "elastic",
+                  "monitor",
+                  "tag-rule"
+                ],
+                "help": {
+                  "short": "Manage tag rule with Elastic."
+                },
+                "commands": {
+                  "list": {
+                    "names": [
+                      "elastic",
+                      "monitor",
+                      "tag-rule",
+                      "list"
+                    ],
+                    "help": {
+                      "short": "List the tag rules for a given monitor resource."
+                    },
+                    "versions": [
+                      {
+                        "name": "2020-07-01",
+                        "stage": "Experimental",
+                        "resources": [
+                          {
+                            "plane": "mgmt-plane",
+                            "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/tagrules",
+                            "version": "2020-07-01"
+                          }
+                        ],
+                        "examples": [
+                          {
+                            "name": "TagRules List",
+                            "commands": [
+                              "elastic monitor tag-rule list --monitor-name myMonitor --resource-group myResourceGroup"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "show": {
+                    "names": [
+                      "elastic",
+                      "monitor",
+                      "tag-rule",
+                      "show"
+                    ],
+                    "help": {
+                      "short": "Get a tag rule set for a given monitor resource."
+                    },
+                    "versions": [
+                      {
+                        "name": "2020-07-01",
+                        "stage": "Experimental",
+                        "resources": [
+                          {
+                            "plane": "mgmt-plane",
+                            "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/tagrules/{}",
+                            "version": "2020-07-01"
+                          }
+                        ],
+                        "examples": [
+                          {
+                            "name": "TagRules Get",
+                            "commands": [
+                              "elastic monitor tag-rule show --monitor-name myMonitor --resource-group myResourceGroup --rule-set-name default"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "delete": {
+                    "names": [
+                      "elastic",
+                      "monitor",
+                      "tag-rule",
+                      "delete"
+                    ],
+                    "help": {
+                      "short": "Delete a tag rule set for a given monitor resource."
+                    },
+                    "versions": [
+                      {
+                        "name": "2020-07-01",
+                        "stage": "Experimental",
+                        "resources": [
+                          {
+                            "plane": "mgmt-plane",
+                            "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/tagrules/{}",
+                            "version": "2020-07-01"
+                          }
+                        ],
+                        "examples": [
+                          {
+                            "name": "TagRules Delete",
+                            "commands": [
+                              "elastic monitor tag-rule delete --monitor-name myMonitor --resource-group myResourceGroup --rule-set-name default"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "create": {
+                    "names": [
+                      "elastic",
+                      "monitor",
+                      "tag-rule",
+                      "create"
+                    ],
+                    "help": {
+                      "short": "Create a tag rule set for a given monitor resource."
+                    },
+                    "versions": [
+                      {
+                        "name": "2020-07-01",
+                        "stage": "Experimental",
+                        "resources": [
+                          {
+                            "plane": "mgmt-plane",
+                            "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/tagrules/{}",
+                            "version": "2020-07-01"
+                          }
+                        ],
+                        "examples": [
+                          {
+                            "name": "TagRules Create",
+                            "commands": [
+                              "elastic monitor tag-rule create --monitor-name myMonitor --resource-group myResourceGroup --rule-set-name default --filtering-tags name=Environment action=Include value=Prod --send-aad-logs False --send-activity-logs --send-subscription-logs "
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "update": {
+                    "names": [
+                      "elastic",
+                      "monitor",
+                      "tag-rule",
+                      "update"
+                    ],
+                    "help": {
+                      "short": "Update a tag rule set for a given monitor resource."
+                    },
+                    "versions": [
+                      {
+                        "name": "2020-07-01",
+                        "stage": "Experimental",
+                        "resources": [
+                          {
+                            "plane": "mgmt-plane",
+                            "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/tagrules/{}",
+                            "version": "2020-07-01"
+                          }
+                        ],
+                        "examples": [
+                          {
+                            "name": "TagRules Update",
+                            "commands": [
+                              "elastic monitor tag-rule update --monitor-name myMonitor --resource-group myResourceGroup --rule-set-name default --send-aad-logs True"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "commands": {
+              "list": {
+                "names": [
+                  "elastic",
+                  "monitor",
+                  "list"
+                ],
+                "help": {
+                  "short": "List all monitors under the specified resource group. And List all monitors under the specified subscription."
+                },
+                "versions": [
+                  {
+                    "name": "2020-07-01",
+                    "stage": "Experimental",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/providers/microsoft.elastic/monitors",
+                        "version": "2020-07-01"
+                      },
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors",
+                        "version": "2020-07-01"
+                      }
+                    ],
+                    "examples": [
+                      {
+                        "name": "Monitors List By ResourceGroup",
+                        "commands": [
+                          "elastic monitor list --resource-group myResourceGroup"
+                        ]
+                      },
+                      {
+                        "name": "Monitors List",
+                        "commands": [
+                          "elastic monitor list"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "show": {
+                "names": [
+                  "elastic",
+                  "monitor",
+                  "show"
+                ],
+                "help": {
+                  "short": "Get the properties of a specific monitor resource."
+                },
+                "versions": [
+                  {
+                    "name": "2020-07-01",
+                    "stage": "Experimental",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}",
+                        "version": "2020-07-01"
+                      }
+                    ],
+                    "examples": [
+                      {
+                        "name": "Monitors Get",
+                        "commands": [
+                          "elastic monitor show --name myMonitor --resource-group myResourceGroup"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "delete": {
+                "names": [
+                  "elastic",
+                  "monitor",
+                  "delete"
+                ],
+                "help": {
+                  "short": "Delete a monitor resource."
+                },
+                "versions": [
+                  {
+                    "name": "2020-07-01",
+                    "stage": "Experimental",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}",
+                        "version": "2020-07-01"
+                      }
+                    ],
+                    "examples": [
+                      {
+                        "name": "Monitors Delete",
+                        "commands": [
+                          "elastic monitor delete --name myMonitor --resource-group myResourceGroup"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "create": {
+                "names": [
+                  "elastic",
+                  "monitor",
+                  "create"
+                ],
+                "help": {
+                  "short": "Create a monitor resource."
+                },
+                "versions": [
+                  {
+                    "name": "2020-07-01",
+                    "stage": "Experimental",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}",
+                        "version": "2020-07-01"
+                      }
+                    ],
+                    "examples": [
+                      {
+                        "name": "Monitors Create",
+                        "commands": [
+                          "elastic monitor create --name myMonitor --location westus2"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "update": {
+                "names": [
+                  "elastic",
+                  "monitor",
+                  "update"
+                ],
+                "help": {
+                  "short": "Update a monitor resource."
+                },
+                "versions": [
+                  {
+                    "name": "2020-07-01",
+                    "stage": "Experimental",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}",
+                        "version": "2020-07-01"
+                      }
+                    ],
+                    "examples": [
+                      {
+                        "name": "Monitors Update",
+                        "commands": [
+                          "elastic monitor update --name myMonitor --tags Environment=dev --resource-group myResourceGroup"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "list-deployment-info": {
+                "names": [
+                  "elastic",
+                  "monitor",
+                  "list-deployment-info"
+                ],
+                "help": {
+                  "short": "Fetch information regarding Elastic cloud deployment corresponding to the Elastic monitor resource."
+                },
+                "versions": [
+                  {
+                    "name": "2020-07-01",
+                    "stage": "Experimental",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/listdeploymentinfo",
+                        "version": "2020-07-01"
+                      }
+                    ],
+                    "examples": [
+                      {
+                        "name": "DeploymentInfo List",
+                        "commands": [
+                          "elastic monitor list-deployment-info --name myMonitor --resource-group myResourceGroup"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "list-vm-host": {
+                "names": [
+                  "elastic",
+                  "monitor",
+                  "list-vm-host"
+                ],
+                "help": {
+                  "short": "List the vm resources currently being monitored by the Elastic monitor resource."
+                },
+                "versions": [
+                  {
+                    "name": "2020-07-01",
+                    "stage": "Experimental",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/listvmhost",
+                        "version": "2020-07-01"
+                      }
+                    ],
+                    "examples": [
+                      {
+                        "name": "VMHost List",
+                        "commands": [
+                          "elastic monitor list-vm-host --name myMonitor --resource-group myResourceGroup"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "list-resource": {
+                "names": [
+                  "elastic",
+                  "monitor",
+                  "list-resource"
+                ],
+                "help": {
+                  "short": "List the resources currently being monitored by the Elastic monitor resource."
+                },
+                "versions": [
+                  {
+                    "name": "2020-07-01",
+                    "stage": "Experimental",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/listmonitoredresources",
+                        "version": "2020-07-01"
+                      }
+                    ],
+                    "examples": [
+                      {
+                        "name": "MonitoredResources List",
+                        "commands": [
+                          "elastic monitor list-resource --name myMonitor --resource-group myResourceGroup"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "update-vm-collection": {
+                "names": [
+                  "elastic",
+                  "monitor",
+                  "update-vm-collection"
+                ],
+                "help": {
+                  "short": "Update the vm details that will be monitored by the Elastic monitor resource."
+                },
+                "versions": [
+                  {
+                    "name": "2020-07-01",
+                    "stage": "Experimental",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/vmcollectionupdate",
+                        "version": "2020-07-01"
+                      }
+                    ],
+                    "examples": [
+                      {
+                        "name": "VMCollection Update",
+                        "commands": [
+                          "elastic monitor update-vm-collection --name myMonitor --resource-group myResourceGroup --operation-name Add --vm-resource-id /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualmachines/myVM"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "list-vm-ingestion-detail": {
+                "names": [
+                  "elastic",
+                  "monitor",
+                  "list-vm-ingestion-detail"
+                ],
+                "help": {
+                  "short": "List the vm ingestion details that will be monitored by the Elastic monitor resource."
+                },
+                "versions": [
+                  {
+                    "name": "2020-07-01",
+                    "stage": "Experimental",
+                    "resources": [
+                      {
+                        "plane": "mgmt-plane",
+                        "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/vmingestiondetails",
+                        "version": "2020-07-01"
+                      }
+                    ],
+                    "examples": [
+                      {
+                        "name": "VMIngestion Details",
+                        "commands": [
+                          "elastic monitor list-vm-ingestion-detail --name myMonitor --resource-group myResourceGroup"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
