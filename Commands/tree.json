@@ -445,9 +445,9 @@
                     ],
                     "examples": [
                       {
-                        "name": "ListOrderAtResourceGroupLevel",
+                        "name": "ListOrderItemsAtResourceGroupLevel",
                         "commands": [
-                          "edge-order order list --resource-group \"TestRG\""
+                          "edge-order order-item list --resource-group \"TestRG\""
                         ]
                       },
                       {
@@ -474,9 +474,9 @@
                     ],
                     "examples": [
                       {
-                        "name": "ListOrderAtResourceGroupLevel",
+                        "name": "ListOrderItemsAtResourceGroupLevel",
                         "commands": [
-                          "edge-order order list --resource-group \"TestRG\""
+                          "edge-order order-item list --resource-group \"TestRG\""
                         ]
                       },
                       {
@@ -513,7 +513,7 @@
                       {
                         "name": "GetOrderItemByName",
                         "commands": [
-                          "order-item show --name \"TestOrderItemName01\" --resource-group \"TestRG\""
+                          "edge-order order-item show --name \"TestOrderItemName01\" --resource-group \"TestRG\""
                         ]
                       }
                     ]
@@ -531,7 +531,7 @@
                       {
                         "name": "GetOrderItemByName",
                         "commands": [
-                          "order-item show --name \"TestOrderItemName01\" --resource-group \"TestRG\""
+                          "edge-order order-item show --name \"TestOrderItemName01\" --resource-group \"TestRG\""
                         ]
                       }
                     ]
@@ -562,7 +562,7 @@
                       {
                         "name": "DeleteOrderItemByName",
                         "commands": [
-                          "order-item delete --name \"TestOrderItemName01\" --resource-group \"TestRG\""
+                          "edge-order order-item delete --name \"TestOrderItemName01\" --resource-group \"TestRG\""
                         ]
                       }
                     ]
@@ -580,7 +580,7 @@
                       {
                         "name": "DeleteOrderItemByName",
                         "commands": [
-                          "order-item delete --name \"TestOrderItemName01\" --resource-group \"TestRG\""
+                          "edge-order order-item delete --name \"TestOrderItemName01\" --resource-group \"TestRG\""
                         ]
                       }
                     ]
@@ -611,7 +611,7 @@
                       {
                         "name": "GetOrderItemByName",
                         "commands": [
-                          "order-item create --name \"TestOrderItemName01\" --resource-group \"TestRG\""
+                          "edge-order order-item create --name \"TestOrderItemName01\" --resource-group \"TestRG\""
                         ]
                       }
                     ]
@@ -629,7 +629,7 @@
                       {
                         "name": "GetOrderItemByName",
                         "commands": [
-                          "order-item create --name \"TestOrderItemName01\" --resource-group \"TestRG\""
+                          "edge-order order-item create --name \"TestOrderItemName01\" --resource-group \"TestRG\""
                         ]
                       }
                     ]
@@ -660,7 +660,7 @@
                       {
                         "name": "GetOrderItemByName",
                         "commands": [
-                          "order-item update --name \"TestOrderItemName01\" --resource-group \"TestRG\" --contact-details contact-name='Updated contact name'"
+                          "edge-order order-item update --name \"TestOrderItemName01\" --resource-group \"TestRG\" --contact-details contact-name='Updated contact name'"
                         ]
                       }
                     ]
@@ -678,7 +678,7 @@
                       {
                         "name": "GetOrderItemByName",
                         "commands": [
-                          "order-item update --name \"TestOrderItemName01\" --resource-group \"TestRG\" --contact-details contact-name='Updated contact name'"
+                          "edge-order order-item update --name \"TestOrderItemName01\" --resource-group \"TestRG\" --contact-details contact-name='Updated contact name'"
                         ]
                       }
                     ]
@@ -709,7 +709,7 @@
                       {
                         "name": "CancelOrderItem",
                         "commands": [
-                          "order-item cancel --reason \"Order cancelled\" --name \"TestOrderItemName1\" --resource-group \"TestRG\""
+                          "edge-order order-item cancel --reason \"Order cancelled\" --name \"TestOrderItemName1\" --resource-group \"TestRG\""
                         ]
                       }
                     ]
@@ -727,7 +727,7 @@
                       {
                         "name": "CancelOrderItem",
                         "commands": [
-                          "order-item cancel --reason \"Order cancelled\" --name \"TestOrderItemName1\" --resource-group \"TestRG\""
+                          "edge-order order-item cancel --reason \"Order cancelled\" --name \"TestOrderItemName1\" --resource-group \"TestRG\""
                         ]
                       }
                     ]
@@ -758,7 +758,7 @@
                       {
                         "name": "ReturnOrderItem",
                         "commands": [
-                          "order-item return --name \"TestOrderName1\" --resource-group \"TestRG\" --return-reason \"Order returned\""
+                          "edge-order order-item return --name \"TestOrderName1\" --resource-group \"TestRG\" --return-reason \"Order returned\""
                         ]
                       }
                     ]
@@ -776,7 +776,7 @@
                       {
                         "name": "ReturnOrderItem",
                         "commands": [
-                          "order-item return --name \"TestOrderName1\" --resource-group \"TestRG\" --return-reason \"Order returned\""
+                          "edge-order order-item return --name \"TestOrderName1\" --resource-group \"TestRG\" --return-reason \"Order returned\""
                         ]
                       }
                     ]

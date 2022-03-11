@@ -12,7 +12,7 @@ Cancel order item.
 
 - CancelOrderItem
     ```bash
-        order-item cancel --reason "Order cancelled" --name "TestOrderItemName1" --resource-group "TestRG"
+        edge-order order-item cancel --reason "Order cancelled" --name "TestOrderItemName1" --resource-group "TestRG"
     ```
 
 ### [2021-12-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lZGdlb3JkZXIvb3JkZXJpdGVtcy97fS9jYW5jZWw=/2021-12-01.xml) **Stable**
@@ -23,5 +23,5 @@ Cancel order item.
 
 - CancelOrderItem
     ```bash
-        order-item cancel --reason "Order cancelled" --name "TestOrderItemName1" --resource-group "TestRG"
+        edge-order order-item cancel --reason "Order cancelled" --name "TestOrderItemName1" --resource-group "TestRG"
     ```

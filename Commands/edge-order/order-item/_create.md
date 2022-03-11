@@ -12,7 +12,7 @@ Create an order item.
 
 - GetOrderItemByName
     ```bash
-        order-item create --name "TestOrderItemName01" --resource-group "TestRG"
+        edge-order order-item create --name "TestOrderItemName01" --resource-group "TestRG"
     ```
 
 ### [2021-12-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lZGdlb3JkZXIvb3JkZXJpdGVtcy97fQ==/2021-12-01.xml) **Stable**
@@ -23,5 +23,5 @@ Create an order item.
 
 - GetOrderItemByName
     ```bash
-        order-item create --name "TestOrderItemName01" --resource-group "TestRG"
+        edge-order order-item create --name "TestOrderItemName01" --resource-group "TestRG"
     ```

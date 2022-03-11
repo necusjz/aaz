@@ -12,7 +12,7 @@ Update the properties of an existing order item.
 
 - GetOrderItemByName
     ```bash
-        order-item update --name "TestOrderItemName01" --resource-group "TestRG" --contact-details contact-name='Updated contact name'
+        edge-order order-item update --name "TestOrderItemName01" --resource-group "TestRG" --contact-details contact-name='Updated contact name'
     ```
 
 ### [2021-12-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lZGdlb3JkZXIvb3JkZXJpdGVtcy97fQ==/2021-12-01.xml) **Stable**
@@ -23,5 +23,5 @@ Update the properties of an existing order item.
 
 - GetOrderItemByName
     ```bash
-        order-item update --name "TestOrderItemName01" --resource-group "TestRG" --contact-details contact-name='Updated contact name'
+        edge-order order-item update --name "TestOrderItemName01" --resource-group "TestRG" --contact-details contact-name='Updated contact name'
     ```

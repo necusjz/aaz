@@ -11,9 +11,9 @@ List order at resource group level. And List order at subscription level.
 
 #### examples
 
-- ListOrderAtResourceGroupLevel
+- ListOrderItemsAtResourceGroupLevel
     ```bash
-        edge-order order list --resource-group "TestRG"
+        edge-order order-item list --resource-group "TestRG"
     ```
 
 - ListOrderItemsAtSubscriptionLevel
@@ -28,9 +28,9 @@ List order at resource group level. And List order at subscription level.
 
 #### examples
 
-- ListOrderAtResourceGroupLevel
+- ListOrderItemsAtResourceGroupLevel
     ```bash
-        edge-order order list --resource-group "TestRG"
+        edge-order order-item list --resource-group "TestRG"
     ```
 
 - ListOrderItemsAtSubscriptionLevel

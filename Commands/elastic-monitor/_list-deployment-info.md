@@ -4,9 +4,9 @@ Fetch information regarding Elastic cloud deployment corresponding to the Elasti
 
 ## Versions
 
-### [2020-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L2xpc3RkZXBsb3ltZW50aW5mbw==/2020-07-01-preview.xml) **Experimental**
+### [2020-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L2xpc3RkZXBsb3ltZW50aW5mbw==/2020-07-01.xml) **Stable**
 
-<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/listdeploymentinfo 2020-07-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/listdeploymentinfo 2020-07-01 -->
 
 #### examples
 
@@ -15,9 +15,9 @@ Fetch information regarding Elastic cloud deployment corresponding to the Elasti
         elastic-monitor list-deployment-info --name myMonitor --resource-group myResourceGroup
     ```
 
-### [2020-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L2xpc3RkZXBsb3ltZW50aW5mbw==/2020-07-01.xml) **Stable**
+### [2020-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L2xpc3RkZXBsb3ltZW50aW5mbw==/2020-07-01-preview.xml) **Experimental**
 
-<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/listdeploymentinfo 2020-07-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/listdeploymentinfo 2020-07-01-preview -->
 
 #### examples
 

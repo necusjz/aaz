@@ -4,10 +4,10 @@ List all monitors under the specified resource group. And List all monitors unde
 
 ## Versions
 
-### [2020-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3Jz/2020-07-01-preview.xml) **Experimental**
+### [2020-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3Jz/2020-07-01.xml) **Stable**
 
-<!-- mgmt-plane /subscriptions/{}/providers/microsoft.elastic/monitors 2020-07-01-preview -->
-<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors 2020-07-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.elastic/monitors 2020-07-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors 2020-07-01 -->
 
 #### examples
 
@@ -21,10 +21,10 @@ List all monitors under the specified resource group. And List all monitors unde
         elastic-monitor list
     ```
 
-### [2020-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3Jz/2020-07-01.xml) **Stable**
+### [2020-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3Jz/2020-07-01-preview.xml) **Experimental**
 
-<!-- mgmt-plane /subscriptions/{}/providers/microsoft.elastic/monitors 2020-07-01 -->
-<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors 2020-07-01 -->
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.elastic/monitors 2020-07-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors 2020-07-01-preview -->
 
 #### examples
 

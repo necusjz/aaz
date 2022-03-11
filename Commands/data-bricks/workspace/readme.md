@@ -9,17 +9,17 @@ Commands to manage databricks workspace.
 
 ## Commands
 
-- [show](/Commands/data-bricks/workspace/_show.md)
-: Show the workspace.
+- [create](/Commands/data-bricks/workspace/_create.md)
+: Create a new workspace.
 
 - [delete](/Commands/data-bricks/workspace/_delete.md)
 : Delete the workspace.
 
-- [create](/Commands/data-bricks/workspace/_create.md)
-: Create a new workspace.
+- [list](/Commands/data-bricks/workspace/_list.md)
+: Get all the workspaces.
+
+- [show](/Commands/data-bricks/workspace/_show.md)
+: Show the workspace.
 
 - [update](/Commands/data-bricks/workspace/_update.md)
 : Update the workspace.
-
-- [list](/Commands/data-bricks/workspace/_list.md)
-: Get all the workspaces.
