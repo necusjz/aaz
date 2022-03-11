@@ -20,6 +20,18 @@ Create a new workspace.
         data-bricks workspace create --resource-group MyResourceGroup --name MyWorkspace --location eastus2euap --sku premium --prepare-encryption
     ```
 
-### [2021-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhYnJpY2tzL3dvcmtzcGFjZXMve30=/2021-04-01-preview.xml) **Stable**
+### [2021-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhYnJpY2tzL3dvcmtzcGFjZXMve30=/2021-04-01-preview.xml) **Preview**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.databricks/workspaces/{} 2021-04-01-preview -->
+
+#### examples
+
+- Create a workspace
+    ```bash
+        data-bricks workspace create --resource-group MyResourceGroup --name MyWorkspace --location westus --sku standard
+    ```
+
+- Create a workspace with managed identity for storage account
+    ```bash
+        data-bricks workspace create --resource-group MyResourceGroup --name MyWorkspace --location eastus2euap --sku premium --prepare-encryption
+    ```

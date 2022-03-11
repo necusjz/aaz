@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<CodeGen timestamp="2022-03-11T13:28:25.100841Z" plane="mgmt-plane">
+<CodeGen timestamp="2022-03-11T14:05:02.523995Z" plane="mgmt-plane">
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/addresses/{}" version="2020-12-01-preview" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZU9yZGVyL2FkZHJlc3Nlcy97YWRkcmVzc05hbWV9/V/MjAyMC0xMi0wMS1wcmV2aWV3"/>
   <commandGroup name="edge-order address">
     <command name="show" version="2020-12-01-preview">

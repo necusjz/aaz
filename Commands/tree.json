@@ -129,6 +129,14 @@
                         "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/addresses/{}",
                         "version": "2021-12-01"
                       }
+                    ],
+                    "examples": [
+                      {
+                        "name": "GetAddressByName",
+                        "commands": [
+                          "edge-order address show --name \"TestMSAddressName\" --resource-group \"TestRG\""
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -170,6 +178,14 @@
                         "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/addresses/{}",
                         "version": "2021-12-01"
                       }
+                    ],
+                    "examples": [
+                      {
+                        "name": "DeleteAddressByName",
+                        "commands": [
+                          "edge-order address delete --name \"TestAddressName1\" --resource-group \"TestRG\""
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -210,6 +226,14 @@
                         "plane": "mgmt-plane",
                         "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/addresses/{}",
                         "version": "2021-12-01"
+                      }
+                    ],
+                    "examples": [
+                      {
+                        "name": "CreateAddress",
+                        "commands": [
+                          "edge-order address create --name \"TestMSAddressName\" --location \"eastus\" --contact-details {contact-name:'Petr Cech',email-list:testemail@microsoft.com,phone:1234567890,phone-extension:} --shipping-address {address-type:'None',city:'San Francisco',company-name:Microsoft,country:US,postal-code:94107,state-or-province:CA,street-address1:'16 TOWNSEND ST',street-address2:'UNIT 1'} --resource-group TestRG"
+                        ]
                       }
                     ]
                   }
@@ -502,6 +526,14 @@
                         "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems/{}",
                         "version": "2021-12-01"
                       }
+                    ],
+                    "examples": [
+                      {
+                        "name": "GetOrderItemByName",
+                        "commands": [
+                          "order-item show --name \"TestOrderItemName01\" --resource-group \"TestRG\""
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -543,6 +575,14 @@
                         "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems/{}",
                         "version": "2021-12-01"
                       }
+                    ],
+                    "examples": [
+                      {
+                        "name": "DeleteOrderItemByName",
+                        "commands": [
+                          "order-item delete --name \"TestOrderItemName01\" --resource-group \"TestRG\""
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -583,6 +623,14 @@
                         "plane": "mgmt-plane",
                         "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems/{}",
                         "version": "2021-12-01"
+                      }
+                    ],
+                    "examples": [
+                      {
+                        "name": "GetOrderItemByName",
+                        "commands": [
+                          "order-item create --name \"TestOrderItemName01\" --resource-group \"TestRG\""
+                        ]
                       }
                     ]
                   }
@@ -797,11 +845,20 @@
                       },
                       {
                         "name": "2021-04-01-preview",
+                        "stage": "Preview",
                         "resources": [
                           {
                             "plane": "mgmt-plane",
                             "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.databricks/workspaces/{}/virtualnetworkpeerings/{}",
                             "version": "2021-04-01-preview"
+                          }
+                        ],
+                        "examples": [
+                          {
+                            "name": "Show the vnet peering.",
+                            "commands": [
+                              "data-bricks workspace vnet-peering show --resource-group MyResourceGroup --workspace-name MyWorkspace -n MyPeering"
+                            ]
                           }
                         ]
                       }
@@ -838,11 +895,20 @@
                       },
                       {
                         "name": "2021-04-01-preview",
+                        "stage": "Preview",
                         "resources": [
                           {
                             "plane": "mgmt-plane",
                             "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.databricks/workspaces/{}/virtualnetworkpeerings/{}",
                             "version": "2021-04-01-preview"
+                          }
+                        ],
+                        "examples": [
+                          {
+                            "name": "Delete the vnet peering.",
+                            "commands": [
+                              "data-bricks workspace vnet-peering delete --resource-group MyResourceGroup --workspace-name MyWorkspace -n MyPeering"
+                            ]
                           }
                         ]
                       }
@@ -879,11 +945,20 @@
                       },
                       {
                         "name": "2021-04-01-preview",
+                        "stage": "Preview",
                         "resources": [
                           {
                             "plane": "mgmt-plane",
                             "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.databricks/workspaces/{}/virtualnetworkpeerings/{}",
                             "version": "2021-04-01-preview"
+                          }
+                        ],
+                        "examples": [
+                          {
+                            "name": "Create a vnet peering for a workspace",
+                            "commands": [
+                              "data-bricks workspace vnet-peering create --resource-group MyResourceGroup --workspace-name MyWorkspace -n MyPeering --remote-vnet /subscriptions/000000-0000-0000/resourceGroups/MyRG/providers/Microsoft.Network/virtualNetworks/MyVNet"
+                            ]
                           }
                         ]
                       }
@@ -1023,11 +1098,20 @@
                   },
                   {
                     "name": "2021-04-01-preview",
+                    "stage": "Preview",
                     "resources": [
                       {
                         "plane": "mgmt-plane",
                         "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.databricks/workspaces/{}",
                         "version": "2021-04-01-preview"
+                      }
+                    ],
+                    "examples": [
+                      {
+                        "name": "Show the workspace.",
+                        "commands": [
+                          "data-bricks workspace show --resource-group MyResourceGroup --name MyWorkspace"
+                        ]
                       }
                     ]
                   }
@@ -1063,11 +1147,20 @@
                   },
                   {
                     "name": "2021-04-01-preview",
+                    "stage": "Preview",
                     "resources": [
                       {
                         "plane": "mgmt-plane",
                         "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.databricks/workspaces/{}",
                         "version": "2021-04-01-preview"
+                      }
+                    ],
+                    "examples": [
+                      {
+                        "name": "Delete the workspace.",
+                        "commands": [
+                          "data-bricks workspace delete --resource-group MyResourceGroup --name MyWorkspace"
+                        ]
                       }
                     ]
                   }
@@ -1109,11 +1202,26 @@
                   },
                   {
                     "name": "2021-04-01-preview",
+                    "stage": "Preview",
                     "resources": [
                       {
                         "plane": "mgmt-plane",
                         "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.databricks/workspaces/{}",
                         "version": "2021-04-01-preview"
+                      }
+                    ],
+                    "examples": [
+                      {
+                        "name": "Create a workspace",
+                        "commands": [
+                          "data-bricks workspace create --resource-group MyResourceGroup --name MyWorkspace --location westus --sku standard"
+                        ]
+                      },
+                      {
+                        "name": "Create a workspace with managed identity for storage account",
+                        "commands": [
+                          "data-bricks workspace create --resource-group MyResourceGroup --name MyWorkspace --location eastus2euap --sku premium --prepare-encryption"
+                        ]
                       }
                     ]
                   }
@@ -1432,25 +1540,51 @@
                         "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/tagrules/{}",
                         "version": "2020-07-01"
                       }
+                    ],
+                    "examples": [
+                      {
+                        "name": "TagRules Get",
+                        "commands": [
+                          "elastic-monitor tag-rule show --monitor-name myMonitor --resource-group myResourceGroup --rule-set-name default"
+                        ]
+                      }
                     ]
                   },
                   {
                     "name": "2021-09-01-preview",
+                    "stage": "Experimental",
                     "resources": [
                       {
                         "plane": "mgmt-plane",
                         "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/tagrules/{}",
                         "version": "2021-09-01-preview"
                       }
+                    ],
+                    "examples": [
+                      {
+                        "name": "TagRules Get",
+                        "commands": [
+                          "elastic-monitor tag-rule show --monitor-name myMonitor --resource-group myResourceGroup --rule-set-name default"
+                        ]
+                      }
                     ]
                   },
                   {
                     "name": "2021-10-01-preview",
+                    "stage": "Preview",
                     "resources": [
                       {
                         "plane": "mgmt-plane",
                         "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/tagrules/{}",
                         "version": "2021-10-01-preview"
+                      }
+                    ],
+                    "examples": [
+                      {
+                        "name": "TagRules Get",
+                        "commands": [
+                          "elastic-monitor tag-rule show --monitor-name myMonitor --resource-group myResourceGroup --rule-set-name default"
+                        ]
                       }
                     ]
                   }
@@ -1493,25 +1627,51 @@
                         "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/tagrules/{}",
                         "version": "2020-07-01"
                       }
+                    ],
+                    "examples": [
+                      {
+                        "name": "TagRules Delete",
+                        "commands": [
+                          "elastic-monitor tag-rule delete --monitor-name myMonitor --resource-group myResourceGroup --rule-set-name default"
+                        ]
+                      }
                     ]
                   },
                   {
                     "name": "2021-09-01-preview",
+                    "stage": "Experimental",
                     "resources": [
                       {
                         "plane": "mgmt-plane",
                         "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/tagrules/{}",
                         "version": "2021-09-01-preview"
                       }
+                    ],
+                    "examples": [
+                      {
+                        "name": "TagRules Delete",
+                        "commands": [
+                          "elastic-monitor tag-rule delete --monitor-name myMonitor --resource-group myResourceGroup --rule-set-name default"
+                        ]
+                      }
                     ]
                   },
                   {
                     "name": "2021-10-01-preview",
+                    "stage": "Preview",
                     "resources": [
                       {
                         "plane": "mgmt-plane",
                         "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/tagrules/{}",
                         "version": "2021-10-01-preview"
+                      }
+                    ],
+                    "examples": [
+                      {
+                        "name": "TagRules Delete",
+                        "commands": [
+                          "elastic-monitor tag-rule delete --monitor-name myMonitor --resource-group myResourceGroup --rule-set-name default"
+                        ]
                       }
                     ]
                   }
@@ -1554,25 +1714,51 @@
                         "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/tagrules/{}",
                         "version": "2020-07-01"
                       }
+                    ],
+                    "examples": [
+                      {
+                        "name": "TagRules Create",
+                        "commands": [
+                          "elastic-monitor tag-rule create --monitor-name myMonitor --resource-group myResourceGroup --rule-set-name default --filtering-tags name=Environment action=Include value=Prod --send-aad-logs False --send-activity-logs --send-subscription-logs "
+                        ]
+                      }
                     ]
                   },
                   {
                     "name": "2021-09-01-preview",
+                    "stage": "Experimental",
                     "resources": [
                       {
                         "plane": "mgmt-plane",
                         "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/tagrules/{}",
                         "version": "2021-09-01-preview"
                       }
+                    ],
+                    "examples": [
+                      {
+                        "name": "TagRules Create",
+                        "commands": [
+                          "elastic-monitor tag-rule create --monitor-name myMonitor --resource-group myResourceGroup --rule-set-name default --filtering-tags name=Environment action=Include value=Prod --send-aad-logs False --send-activity-logs --send-subscription-logs "
+                        ]
+                      }
                     ]
                   },
                   {
                     "name": "2021-10-01-preview",
+                    "stage": "Preview",
                     "resources": [
                       {
                         "plane": "mgmt-plane",
                         "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/tagrules/{}",
                         "version": "2021-10-01-preview"
+                      }
+                    ],
+                    "examples": [
+                      {
+                        "name": "TagRules Create",
+                        "commands": [
+                          "elastic-monitor tag-rule create --monitor-name myMonitor --resource-group myResourceGroup --rule-set-name default --filtering-tags name=Environment action=Include value=Prod --send-aad-logs False --send-activity-logs --send-subscription-logs "
+                        ]
                       }
                     ]
                   }
@@ -1908,25 +2094,51 @@
                     "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}",
                     "version": "2020-07-01"
                   }
+                ],
+                "examples": [
+                  {
+                    "name": "Monitors Get",
+                    "commands": [
+                      "elastic-monitor show --name myMonitor --resource-group myResourceGroup"
+                    ]
+                  }
                 ]
               },
               {
                 "name": "2021-09-01-preview",
+                "stage": "Experimental",
                 "resources": [
                   {
                     "plane": "mgmt-plane",
                     "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}",
                     "version": "2021-09-01-preview"
                   }
+                ],
+                "examples": [
+                  {
+                    "name": "Monitors Get",
+                    "commands": [
+                      "elastic-monitor show --name myMonitor --resource-group myResourceGroup"
+                    ]
+                  }
                 ]
               },
               {
                 "name": "2021-10-01-preview",
+                "stage": "Preview",
                 "resources": [
                   {
                     "plane": "mgmt-plane",
                     "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}",
                     "version": "2021-10-01-preview"
+                  }
+                ],
+                "examples": [
+                  {
+                    "name": "Monitors Get",
+                    "commands": [
+                      "elastic-monitor show --name myMonitor --resource-group myResourceGroup"
+                    ]
                   }
                 ]
               }
@@ -1968,25 +2180,51 @@
                     "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}",
                     "version": "2020-07-01"
                   }
+                ],
+                "examples": [
+                  {
+                    "name": "Monitors Delete",
+                    "commands": [
+                      "elastic-monitor delete --name myMonitor --resource-group myResourceGroup"
+                    ]
+                  }
                 ]
               },
               {
                 "name": "2021-09-01-preview",
+                "stage": "Experimental",
                 "resources": [
                   {
                     "plane": "mgmt-plane",
                     "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}",
                     "version": "2021-09-01-preview"
                   }
+                ],
+                "examples": [
+                  {
+                    "name": "Monitors Delete",
+                    "commands": [
+                      "elastic-monitor delete --name myMonitor --resource-group myResourceGroup"
+                    ]
+                  }
                 ]
               },
               {
                 "name": "2021-10-01-preview",
+                "stage": "Preview",
                 "resources": [
                   {
                     "plane": "mgmt-plane",
                     "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}",
                     "version": "2021-10-01-preview"
+                  }
+                ],
+                "examples": [
+                  {
+                    "name": "Monitors Delete",
+                    "commands": [
+                      "elastic-monitor delete --name myMonitor --resource-group myResourceGroup"
+                    ]
                   }
                 ]
               }
@@ -2028,25 +2266,51 @@
                     "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}",
                     "version": "2020-07-01"
                   }
+                ],
+                "examples": [
+                  {
+                    "name": "Monitors Create",
+                    "commands": [
+                      "elastic-monitor create --name myMonitor --location westus2"
+                    ]
+                  }
                 ]
               },
               {
                 "name": "2021-09-01-preview",
+                "stage": "Experimental",
                 "resources": [
                   {
                     "plane": "mgmt-plane",
                     "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}",
                     "version": "2021-09-01-preview"
                   }
+                ],
+                "examples": [
+                  {
+                    "name": "Monitors Create",
+                    "commands": [
+                      "elastic-monitor create --name myMonitor --location westus2"
+                    ]
+                  }
                 ]
               },
               {
                 "name": "2021-10-01-preview",
+                "stage": "Preview",
                 "resources": [
                   {
                     "plane": "mgmt-plane",
                     "id": "/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}",
                     "version": "2021-10-01-preview"
+                  }
+                ],
+                "examples": [
+                  {
+                    "name": "Monitors Create",
+                    "commands": [
+                      "elastic-monitor create --name myMonitor --location westus2"
+                    ]
                   }
                 ]
               }
