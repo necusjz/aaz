@@ -1,0 +1,511 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen timestamp="2022-03-11T13:28:38.920591Z" plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.edgeorder/orderitems" version="2021-12-01" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2VPcmRlci9vcmRlckl0ZW1z/V/MjAyMS0xMi0wMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems" version="2021-12-01" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZU9yZGVyL29yZGVySXRlbXM=/V/MjAyMS0xMi0wMQ=="/>
+  <commandGroup name="edge-order order-item">
+    <command name="list" version="2021-12-01">
+      <resource id="/subscriptions/{}/providers/microsoft.edgeorder/orderitems" version="2021-12-01" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2VPcmRlci9vcmRlckl0ZW1z/V/MjAyMS0xMi0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems" version="2021-12-01" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZU9yZGVyL29yZGVySXRlbXM=/V/MjAyMS0xMi0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True"/>
+        <arg type="string" var="$Query.expand" options="expand">
+          <help short="$expand is supported on device details, forward shipping details and reverse shipping details parameters. Each of these can be provided as a comma separated list. Device Details for order item provides details on the devices of the product, Forward and Reverse Shipping details provide forward and reverse shipping details respectively."/>
+        </arg>
+        <arg type="string" var="$Query.filter" options="filter">
+          <help short="$filter is supported to filter based on order id. Filter supports only equals operation."/>
+        </arg>
+        <arg type="string" var="$Query.skipToken" options="skip-token">
+          <help short="$skipToken is supported on Get list of order items, which provides the next page in the list of order items."/>
+        </arg>
+      </argGroup>
+      <condition var="$Condition_ListOrderItemsAtResourceGroupLevel">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <condition var="$Condition_ListOrderItemsAtSubscriptionLevel">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <operation when="$Condition_ListOrderItemsAtResourceGroupLevel" operationId="ListOrderItemsAtResourceGroupLevel">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EdgeOrder/orderItems">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <param type="string" name="$expand" arg="$Query.expand"/>
+              <param type="string" name="$filter" arg="$Query.filter"/>
+              <param type="string" name="$skipToken" arg="$Query.skipToken"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="2021-12-01"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop readOnly="True" type="array<object>" name="value">
+                    <item readOnly="True" type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.EdgeOrder/orderItems/{}"/>
+                      </prop>
+                      <prop readOnly="True" type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop readOnly="True" type="object" name="properties" required="True" clientFlatten="True">
+                        <prop readOnly="True" type="object" name="addressDetails" required="True">
+                          <prop readOnly="True" type="object" name="forwardAddress" required="True" cls="AddressProperties_read">
+                            <prop readOnly="True" type="string" name="addressValidationStatus">
+                              <enum>
+                                <item value="Ambiguous"/>
+                                <item value="Invalid"/>
+                                <item value="Valid"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="object" name="contactDetails" required="True">
+                              <prop readOnly="True" type="string" name="contactName" required="True"/>
+                              <prop readOnly="True" type="array<string>" name="emailList" required="True">
+                                <item readOnly="True" type="string"/>
+                              </prop>
+                              <prop readOnly="True" type="string" name="mobile"/>
+                              <prop readOnly="True" type="string" name="phone" required="True"/>
+                              <prop readOnly="True" type="string" name="phoneExtension"/>
+                            </prop>
+                            <prop readOnly="True" type="object" name="shippingAddress">
+                              <prop readOnly="True" type="string" name="addressType">
+                                <enum>
+                                  <item value="Commercial"/>
+                                  <item value="None"/>
+                                  <item value="Residential"/>
+                                </enum>
+                              </prop>
+                              <prop readOnly="True" type="string" name="city"/>
+                              <prop readOnly="True" type="string" name="companyName"/>
+                              <prop readOnly="True" type="string" name="country" required="True"/>
+                              <prop readOnly="True" type="string" name="postalCode"/>
+                              <prop readOnly="True" type="string" name="stateOrProvince"/>
+                              <prop readOnly="True" type="string" name="streetAddress1" required="True"/>
+                              <prop readOnly="True" type="string" name="streetAddress2"/>
+                              <prop readOnly="True" type="string" name="streetAddress3"/>
+                              <prop readOnly="True" type="string" name="zipExtendedCode"/>
+                            </prop>
+                          </prop>
+                          <prop readOnly="True" type="@AddressProperties_read" name="returnAddress"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="orderId" required="True"/>
+                        <prop readOnly="True" type="object" name="orderItemDetails" required="True">
+                          <prop readOnly="True" type="string" name="cancellationReason"/>
+                          <prop readOnly="True" type="string" name="cancellationStatus">
+                            <enum>
+                              <item value="Cancellable"/>
+                              <item value="CancellableWithFee"/>
+                              <item value="NotCancellable"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="object" name="currentStage" cls="StageDetails_read">
+                            <prop readOnly="True" type="string" name="displayName"/>
+                            <prop readOnly="True" type="string" name="stageName">
+                              <enum>
+                                <item value="Cancelled"/>
+                                <item value="Confirmed"/>
+                                <item value="Delivered"/>
+                                <item value="InReview"/>
+                                <item value="InUse"/>
+                                <item value="Placed"/>
+                                <item value="ReadyToShip"/>
+                                <item value="ReturnCompleted"/>
+                                <item value="ReturnInitiated"/>
+                                <item value="ReturnPickedUp"/>
+                                <item value="ReturnedToMicrosoft"/>
+                                <item value="Shipped"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="string" name="stageStatus">
+                              <enum>
+                                <item value="Cancelled"/>
+                                <item value="Cancelling"/>
+                                <item value="Failed"/>
+                                <item value="InProgress"/>
+                                <item value="None"/>
+                                <item value="Succeeded"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="dateTime" name="startTime"/>
+                          </prop>
+                          <prop readOnly="True" type="string" name="deletionStatus">
+                            <enum>
+                              <item value="Allowed"/>
+                              <item value="NotAllowed"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="object" name="error" cls="ErrorDetail_read">
+                            <prop readOnly="True" type="array<object>" name="additionalInfo">
+                              <item readOnly="True" type="object">
+                                <prop readOnly="True" type="object" name="info">
+                                  <additionalProp readOnly="True"/>
+                                </prop>
+                                <prop readOnly="True" type="string" name="type"/>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="string" name="code"/>
+                            <prop readOnly="True" type="array<@ErrorDetail_read>" name="details">
+                              <item readOnly="True" type="@ErrorDetail_read"/>
+                            </prop>
+                            <prop readOnly="True" type="string" name="message"/>
+                            <prop readOnly="True" type="string" name="target"/>
+                          </prop>
+                          <prop readOnly="True" type="object" name="forwardShippingDetails">
+                            <prop readOnly="True" type="string" name="carrierDisplayName"/>
+                            <prop readOnly="True" type="string" name="carrierName"/>
+                            <prop readOnly="True" type="string" name="trackingId"/>
+                            <prop readOnly="True" type="string" name="trackingUrl"/>
+                          </prop>
+                          <prop readOnly="True" type="object" name="managementRpDetails" cls="ResourceProviderDetails_read">
+                            <prop readOnly="True" type="string" name="resourceProviderNamespace"/>
+                          </prop>
+                          <prop readOnly="True" type="array<@ResourceProviderDetails_read>" name="managementRpDetailsList">
+                            <item readOnly="True" type="@ResourceProviderDetails_read"/>
+                          </prop>
+                          <prop readOnly="True" type="array<string>" name="notificationEmailList">
+                            <item readOnly="True" type="string"/>
+                          </prop>
+                          <prop readOnly="True" type="array<@StageDetails_read>" name="orderItemStageHistory">
+                            <item readOnly="True" type="@StageDetails_read"/>
+                          </prop>
+                          <prop readOnly="True" type="string" name="orderItemType" required="True">
+                            <enum>
+                              <item value="Purchase"/>
+                              <item value="Rental"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="object" name="preferences">
+                            <prop readOnly="True" type="object" name="encryptionPreferences">
+                              <prop readOnly="True" type="string" name="doubleEncryptionStatus">
+                                <enum>
+                                  <item value="Disabled"/>
+                                  <item value="Enabled"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop readOnly="True" type="object" name="managementResourcePreferences">
+                              <prop readOnly="True" type="string" name="preferredManagementResourceId"/>
+                            </prop>
+                            <prop readOnly="True" type="array<object>" name="notificationPreferences">
+                              <item readOnly="True" type="object">
+                                <prop readOnly="True" type="boolean" name="sendNotification" required="True"/>
+                                <prop readOnly="True" type="string" name="stageName" required="True">
+                                  <enum>
+                                    <item value="Delivered"/>
+                                    <item value="Shipped"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="object" name="transportPreferences">
+                              <prop readOnly="True" type="string" name="preferredShipmentType" required="True">
+                                <enum>
+                                  <item value="CustomerManaged"/>
+                                  <item value="MicrosoftManaged"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                          </prop>
+                          <prop readOnly="True" type="object" name="productDetails" required="True">
+                            <prop readOnly="True" type="integer32" name="count"/>
+                            <prop readOnly="True" type="array<object>" name="deviceDetails">
+                              <item readOnly="True" type="object">
+                                <prop readOnly="True" type="string" name="managementResourceId"/>
+                                <prop readOnly="True" type="string" name="managementResourceTenantId"/>
+                                <prop readOnly="True" type="string" name="serialNumber"/>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="object" name="displayInfo">
+                              <prop readOnly="True" type="string" name="configurationDisplayName"/>
+                              <prop readOnly="True" type="string" name="productFamilyDisplayName"/>
+                            </prop>
+                            <prop readOnly="True" type="object" name="hierarchyInformation" required="True">
+                              <prop readOnly="True" type="string" name="configurationName"/>
+                              <prop readOnly="True" type="string" name="productFamilyName"/>
+                              <prop readOnly="True" type="string" name="productLineName"/>
+                              <prop readOnly="True" type="string" name="productName"/>
+                            </prop>
+                            <prop readOnly="True" type="string" name="productDoubleEncryptionStatus">
+                              <enum>
+                                <item value="Disabled"/>
+                                <item value="Enabled"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop readOnly="True" type="string" name="returnReason"/>
+                          <prop readOnly="True" type="string" name="returnStatus">
+                            <enum>
+                              <item value="NotReturnable"/>
+                              <item value="Returnable"/>
+                              <item value="ReturnableWithFee"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="object" name="reverseShippingDetails">
+                            <prop readOnly="True" type="string" name="carrierDisplayName"/>
+                            <prop readOnly="True" type="string" name="carrierName"/>
+                            <prop readOnly="True" type="string" name="sasKeyForLabel"/>
+                            <prop readOnly="True" type="string" name="trackingId"/>
+                            <prop readOnly="True" type="string" name="trackingUrl"/>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="startTime"/>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop readOnly="True" type="dateTime" name="createdAt"/>
+                        <prop readOnly="True" type="string" name="createdBy"/>
+                        <prop readOnly="True" type="string" name="createdByType">
+                          <enum>
+                            <item value="Application"/>
+                            <item value="Key"/>
+                            <item value="ManagedIdentity"/>
+                            <item value="User"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="lastModifiedAt"/>
+                        <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                        <prop readOnly="True" type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="Application"/>
+                            <item value="Key"/>
+                            <item value="ManagedIdentity"/>
+                            <item value="User"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="tags">
+                        <additionalProp readOnly="True">
+                          <item readOnly="True" type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_ListOrderItemsAtSubscriptionLevel" operationId="ListOrderItemsAtSubscriptionLevel">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.EdgeOrder/orderItems">
+          <request method="get">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <param type="string" name="$expand" arg="$Query.expand"/>
+              <param type="string" name="$filter" arg="$Query.filter"/>
+              <param type="string" name="$skipToken" arg="$Query.skipToken"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="2021-12-01"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop readOnly="True" type="array<object>" name="value">
+                    <item readOnly="True" type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.EdgeOrder/orderItems/{}"/>
+                      </prop>
+                      <prop readOnly="True" type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop readOnly="True" type="object" name="properties" required="True" clientFlatten="True">
+                        <prop readOnly="True" type="object" name="addressDetails" required="True">
+                          <prop readOnly="True" type="@AddressProperties_read" name="forwardAddress" required="True"/>
+                          <prop readOnly="True" type="@AddressProperties_read" name="returnAddress"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="orderId" required="True"/>
+                        <prop readOnly="True" type="object" name="orderItemDetails" required="True">
+                          <prop readOnly="True" type="string" name="cancellationReason"/>
+                          <prop readOnly="True" type="string" name="cancellationStatus">
+                            <enum>
+                              <item value="Cancellable"/>
+                              <item value="CancellableWithFee"/>
+                              <item value="NotCancellable"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="@StageDetails_read" name="currentStage"/>
+                          <prop readOnly="True" type="string" name="deletionStatus">
+                            <enum>
+                              <item value="Allowed"/>
+                              <item value="NotAllowed"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="@ErrorDetail_read" name="error"/>
+                          <prop readOnly="True" type="object" name="forwardShippingDetails">
+                            <prop readOnly="True" type="string" name="carrierDisplayName"/>
+                            <prop readOnly="True" type="string" name="carrierName"/>
+                            <prop readOnly="True" type="string" name="trackingId"/>
+                            <prop readOnly="True" type="string" name="trackingUrl"/>
+                          </prop>
+                          <prop readOnly="True" type="@ResourceProviderDetails_read" name="managementRpDetails"/>
+                          <prop readOnly="True" type="array<@ResourceProviderDetails_read>" name="managementRpDetailsList">
+                            <item readOnly="True" type="@ResourceProviderDetails_read"/>
+                          </prop>
+                          <prop readOnly="True" type="array<string>" name="notificationEmailList">
+                            <item readOnly="True" type="string"/>
+                          </prop>
+                          <prop readOnly="True" type="array<@StageDetails_read>" name="orderItemStageHistory">
+                            <item readOnly="True" type="@StageDetails_read"/>
+                          </prop>
+                          <prop readOnly="True" type="string" name="orderItemType" required="True">
+                            <enum>
+                              <item value="Purchase"/>
+                              <item value="Rental"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="object" name="preferences">
+                            <prop readOnly="True" type="object" name="encryptionPreferences">
+                              <prop readOnly="True" type="string" name="doubleEncryptionStatus">
+                                <enum>
+                                  <item value="Disabled"/>
+                                  <item value="Enabled"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop readOnly="True" type="object" name="managementResourcePreferences">
+                              <prop readOnly="True" type="string" name="preferredManagementResourceId"/>
+                            </prop>
+                            <prop readOnly="True" type="array<object>" name="notificationPreferences">
+                              <item readOnly="True" type="object">
+                                <prop readOnly="True" type="boolean" name="sendNotification" required="True"/>
+                                <prop readOnly="True" type="string" name="stageName" required="True">
+                                  <enum>
+                                    <item value="Delivered"/>
+                                    <item value="Shipped"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="object" name="transportPreferences">
+                              <prop readOnly="True" type="string" name="preferredShipmentType" required="True">
+                                <enum>
+                                  <item value="CustomerManaged"/>
+                                  <item value="MicrosoftManaged"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                          </prop>
+                          <prop readOnly="True" type="object" name="productDetails" required="True">
+                            <prop readOnly="True" type="integer32" name="count"/>
+                            <prop readOnly="True" type="array<object>" name="deviceDetails">
+                              <item readOnly="True" type="object">
+                                <prop readOnly="True" type="string" name="managementResourceId"/>
+                                <prop readOnly="True" type="string" name="managementResourceTenantId"/>
+                                <prop readOnly="True" type="string" name="serialNumber"/>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="object" name="displayInfo">
+                              <prop readOnly="True" type="string" name="configurationDisplayName"/>
+                              <prop readOnly="True" type="string" name="productFamilyDisplayName"/>
+                            </prop>
+                            <prop readOnly="True" type="object" name="hierarchyInformation" required="True">
+                              <prop readOnly="True" type="string" name="configurationName"/>
+                              <prop readOnly="True" type="string" name="productFamilyName"/>
+                              <prop readOnly="True" type="string" name="productLineName"/>
+                              <prop readOnly="True" type="string" name="productName"/>
+                            </prop>
+                            <prop readOnly="True" type="string" name="productDoubleEncryptionStatus">
+                              <enum>
+                                <item value="Disabled"/>
+                                <item value="Enabled"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop readOnly="True" type="string" name="returnReason"/>
+                          <prop readOnly="True" type="string" name="returnStatus">
+                            <enum>
+                              <item value="NotReturnable"/>
+                              <item value="Returnable"/>
+                              <item value="ReturnableWithFee"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="object" name="reverseShippingDetails">
+                            <prop readOnly="True" type="string" name="carrierDisplayName"/>
+                            <prop readOnly="True" type="string" name="carrierName"/>
+                            <prop readOnly="True" type="string" name="sasKeyForLabel"/>
+                            <prop readOnly="True" type="string" name="trackingId"/>
+                            <prop readOnly="True" type="string" name="trackingUrl"/>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="startTime"/>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop readOnly="True" type="dateTime" name="createdAt"/>
+                        <prop readOnly="True" type="string" name="createdBy"/>
+                        <prop readOnly="True" type="string" name="createdByType">
+                          <enum>
+                            <item value="Application"/>
+                            <item value="Key"/>
+                            <item value="ManagedIdentity"/>
+                            <item value="User"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="lastModifiedAt"/>
+                        <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                        <prop readOnly="True" type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="Application"/>
+                            <item value="Key"/>
+                            <item value="ManagedIdentity"/>
+                            <item value="User"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="tags">
+                        <additionalProp readOnly="True">
+                          <item readOnly="True" type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

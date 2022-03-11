@@ -1,0 +1,641 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen timestamp="2022-03-11T13:28:25.100841Z" plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/addresses/{}" version="2020-12-01-preview" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZU9yZGVyL2FkZHJlc3Nlcy97YWRkcmVzc05hbWV9/V/MjAyMC0xMi0wMS1wcmV2aWV3"/>
+  <commandGroup name="edge-order address">
+    <command name="show" version="2020-12-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/addresses/{}" version="2020-12-01-preview" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZU9yZGVyL2FkZHJlc3Nlcy97YWRkcmVzc05hbWV9/V/MjAyMC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.addressName" options="address-name name n" required="True" idPart="name">
+          <help short="The name of the address Resource within the specified resource group. address names must be between 3 and 24 characters in length and use any alphanumeric and underscore only"/>
+          <format pattern="^[-\w\.]+$" maxLength="24" minLength="3"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="GetAddressByName">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EdgeOrder/addresses/{addressName}">
+          <request method="get">
+            <path>
+              <param type="string" name="addressName" arg="$Path.addressName" required="True">
+                <format pattern="^[-\w\.]+$" maxLength="24" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="2020-12-01-preview"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.EdgeOrder/addresses/{}"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" required="True" clientFlatten="True">
+                    <prop type="object" name="contactDetails" required="True">
+                      <prop type="string" name="contactName" required="True"/>
+                      <prop type="array<string>" name="emailList" required="True">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="string" name="mobile"/>
+                      <prop type="string" name="phone" required="True"/>
+                      <prop type="string" name="phoneExtension"/>
+                    </prop>
+                    <prop type="object" name="shippingAddress">
+                      <prop type="string" name="addressType">
+                        <enum>
+                          <item value="Commercial"/>
+                          <item value="None"/>
+                          <item value="Residential"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="city"/>
+                      <prop type="string" name="companyName"/>
+                      <prop type="string" name="country" required="True"/>
+                      <prop type="string" name="postalCode"/>
+                      <prop type="string" name="stateOrProvince"/>
+                      <prop type="string" name="streetAddress1" required="True"/>
+                      <prop type="string" name="streetAddress2"/>
+                      <prop type="string" name="streetAddress3"/>
+                      <prop type="string" name="zipExtendedCode"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop readOnly="True" type="dateTime" name="createdAt"/>
+                    <prop readOnly="True" type="string" name="createdBy"/>
+                    <prop readOnly="True" type="string" name="createdByType">
+                      <enum>
+                        <item value="Application"/>
+                        <item value="Key"/>
+                        <item value="ManagedIdentity"/>
+                        <item value="User"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="lastModifiedAt"/>
+                    <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                    <prop readOnly="True" type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="Application"/>
+                        <item value="Key"/>
+                        <item value="ManagedIdentity"/>
+                        <item value="User"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2020-12-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/addresses/{}" version="2020-12-01-preview" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZU9yZGVyL2FkZHJlc3Nlcy97YWRkcmVzc05hbWV9/V/MjAyMC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.addressName" options="address-name name n" required="True" idPart="name">
+          <help short="The name of the address Resource within the specified resource group. address names must be between 3 and 24 characters in length and use any alphanumeric and underscore only"/>
+          <format pattern="^[-\w\.]+$" maxLength="24" minLength="3"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="DeleteAddressByName">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EdgeOrder/addresses/{addressName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="addressName" arg="$Path.addressName" required="True">
+                <format pattern="^[-\w\.]+$" maxLength="24" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="2020-12-01-preview"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200 202 204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2020-12-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/addresses/{}" version="2020-12-01-preview" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZU9yZGVyL2FkZHJlc3Nlcy97YWRkcmVzc05hbWV9/V/MjAyMC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.addressName" options="address-name name n" required="True" idPart="name">
+          <help short="The name of the address Resource within the specified resource group. address names must be between 3 and 24 characters in length and use any alphanumeric and underscore only"/>
+          <format pattern="^[-\w\.]+$" maxLength="24" minLength="3"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="ResourceLocation" var="$addressResource.location" options="location l" required="True">
+          <help short="The geo-location where the resource lives"/>
+        </arg>
+        <arg type="object" var="$addressResource.properties.contactDetails" options="contact-details" required="True">
+          <help short="Contact details for the address"/>
+          <arg type="string" var="$addressResource.properties.contactDetails.contactName" options="contact-name" required="True">
+            <help short="Contact name of the person."/>
+          </arg>
+          <arg type="array<string>" var="$addressResource.properties.contactDetails.emailList" options="email-list" required="True">
+            <help short="List of Email-ids to be notified about job progress."/>
+            <item type="string"/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.contactDetails.mobile" options="mobile">
+            <help short="Mobile number of the contact person."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.contactDetails.phone" options="phone" required="True">
+            <help short="Phone number of the contact person."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.contactDetails.phoneExtension" options="phone-extension">
+            <help short="Phone extension number of the contact person."/>
+          </arg>
+        </arg>
+        <arg type="object" var="$addressResource.properties.shippingAddress" options="shipping-address">
+          <help short="Shipping details for the address"/>
+          <arg type="string" var="$addressResource.properties.shippingAddress.addressType" options="address-type">
+            <help short="Type of address."/>
+            <enum>
+              <item name="Commercial" value="Commercial"/>
+              <item name="None" value="None"/>
+              <item name="Residential" value="Residential"/>
+            </enum>
+          </arg>
+          <arg type="string" var="$addressResource.properties.shippingAddress.city" options="city">
+            <help short="Name of the City."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.shippingAddress.companyName" options="company-name">
+            <help short="Name of the company."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.shippingAddress.country" options="country" required="True">
+            <help short="Name of the Country."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.shippingAddress.postalCode" options="postal-code">
+            <help short="Postal code."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.shippingAddress.stateOrProvince" options="state-or-province">
+            <help short="Name of the State or Province."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.shippingAddress.streetAddress1" options="street-address1" required="True">
+            <help short="Street Address line 1."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.shippingAddress.streetAddress2" options="street-address2">
+            <help short="Street Address line 2."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.shippingAddress.streetAddress3" options="street-address3">
+            <help short="Street Address line 3."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.shippingAddress.zipExtendedCode" options="zip-extended-code">
+            <help short="Extended Zip Code."/>
+          </arg>
+        </arg>
+        <arg type="object" var="$addressResource.tags" options="tags">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="CreateAddress">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EdgeOrder/addresses/{addressName}">
+          <request method="put">
+            <path>
+              <param type="string" name="addressName" arg="$Path.addressName" required="True">
+                <format pattern="^[-\w\.]+$" maxLength="24" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="2020-12-01-preview"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="addressResource" clientFlatten="True">
+                  <prop type="ResourceLocation" name="location" arg="$addressResource.location" required="True"/>
+                  <prop type="object" name="properties" required="True" clientFlatten="True">
+                    <prop type="object" name="contactDetails" arg="$addressResource.properties.contactDetails" required="True">
+                      <prop type="string" name="contactName" arg="$addressResource.properties.contactDetails.contactName" required="True"/>
+                      <prop type="array<string>" name="emailList" arg="$addressResource.properties.contactDetails.emailList" required="True">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="string" name="mobile" arg="$addressResource.properties.contactDetails.mobile"/>
+                      <prop type="string" name="phone" arg="$addressResource.properties.contactDetails.phone" required="True"/>
+                      <prop type="string" name="phoneExtension" arg="$addressResource.properties.contactDetails.phoneExtension"/>
+                    </prop>
+                    <prop type="object" name="shippingAddress" arg="$addressResource.properties.shippingAddress">
+                      <prop type="string" name="addressType" arg="$addressResource.properties.shippingAddress.addressType">
+                        <enum>
+                          <item value="Commercial"/>
+                          <item value="None"/>
+                          <item value="Residential"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="city" arg="$addressResource.properties.shippingAddress.city"/>
+                      <prop type="string" name="companyName" arg="$addressResource.properties.shippingAddress.companyName"/>
+                      <prop type="string" name="country" arg="$addressResource.properties.shippingAddress.country" required="True"/>
+                      <prop type="string" name="postalCode" arg="$addressResource.properties.shippingAddress.postalCode"/>
+                      <prop type="string" name="stateOrProvince" arg="$addressResource.properties.shippingAddress.stateOrProvince"/>
+                      <prop type="string" name="streetAddress1" arg="$addressResource.properties.shippingAddress.streetAddress1" required="True"/>
+                      <prop type="string" name="streetAddress2" arg="$addressResource.properties.shippingAddress.streetAddress2"/>
+                      <prop type="string" name="streetAddress3" arg="$addressResource.properties.shippingAddress.streetAddress3"/>
+                      <prop type="string" name="zipExtendedCode" arg="$addressResource.properties.shippingAddress.zipExtendedCode"/>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags" arg="$addressResource.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.EdgeOrder/addresses/{}"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" required="True" clientFlatten="True">
+                    <prop type="object" name="contactDetails" required="True">
+                      <prop type="string" name="contactName" required="True"/>
+                      <prop type="array<string>" name="emailList" required="True">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="string" name="mobile"/>
+                      <prop type="string" name="phone" required="True"/>
+                      <prop type="string" name="phoneExtension"/>
+                    </prop>
+                    <prop type="object" name="shippingAddress">
+                      <prop type="string" name="addressType">
+                        <enum>
+                          <item value="Commercial"/>
+                          <item value="None"/>
+                          <item value="Residential"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="city"/>
+                      <prop type="string" name="companyName"/>
+                      <prop type="string" name="country" required="True"/>
+                      <prop type="string" name="postalCode"/>
+                      <prop type="string" name="stateOrProvince"/>
+                      <prop type="string" name="streetAddress1" required="True"/>
+                      <prop type="string" name="streetAddress2"/>
+                      <prop type="string" name="streetAddress3"/>
+                      <prop type="string" name="zipExtendedCode"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop readOnly="True" type="dateTime" name="createdAt"/>
+                    <prop readOnly="True" type="string" name="createdBy"/>
+                    <prop readOnly="True" type="string" name="createdByType">
+                      <enum>
+                        <item value="Application"/>
+                        <item value="Key"/>
+                        <item value="ManagedIdentity"/>
+                        <item value="User"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="lastModifiedAt"/>
+                    <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                    <prop readOnly="True" type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="Application"/>
+                        <item value="Key"/>
+                        <item value="ManagedIdentity"/>
+                        <item value="User"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2020-12-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/addresses/{}" version="2020-12-01-preview" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZU9yZGVyL2FkZHJlc3Nlcy97YWRkcmVzc05hbWV9/V/MjAyMC0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.addressName" options="address-name name n" required="True" idPart="name">
+          <help short="The name of the address Resource within the specified resource group. address names must be between 3 and 24 characters in length and use any alphanumeric and underscore only"/>
+          <format pattern="^[-\w\.]+$" maxLength="24" minLength="3"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="object" var="$addressResource.properties.contactDetails" options="contact-details" required="True">
+          <help short="Contact details for the address"/>
+          <arg type="string" var="$addressResource.properties.contactDetails.contactName" options="contact-name" required="True">
+            <help short="Contact name of the person."/>
+          </arg>
+          <arg type="array<string>" var="$addressResource.properties.contactDetails.emailList" options="email-list" required="True">
+            <help short="List of Email-ids to be notified about job progress."/>
+            <item type="string"/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.contactDetails.mobile" options="mobile">
+            <help short="Mobile number of the contact person."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.contactDetails.phone" options="phone" required="True">
+            <help short="Phone number of the contact person."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.contactDetails.phoneExtension" options="phone-extension">
+            <help short="Phone extension number of the contact person."/>
+          </arg>
+        </arg>
+        <arg type="object" var="$addressResource.properties.shippingAddress" options="shipping-address">
+          <help short="Shipping details for the address"/>
+          <arg type="string" var="$addressResource.properties.shippingAddress.addressType" options="address-type">
+            <help short="Type of address."/>
+            <enum>
+              <item name="Commercial" value="Commercial"/>
+              <item name="None" value="None"/>
+              <item name="Residential" value="Residential"/>
+            </enum>
+          </arg>
+          <arg type="string" var="$addressResource.properties.shippingAddress.city" options="city">
+            <help short="Name of the City."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.shippingAddress.companyName" options="company-name">
+            <help short="Name of the company."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.shippingAddress.country" options="country" required="True">
+            <help short="Name of the Country."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.shippingAddress.postalCode" options="postal-code">
+            <help short="Postal code."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.shippingAddress.stateOrProvince" options="state-or-province">
+            <help short="Name of the State or Province."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.shippingAddress.streetAddress1" options="street-address1" required="True">
+            <help short="Street Address line 1."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.shippingAddress.streetAddress2" options="street-address2">
+            <help short="Street Address line 2."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.shippingAddress.streetAddress3" options="street-address3">
+            <help short="Street Address line 3."/>
+          </arg>
+          <arg type="string" var="$addressResource.properties.shippingAddress.zipExtendedCode" options="zip-extended-code">
+            <help short="Extended Zip Code."/>
+          </arg>
+        </arg>
+        <arg type="object" var="$addressResource.tags" options="tags">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="GetAddressByName">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EdgeOrder/addresses/{addressName}">
+          <request method="get">
+            <path>
+              <param type="string" name="addressName" arg="$Path.addressName" required="True">
+                <format pattern="^[-\w\.]+$" maxLength="24" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="2020-12-01-preview"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="AddressResource_read">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.EdgeOrder/addresses/{}"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" required="True" clientFlatten="True">
+                    <prop type="object" name="contactDetails" required="True">
+                      <prop type="string" name="contactName" required="True"/>
+                      <prop type="array<string>" name="emailList" required="True">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="string" name="mobile"/>
+                      <prop type="string" name="phone" required="True"/>
+                      <prop type="string" name="phoneExtension"/>
+                    </prop>
+                    <prop type="object" name="shippingAddress">
+                      <prop type="string" name="addressType">
+                        <enum>
+                          <item value="Commercial"/>
+                          <item value="None"/>
+                          <item value="Residential"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="city"/>
+                      <prop type="string" name="companyName"/>
+                      <prop type="string" name="country" required="True"/>
+                      <prop type="string" name="postalCode"/>
+                      <prop type="string" name="stateOrProvince"/>
+                      <prop type="string" name="streetAddress1" required="True"/>
+                      <prop type="string" name="streetAddress2"/>
+                      <prop type="string" name="streetAddress3"/>
+                      <prop type="string" name="zipExtendedCode"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop readOnly="True" type="dateTime" name="createdAt"/>
+                    <prop readOnly="True" type="string" name="createdBy"/>
+                    <prop readOnly="True" type="string" name="createdByType">
+                      <enum>
+                        <item value="Application"/>
+                        <item value="Key"/>
+                        <item value="ManagedIdentity"/>
+                        <item value="User"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="lastModifiedAt"/>
+                    <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                    <prop readOnly="True" type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="Application"/>
+                        <item value="Key"/>
+                        <item value="ManagedIdentity"/>
+                        <item value="User"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate instance="$Instance">
+          <json>
+            <schema type="object" name="addressResource" clientFlatten="True">
+              <prop type="object" name="properties" required="True" clientFlatten="True">
+                <prop type="object" name="contactDetails" arg="$addressResource.properties.contactDetails" required="True">
+                  <prop type="string" name="contactName" arg="$addressResource.properties.contactDetails.contactName" required="True"/>
+                  <prop type="array<string>" name="emailList" arg="$addressResource.properties.contactDetails.emailList" required="True">
+                    <item type="string"/>
+                  </prop>
+                  <prop type="string" name="mobile" arg="$addressResource.properties.contactDetails.mobile"/>
+                  <prop type="string" name="phone" arg="$addressResource.properties.contactDetails.phone" required="True"/>
+                  <prop type="string" name="phoneExtension" arg="$addressResource.properties.contactDetails.phoneExtension"/>
+                </prop>
+                <prop type="object" name="shippingAddress" arg="$addressResource.properties.shippingAddress">
+                  <prop type="string" name="addressType" arg="$addressResource.properties.shippingAddress.addressType">
+                    <enum>
+                      <item value="Commercial"/>
+                      <item value="None"/>
+                      <item value="Residential"/>
+                    </enum>
+                  </prop>
+                  <prop type="string" name="city" arg="$addressResource.properties.shippingAddress.city"/>
+                  <prop type="string" name="companyName" arg="$addressResource.properties.shippingAddress.companyName"/>
+                  <prop type="string" name="country" arg="$addressResource.properties.shippingAddress.country" required="True"/>
+                  <prop type="string" name="postalCode" arg="$addressResource.properties.shippingAddress.postalCode"/>
+                  <prop type="string" name="stateOrProvince" arg="$addressResource.properties.shippingAddress.stateOrProvince"/>
+                  <prop type="string" name="streetAddress1" arg="$addressResource.properties.shippingAddress.streetAddress1" required="True"/>
+                  <prop type="string" name="streetAddress2" arg="$addressResource.properties.shippingAddress.streetAddress2"/>
+                  <prop type="string" name="streetAddress3" arg="$addressResource.properties.shippingAddress.streetAddress3"/>
+                  <prop type="string" name="zipExtendedCode" arg="$addressResource.properties.shippingAddress.zipExtendedCode"/>
+                </prop>
+              </prop>
+              <prop type="object" name="tags" arg="$addressResource.tags">
+                <additionalProp>
+                  <item type="string"/>
+                </additionalProp>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="CreateAddress">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EdgeOrder/addresses/{addressName}">
+          <request method="put">
+            <path>
+              <param type="string" name="addressName" arg="$Path.addressName" required="True">
+                <format pattern="^[-\w\.]+$" maxLength="24" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="2020-12-01-preview"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="@AddressResource_read"/>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

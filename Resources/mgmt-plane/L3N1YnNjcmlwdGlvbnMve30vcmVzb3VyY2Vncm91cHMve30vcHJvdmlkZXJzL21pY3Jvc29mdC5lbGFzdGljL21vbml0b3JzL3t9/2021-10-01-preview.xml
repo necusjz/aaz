@@ -1,0 +1,757 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen timestamp="2022-03-11T13:29:38.866527Z" plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}" version="2021-10-01-preview" swagger="mgmt-plane/elastic/ResourceProviders/Microsoft.Elastic/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWxhc3RpYy9tb25pdG9ycy97bW9uaXRvck5hbWV9/V/MjAyMS0xMC0wMS1wcmV2aWV3"/>
+  <commandGroup name="elastic-monitor">
+    <command name="show" version="2021-10-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}" version="2021-10-01-preview" swagger="mgmt-plane/elastic/ResourceProviders/Microsoft.Elastic/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWxhc3RpYy9tb25pdG9ycy97bW9uaXRvck5hbWV9/V/MjAyMS0xMC0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.monitorName" options="monitor-name name n" required="True" idPart="name">
+          <help short="Monitor resource name"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="Monitors_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}">
+          <request method="get">
+            <path>
+              <param type="string" name="monitorName" arg="$Path.monitorName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="2021-10-01-preview"/>
+                <enum>
+                  <item value="2020-07-01"/>
+                  <item value="2020-07-01-preview"/>
+                  <item value="2021-09-01-preview"/>
+                  <item value="2021-10-01-preview"/>
+                </enum>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Elastic/monitors/{}"/>
+                  </prop>
+                  <prop type="object" name="identity">
+                    <prop readOnly="True" type="string" name="principalId"/>
+                    <prop readOnly="True" type="string" name="tenantId"/>
+                    <prop type="string" name="type">
+                      <enum>
+                        <item value="SystemAssigned"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="elasticProperties">
+                      <prop type="object" name="elasticCloudDeployment">
+                        <prop readOnly="True" type="string" name="azureSubscriptionId"/>
+                        <prop readOnly="True" type="string" name="deploymentId"/>
+                        <prop readOnly="True" type="string" name="elasticsearchRegion"/>
+                        <prop readOnly="True" type="string" name="elasticsearchServiceUrl"/>
+                        <prop readOnly="True" type="string" name="kibanaServiceUrl"/>
+                        <prop readOnly="True" type="string" name="kibanaSsoUrl"/>
+                        <prop readOnly="True" type="string" name="name"/>
+                      </prop>
+                      <prop type="object" name="elasticCloudUser">
+                        <prop readOnly="True" type="string" name="elasticCloudSsoDefaultUrl"/>
+                        <prop readOnly="True" type="string" name="emailAddress"/>
+                        <prop readOnly="True" type="string" name="id"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="liftrResourceCategory">
+                      <enum>
+                        <item value="MonitorLogs"/>
+                        <item value="Unknown"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="integer32" name="liftrResourcePreference"/>
+                    <prop type="string" name="monitoringStatus">
+                      <enum>
+                        <item value="Disabled"/>
+                        <item value="Enabled"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="provisioningState">
+                      <enum>
+                        <item value="Accepted"/>
+                        <item value="Canceled"/>
+                        <item value="Creating"/>
+                        <item value="Deleted"/>
+                        <item value="Deleting"/>
+                        <item value="Failed"/>
+                        <item value="NotSpecified"/>
+                        <item value="Succeeded"/>
+                        <item value="Updating"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="version"/>
+                  </prop>
+                  <prop type="object" name="sku">
+                    <prop type="string" name="name" required="True"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop readOnly="True" type="dateTime" name="createdAt"/>
+                    <prop readOnly="True" type="string" name="createdBy"/>
+                    <prop readOnly="True" type="string" name="createdByType">
+                      <enum>
+                        <item value="Application"/>
+                        <item value="Key"/>
+                        <item value="ManagedIdentity"/>
+                        <item value="User"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="lastModifiedAt"/>
+                    <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                    <prop readOnly="True" type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="Application"/>
+                        <item value="Key"/>
+                        <item value="ManagedIdentity"/>
+                        <item value="User"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2021-10-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}" version="2021-10-01-preview" swagger="mgmt-plane/elastic/ResourceProviders/Microsoft.Elastic/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWxhc3RpYy9tb25pdG9ycy97bW9uaXRvck5hbWV9/V/MjAyMS0xMC0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.monitorName" options="monitor-name name n" required="True" idPart="name">
+          <help short="Monitor resource name"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="Monitors_Delete">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="monitorName" arg="$Path.monitorName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="2021-10-01-preview"/>
+                <enum>
+                  <item value="2020-07-01"/>
+                  <item value="2020-07-01-preview"/>
+                  <item value="2021-09-01-preview"/>
+                  <item value="2021-10-01-preview"/>
+                </enum>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200 202 204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2021-10-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}" version="2021-10-01-preview" swagger="mgmt-plane/elastic/ResourceProviders/Microsoft.Elastic/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWxhc3RpYy9tb25pdG9ycy97bW9uaXRvck5hbWV9/V/MjAyMS0xMC0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.monitorName" options="monitor-name name n" required="True" idPart="name">
+          <help short="Monitor resource name"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="object" var="$body.identity" options="identity">
+          <help short="Identity properties of the monitor resource."/>
+          <arg type="string" var="$body.identity.type" options="type">
+            <help short="Managed identity type."/>
+            <enum>
+              <item name="SystemAssigned" value="SystemAssigned"/>
+            </enum>
+          </arg>
+        </arg>
+        <arg type="ResourceLocation" var="$body.location" options="location l" required="True">
+          <help short="The location of the monitor resource"/>
+        </arg>
+        <arg type="string" var="$body.properties.monitoringStatus" options="monitoring-status">
+          <help short="Flag specifying if the resource monitoring is enabled or disabled."/>
+          <enum>
+            <item name="Disabled" value="Disabled"/>
+            <item name="Enabled" value="Enabled"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$body.properties.provisioningState" options="provisioning-state">
+          <help short="Provisioning state of the monitor resource."/>
+          <enum>
+            <item name="Accepted" value="Accepted"/>
+            <item name="Canceled" value="Canceled"/>
+            <item name="Creating" value="Creating"/>
+            <item name="Deleted" value="Deleted"/>
+            <item name="Deleting" value="Deleting"/>
+            <item name="Failed" value="Failed"/>
+            <item name="NotSpecified" value="NotSpecified"/>
+            <item name="Succeeded" value="Succeeded"/>
+            <item name="Updating" value="Updating"/>
+          </enum>
+        </arg>
+        <arg type="object" var="$body.properties.userInfo" options="user-info">
+          <help short="User information."/>
+          <arg type="object" var="$body.properties.userInfo.companyInfo" options="company-info">
+            <help short="Company information of the user to be passed to partners."/>
+            <arg type="string" var="$body.properties.userInfo.companyInfo.business" options="business">
+              <help short="Business of the company"/>
+              <format maxLength="50"/>
+            </arg>
+            <arg type="string" var="$body.properties.userInfo.companyInfo.country" options="country">
+              <help short="Country of the company location."/>
+              <format maxLength="50"/>
+            </arg>
+            <arg type="string" var="$body.properties.userInfo.companyInfo.domain" options="domain">
+              <help short="Domain of the company"/>
+              <format maxLength="250"/>
+            </arg>
+            <arg type="string" var="$body.properties.userInfo.companyInfo.employeesNumber" options="employees-number">
+              <help short="Number of employees in the company"/>
+              <format maxLength="20"/>
+            </arg>
+            <arg type="string" var="$body.properties.userInfo.companyInfo.state" options="state">
+              <help short="State of the company location."/>
+              <format maxLength="50"/>
+            </arg>
+          </arg>
+          <arg type="string" var="$body.properties.userInfo.companyName" options="company-name">
+            <help short="Company name of the user"/>
+            <format maxLength="50"/>
+          </arg>
+          <arg type="string" var="$body.properties.userInfo.emailAddress" options="email-address">
+            <help short="Email of the user used by Elastic for contacting them if needed"/>
+            <format pattern="^([^<>()\[\]\.,;:\s@&quot;]+(\.[^<>()\[\]\.,;:\s@&quot;]+)*)@(([a-zA-Z-_0-9]+\.)+[a-zA-Z]{2,})$"/>
+          </arg>
+          <arg type="string" var="$body.properties.userInfo.firstName" options="first-name">
+            <help short="First name of the user"/>
+            <format maxLength="50"/>
+          </arg>
+          <arg type="string" var="$body.properties.userInfo.lastName" options="last-name">
+            <help short="Last name of the user"/>
+            <format maxLength="50"/>
+          </arg>
+        </arg>
+        <arg type="string" var="$body.properties.version" options="version">
+          <help short="Version of elastic of the monitor resource"/>
+        </arg>
+        <arg type="object" var="$body.sku" options="sku">
+          <help short="SKU of the monitor resource."/>
+          <arg type="string" var="$body.sku.name" options="name" required="True">
+            <help short="Name of the SKU."/>
+          </arg>
+        </arg>
+        <arg type="object" var="$body.tags" options="tags">
+          <help short="The tags of the monitor resource."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="Monitors_Create">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}">
+          <request method="put">
+            <path>
+              <param type="string" name="monitorName" arg="$Path.monitorName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="2021-10-01-preview"/>
+                <enum>
+                  <item value="2020-07-01"/>
+                  <item value="2020-07-01-preview"/>
+                  <item value="2021-09-01-preview"/>
+                  <item value="2021-10-01-preview"/>
+                </enum>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" clientFlatten="True">
+                  <prop type="object" name="identity" arg="$body.identity">
+                    <prop type="string" name="type" arg="$body.identity.type">
+                      <enum>
+                        <item value="SystemAssigned"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" arg="$body.location" required="True"/>
+                  <prop type="object" name="properties">
+                    <prop type="string" name="monitoringStatus" arg="$body.properties.monitoringStatus">
+                      <enum>
+                        <item value="Disabled"/>
+                        <item value="Enabled"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="provisioningState" arg="$body.properties.provisioningState">
+                      <enum>
+                        <item value="Accepted"/>
+                        <item value="Canceled"/>
+                        <item value="Creating"/>
+                        <item value="Deleted"/>
+                        <item value="Deleting"/>
+                        <item value="Failed"/>
+                        <item value="NotSpecified"/>
+                        <item value="Succeeded"/>
+                        <item value="Updating"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="userInfo" arg="$body.properties.userInfo">
+                      <prop type="object" name="companyInfo" arg="$body.properties.userInfo.companyInfo">
+                        <prop type="string" name="business" arg="$body.properties.userInfo.companyInfo.business">
+                          <format maxLength="50"/>
+                        </prop>
+                        <prop type="string" name="country" arg="$body.properties.userInfo.companyInfo.country">
+                          <format maxLength="50"/>
+                        </prop>
+                        <prop type="string" name="domain" arg="$body.properties.userInfo.companyInfo.domain">
+                          <format maxLength="250"/>
+                        </prop>
+                        <prop type="string" name="employeesNumber" arg="$body.properties.userInfo.companyInfo.employeesNumber">
+                          <format maxLength="20"/>
+                        </prop>
+                        <prop type="string" name="state" arg="$body.properties.userInfo.companyInfo.state">
+                          <format maxLength="50"/>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="companyName" arg="$body.properties.userInfo.companyName">
+                        <format maxLength="50"/>
+                      </prop>
+                      <prop type="string" name="emailAddress" arg="$body.properties.userInfo.emailAddress">
+                        <format pattern="^([^<>()\[\]\.,;:\s@&quot;]+(\.[^<>()\[\]\.,;:\s@&quot;]+)*)@(([a-zA-Z-_0-9]+\.)+[a-zA-Z]{2,})$"/>
+                      </prop>
+                      <prop type="string" name="firstName" arg="$body.properties.userInfo.firstName">
+                        <format maxLength="50"/>
+                      </prop>
+                      <prop type="string" name="lastName" arg="$body.properties.userInfo.lastName">
+                        <format maxLength="50"/>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="version" arg="$body.properties.version"/>
+                  </prop>
+                  <prop type="object" name="sku" arg="$body.sku">
+                    <prop type="string" name="name" arg="$body.sku.name" required="True"/>
+                  </prop>
+                  <prop type="object" name="tags" arg="$body.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Elastic/monitors/{}"/>
+                  </prop>
+                  <prop type="object" name="identity">
+                    <prop readOnly="True" type="string" name="principalId"/>
+                    <prop readOnly="True" type="string" name="tenantId"/>
+                    <prop type="string" name="type">
+                      <enum>
+                        <item value="SystemAssigned"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="elasticProperties">
+                      <prop type="object" name="elasticCloudDeployment">
+                        <prop readOnly="True" type="string" name="azureSubscriptionId"/>
+                        <prop readOnly="True" type="string" name="deploymentId"/>
+                        <prop readOnly="True" type="string" name="elasticsearchRegion"/>
+                        <prop readOnly="True" type="string" name="elasticsearchServiceUrl"/>
+                        <prop readOnly="True" type="string" name="kibanaServiceUrl"/>
+                        <prop readOnly="True" type="string" name="kibanaSsoUrl"/>
+                        <prop readOnly="True" type="string" name="name"/>
+                      </prop>
+                      <prop type="object" name="elasticCloudUser">
+                        <prop readOnly="True" type="string" name="elasticCloudSsoDefaultUrl"/>
+                        <prop readOnly="True" type="string" name="emailAddress"/>
+                        <prop readOnly="True" type="string" name="id"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="liftrResourceCategory">
+                      <enum>
+                        <item value="MonitorLogs"/>
+                        <item value="Unknown"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="integer32" name="liftrResourcePreference"/>
+                    <prop type="string" name="monitoringStatus">
+                      <enum>
+                        <item value="Disabled"/>
+                        <item value="Enabled"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="provisioningState">
+                      <enum>
+                        <item value="Accepted"/>
+                        <item value="Canceled"/>
+                        <item value="Creating"/>
+                        <item value="Deleted"/>
+                        <item value="Deleting"/>
+                        <item value="Failed"/>
+                        <item value="NotSpecified"/>
+                        <item value="Succeeded"/>
+                        <item value="Updating"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="version"/>
+                  </prop>
+                  <prop type="object" name="sku">
+                    <prop type="string" name="name" required="True"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop readOnly="True" type="dateTime" name="createdAt"/>
+                    <prop readOnly="True" type="string" name="createdBy"/>
+                    <prop readOnly="True" type="string" name="createdByType">
+                      <enum>
+                        <item value="Application"/>
+                        <item value="Key"/>
+                        <item value="ManagedIdentity"/>
+                        <item value="User"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="lastModifiedAt"/>
+                    <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                    <prop readOnly="True" type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="Application"/>
+                        <item value="Key"/>
+                        <item value="ManagedIdentity"/>
+                        <item value="User"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2021-10-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}" version="2021-10-01-preview" swagger="mgmt-plane/elastic/ResourceProviders/Microsoft.Elastic/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWxhc3RpYy9tb25pdG9ycy97bW9uaXRvck5hbWV9/V/MjAyMS0xMC0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.monitorName" options="monitor-name name n" required="True" idPart="name">
+          <help short="Monitor resource name"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="object" var="$body.identity" options="identity">
+          <help short="Identity properties of the monitor resource."/>
+          <arg type="string" var="$body.identity.type" options="type">
+            <help short="Managed identity type."/>
+            <enum>
+              <item name="SystemAssigned" value="SystemAssigned"/>
+            </enum>
+          </arg>
+        </arg>
+        <arg type="string" var="$body.properties.monitoringStatus" options="monitoring-status">
+          <help short="Flag specifying if the resource monitoring is enabled or disabled."/>
+          <enum>
+            <item name="Disabled" value="Disabled"/>
+            <item name="Enabled" value="Enabled"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$body.properties.provisioningState" options="provisioning-state">
+          <help short="Provisioning state of the monitor resource."/>
+          <enum>
+            <item name="Accepted" value="Accepted"/>
+            <item name="Canceled" value="Canceled"/>
+            <item name="Creating" value="Creating"/>
+            <item name="Deleted" value="Deleted"/>
+            <item name="Deleting" value="Deleting"/>
+            <item name="Failed" value="Failed"/>
+            <item name="NotSpecified" value="NotSpecified"/>
+            <item name="Succeeded" value="Succeeded"/>
+            <item name="Updating" value="Updating"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$body.properties.version" options="version">
+          <help short="Version of elastic of the monitor resource"/>
+        </arg>
+        <arg type="object" var="$body.sku" options="sku">
+          <help short="SKU of the monitor resource."/>
+          <arg type="string" var="$body.sku.name" options="name" required="True">
+            <help short="Name of the SKU."/>
+          </arg>
+        </arg>
+        <arg type="object" var="$body.tags" options="tags">
+          <help short="The tags of the monitor resource."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="Monitors_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}">
+          <request method="get">
+            <path>
+              <param type="string" name="monitorName" arg="$Path.monitorName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="2021-10-01-preview"/>
+                <enum>
+                  <item value="2020-07-01"/>
+                  <item value="2020-07-01-preview"/>
+                  <item value="2021-09-01-preview"/>
+                  <item value="2021-10-01-preview"/>
+                </enum>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="ElasticMonitorResource_read">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Elastic/monitors/{}"/>
+                  </prop>
+                  <prop type="object" name="identity">
+                    <prop readOnly="True" type="string" name="principalId"/>
+                    <prop readOnly="True" type="string" name="tenantId"/>
+                    <prop type="string" name="type">
+                      <enum>
+                        <item value="SystemAssigned"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="elasticProperties">
+                      <prop type="object" name="elasticCloudDeployment">
+                        <prop readOnly="True" type="string" name="azureSubscriptionId"/>
+                        <prop readOnly="True" type="string" name="deploymentId"/>
+                        <prop readOnly="True" type="string" name="elasticsearchRegion"/>
+                        <prop readOnly="True" type="string" name="elasticsearchServiceUrl"/>
+                        <prop readOnly="True" type="string" name="kibanaServiceUrl"/>
+                        <prop readOnly="True" type="string" name="kibanaSsoUrl"/>
+                        <prop readOnly="True" type="string" name="name"/>
+                      </prop>
+                      <prop type="object" name="elasticCloudUser">
+                        <prop readOnly="True" type="string" name="elasticCloudSsoDefaultUrl"/>
+                        <prop readOnly="True" type="string" name="emailAddress"/>
+                        <prop readOnly="True" type="string" name="id"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="liftrResourceCategory">
+                      <enum>
+                        <item value="MonitorLogs"/>
+                        <item value="Unknown"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="integer32" name="liftrResourcePreference"/>
+                    <prop type="string" name="monitoringStatus">
+                      <enum>
+                        <item value="Disabled"/>
+                        <item value="Enabled"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="provisioningState">
+                      <enum>
+                        <item value="Accepted"/>
+                        <item value="Canceled"/>
+                        <item value="Creating"/>
+                        <item value="Deleted"/>
+                        <item value="Deleting"/>
+                        <item value="Failed"/>
+                        <item value="NotSpecified"/>
+                        <item value="Succeeded"/>
+                        <item value="Updating"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="version"/>
+                  </prop>
+                  <prop type="object" name="sku">
+                    <prop type="string" name="name" required="True"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop readOnly="True" type="dateTime" name="createdAt"/>
+                    <prop readOnly="True" type="string" name="createdBy"/>
+                    <prop readOnly="True" type="string" name="createdByType">
+                      <enum>
+                        <item value="Application"/>
+                        <item value="Key"/>
+                        <item value="ManagedIdentity"/>
+                        <item value="User"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="lastModifiedAt"/>
+                    <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                    <prop readOnly="True" type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="Application"/>
+                        <item value="Key"/>
+                        <item value="ManagedIdentity"/>
+                        <item value="User"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate instance="$Instance">
+          <json>
+            <schema type="object" name="body" clientFlatten="True">
+              <prop type="object" name="identity" arg="$body.identity">
+                <prop type="string" name="type" arg="$body.identity.type">
+                  <enum>
+                    <item value="SystemAssigned"/>
+                  </enum>
+                </prop>
+              </prop>
+              <prop type="object" name="properties">
+                <prop type="string" name="monitoringStatus" arg="$body.properties.monitoringStatus">
+                  <enum>
+                    <item value="Disabled"/>
+                    <item value="Enabled"/>
+                  </enum>
+                </prop>
+                <prop type="string" name="provisioningState" arg="$body.properties.provisioningState">
+                  <enum>
+                    <item value="Accepted"/>
+                    <item value="Canceled"/>
+                    <item value="Creating"/>
+                    <item value="Deleted"/>
+                    <item value="Deleting"/>
+                    <item value="Failed"/>
+                    <item value="NotSpecified"/>
+                    <item value="Succeeded"/>
+                    <item value="Updating"/>
+                  </enum>
+                </prop>
+                <prop type="string" name="version" arg="$body.properties.version"/>
+              </prop>
+              <prop type="object" name="sku" arg="$body.sku">
+                <prop type="string" name="name" arg="$body.sku.name" required="True"/>
+              </prop>
+              <prop type="object" name="tags" arg="$body.tags">
+                <additionalProp>
+                  <item type="string"/>
+                </additionalProp>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="Monitors_Create">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}">
+          <request method="put">
+            <path>
+              <param type="string" name="monitorName" arg="$Path.monitorName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="2021-10-01-preview"/>
+                <enum>
+                  <item value="2020-07-01"/>
+                  <item value="2020-07-01-preview"/>
+                  <item value="2021-09-01-preview"/>
+                  <item value="2021-10-01-preview"/>
+                </enum>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="@ElasticMonitorResource_read"/>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

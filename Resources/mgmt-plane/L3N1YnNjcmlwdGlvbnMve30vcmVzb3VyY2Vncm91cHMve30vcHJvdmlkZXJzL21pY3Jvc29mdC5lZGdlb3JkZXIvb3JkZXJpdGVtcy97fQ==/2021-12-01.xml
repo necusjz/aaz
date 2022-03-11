@@ -1,0 +1,1432 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen timestamp="2022-03-11T13:28:38.920591Z" plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems/{}" version="2021-12-01" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZU9yZGVyL29yZGVySXRlbXMve29yZGVySXRlbU5hbWV9/V/MjAyMS0xMi0wMQ=="/>
+  <commandGroup name="edge-order order-item">
+    <command name="show" version="2021-12-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems/{}" version="2021-12-01" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZU9yZGVyL29yZGVySXRlbXMve29yZGVySXRlbU5hbWV9/V/MjAyMS0xMi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.orderItemName" options="order-item-name name n" required="True" idPart="name">
+          <help short="The name of the order item"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Query.expand" options="expand">
+          <help short="$expand is supported on device details, forward shipping details and reverse shipping details parameters. Each of these can be provided as a comma separated list. Device Details for order item provides details on the devices of the product, Forward and Reverse Shipping details provide forward and reverse shipping details respectively."/>
+        </arg>
+      </argGroup>
+      <operation operationId="GetOrderItemByName">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EdgeOrder/orderItems/{orderItemName}">
+          <request method="get">
+            <path>
+              <param type="string" name="orderItemName" arg="$Path.orderItemName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <param type="string" name="$expand" arg="$Query.expand"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="2021-12-01"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.EdgeOrder/orderItems/{}"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" required="True" clientFlatten="True">
+                    <prop type="object" name="addressDetails" required="True">
+                      <prop type="object" name="forwardAddress" required="True" cls="AddressProperties_read">
+                        <prop readOnly="True" type="string" name="addressValidationStatus">
+                          <enum>
+                            <item value="Ambiguous"/>
+                            <item value="Invalid"/>
+                            <item value="Valid"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="contactDetails" required="True">
+                          <prop type="string" name="contactName" required="True"/>
+                          <prop type="array<string>" name="emailList" required="True">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="mobile"/>
+                          <prop type="string" name="phone" required="True"/>
+                          <prop type="string" name="phoneExtension"/>
+                        </prop>
+                        <prop type="object" name="shippingAddress">
+                          <prop type="string" name="addressType">
+                            <enum>
+                              <item value="Commercial"/>
+                              <item value="None"/>
+                              <item value="Residential"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="city"/>
+                          <prop type="string" name="companyName"/>
+                          <prop type="string" name="country" required="True"/>
+                          <prop type="string" name="postalCode"/>
+                          <prop type="string" name="stateOrProvince"/>
+                          <prop type="string" name="streetAddress1" required="True"/>
+                          <prop type="string" name="streetAddress2"/>
+                          <prop type="string" name="streetAddress3"/>
+                          <prop type="string" name="zipExtendedCode"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="@AddressProperties_read" name="returnAddress"/>
+                    </prop>
+                    <prop type="string" name="orderId" required="True"/>
+                    <prop type="object" name="orderItemDetails" required="True">
+                      <prop readOnly="True" type="string" name="cancellationReason"/>
+                      <prop readOnly="True" type="string" name="cancellationStatus">
+                        <enum>
+                          <item value="Cancellable"/>
+                          <item value="CancellableWithFee"/>
+                          <item value="NotCancellable"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="object" name="currentStage" cls="StageDetails_read">
+                        <prop readOnly="True" type="string" name="displayName"/>
+                        <prop readOnly="True" type="string" name="stageName">
+                          <enum>
+                            <item value="Cancelled"/>
+                            <item value="Confirmed"/>
+                            <item value="Delivered"/>
+                            <item value="InReview"/>
+                            <item value="InUse"/>
+                            <item value="Placed"/>
+                            <item value="ReadyToShip"/>
+                            <item value="ReturnCompleted"/>
+                            <item value="ReturnInitiated"/>
+                            <item value="ReturnPickedUp"/>
+                            <item value="ReturnedToMicrosoft"/>
+                            <item value="Shipped"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="stageStatus">
+                          <enum>
+                            <item value="Cancelled"/>
+                            <item value="Cancelling"/>
+                            <item value="Failed"/>
+                            <item value="InProgress"/>
+                            <item value="None"/>
+                            <item value="Succeeded"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="startTime"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="deletionStatus">
+                        <enum>
+                          <item value="Allowed"/>
+                          <item value="NotAllowed"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="object" name="error" cls="ErrorDetail_read">
+                        <prop readOnly="True" type="array<object>" name="additionalInfo">
+                          <item readOnly="True" type="object">
+                            <prop readOnly="True" type="object" name="info">
+                              <additionalProp readOnly="True"/>
+                            </prop>
+                            <prop readOnly="True" type="string" name="type"/>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="string" name="code"/>
+                        <prop readOnly="True" type="array<@ErrorDetail_read>" name="details">
+                          <item readOnly="True" type="@ErrorDetail_read"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="message"/>
+                        <prop readOnly="True" type="string" name="target"/>
+                      </prop>
+                      <prop readOnly="True" type="object" name="forwardShippingDetails">
+                        <prop readOnly="True" type="string" name="carrierDisplayName"/>
+                        <prop readOnly="True" type="string" name="carrierName"/>
+                        <prop readOnly="True" type="string" name="trackingId"/>
+                        <prop readOnly="True" type="string" name="trackingUrl"/>
+                      </prop>
+                      <prop readOnly="True" type="object" name="managementRpDetails" cls="ResourceProviderDetails_read">
+                        <prop readOnly="True" type="string" name="resourceProviderNamespace"/>
+                      </prop>
+                      <prop readOnly="True" type="array<@ResourceProviderDetails_read>" name="managementRpDetailsList">
+                        <item readOnly="True" type="@ResourceProviderDetails_read"/>
+                      </prop>
+                      <prop type="array<string>" name="notificationEmailList">
+                        <item type="string"/>
+                      </prop>
+                      <prop readOnly="True" type="array<@StageDetails_read>" name="orderItemStageHistory">
+                        <item readOnly="True" type="@StageDetails_read"/>
+                      </prop>
+                      <prop type="string" name="orderItemType" required="True">
+                        <enum>
+                          <item value="Purchase"/>
+                          <item value="Rental"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="preferences">
+                        <prop type="object" name="encryptionPreferences">
+                          <prop type="string" name="doubleEncryptionStatus">
+                            <enum>
+                              <item value="Disabled"/>
+                              <item value="Enabled"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="managementResourcePreferences">
+                          <prop type="string" name="preferredManagementResourceId"/>
+                        </prop>
+                        <prop type="array<object>" name="notificationPreferences">
+                          <item type="object">
+                            <prop type="boolean" name="sendNotification" required="True"/>
+                            <prop type="string" name="stageName" required="True">
+                              <enum>
+                                <item value="Delivered"/>
+                                <item value="Shipped"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="transportPreferences">
+                          <prop type="string" name="preferredShipmentType" required="True">
+                            <enum>
+                              <item value="CustomerManaged"/>
+                              <item value="MicrosoftManaged"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="productDetails" required="True">
+                        <prop readOnly="True" type="integer32" name="count"/>
+                        <prop readOnly="True" type="array<object>" name="deviceDetails">
+                          <item readOnly="True" type="object">
+                            <prop readOnly="True" type="string" name="managementResourceId"/>
+                            <prop readOnly="True" type="string" name="managementResourceTenantId"/>
+                            <prop readOnly="True" type="string" name="serialNumber"/>
+                          </item>
+                        </prop>
+                        <prop type="object" name="displayInfo">
+                          <prop readOnly="True" type="string" name="configurationDisplayName"/>
+                          <prop readOnly="True" type="string" name="productFamilyDisplayName"/>
+                        </prop>
+                        <prop type="object" name="hierarchyInformation" required="True">
+                          <prop type="string" name="configurationName"/>
+                          <prop type="string" name="productFamilyName"/>
+                          <prop type="string" name="productLineName"/>
+                          <prop type="string" name="productName"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="productDoubleEncryptionStatus">
+                          <enum>
+                            <item value="Disabled"/>
+                            <item value="Enabled"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="returnReason"/>
+                      <prop readOnly="True" type="string" name="returnStatus">
+                        <enum>
+                          <item value="NotReturnable"/>
+                          <item value="Returnable"/>
+                          <item value="ReturnableWithFee"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="object" name="reverseShippingDetails">
+                        <prop readOnly="True" type="string" name="carrierDisplayName"/>
+                        <prop readOnly="True" type="string" name="carrierName"/>
+                        <prop readOnly="True" type="string" name="sasKeyForLabel"/>
+                        <prop readOnly="True" type="string" name="trackingId"/>
+                        <prop readOnly="True" type="string" name="trackingUrl"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="startTime"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop readOnly="True" type="dateTime" name="createdAt"/>
+                    <prop readOnly="True" type="string" name="createdBy"/>
+                    <prop readOnly="True" type="string" name="createdByType">
+                      <enum>
+                        <item value="Application"/>
+                        <item value="Key"/>
+                        <item value="ManagedIdentity"/>
+                        <item value="User"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="lastModifiedAt"/>
+                    <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                    <prop readOnly="True" type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="Application"/>
+                        <item value="Key"/>
+                        <item value="ManagedIdentity"/>
+                        <item value="User"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2021-12-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems/{}" version="2021-12-01" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZU9yZGVyL29yZGVySXRlbXMve29yZGVySXRlbU5hbWV9/V/MjAyMS0xMi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.orderItemName" options="order-item-name name n" required="True" idPart="name">
+          <help short="The name of the order item"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="DeleteOrderItemByName">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EdgeOrder/orderItems/{orderItemName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="orderItemName" arg="$Path.orderItemName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="2021-12-01"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200 202 204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2021-12-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems/{}" version="2021-12-01" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZU9yZGVyL29yZGVySXRlbXMve29yZGVySXRlbU5hbWV9/V/MjAyMS0xMi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.orderItemName" options="order-item-name name n" required="True" idPart="name">
+          <help short="The name of the order item"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="ResourceLocation" var="$orderItemResource.location" options="location l" required="True">
+          <help short="The geo-location where the resource lives"/>
+        </arg>
+        <arg type="object" var="$orderItemResource.properties.addressDetails" options="address-details" required="True">
+          <help short="Represents shipping and return address for order item"/>
+          <arg type="object" var="$orderItemResource.properties.addressDetails.forwardAddress" options="forward-address" required="True">
+            <help short="Customer address and contact details. It should be address resource"/>
+            <arg type="object" var="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails" options="contact-details" required="True">
+              <help short="Contact details for the address"/>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.contactName" options="contact-name" required="True">
+                <help short="Contact name of the person."/>
+              </arg>
+              <arg type="array<string>" var="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.emailList" options="email-list" required="True">
+                <help short="List of Email-ids to be notified about job progress."/>
+                <item type="string"/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.mobile" options="mobile">
+                <help short="Mobile number of the contact person."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.phone" options="phone" required="True">
+                <help short="Phone number of the contact person."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.phoneExtension" options="phone-extension">
+                <help short="Phone extension number of the contact person."/>
+              </arg>
+            </arg>
+            <arg type="object" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress" options="shipping-address">
+              <help short="Shipping details for the address"/>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.addressType" options="address-type">
+                <help short="Type of address."/>
+                <enum>
+                  <item name="Commercial" value="Commercial"/>
+                  <item name="None" value="None"/>
+                  <item name="Residential" value="Residential"/>
+                </enum>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.city" options="city">
+                <help short="Name of the City."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.companyName" options="company-name">
+                <help short="Name of the company."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.country" options="country" required="True">
+                <help short="Name of the Country."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.postalCode" options="postal-code">
+                <help short="Postal code."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.stateOrProvince" options="state-or-province">
+                <help short="Name of the State or Province."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.streetAddress1" options="street-address1" required="True">
+                <help short="Street Address line 1."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.streetAddress2" options="street-address2">
+                <help short="Street Address line 2."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.streetAddress3" options="street-address3">
+                <help short="Street Address line 3."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.zipExtendedCode" options="zip-extended-code">
+                <help short="Extended Zip Code."/>
+              </arg>
+            </arg>
+          </arg>
+        </arg>
+        <arg type="string" var="$orderItemResource.properties.orderId" options="order-id" required="True">
+          <help short="Id of the order to which order item belongs to"/>
+        </arg>
+        <arg type="object" var="$orderItemResource.properties.orderItemDetails" options="order-item-details" required="True">
+          <help short="Represents order item details."/>
+          <arg type="array<string>" var="$orderItemResource.properties.orderItemDetails.notificationEmailList" options="notification-email-list">
+            <help short="Additional notification email list"/>
+            <item type="string"/>
+          </arg>
+          <arg type="string" var="$orderItemResource.properties.orderItemDetails.orderItemType" options="order-item-type" required="True">
+            <help short="Order item type."/>
+            <enum>
+              <item name="Purchase" value="Purchase"/>
+              <item name="Rental" value="Rental"/>
+            </enum>
+          </arg>
+          <arg type="object" var="$orderItemResource.properties.orderItemDetails.preferences" options="preferences">
+            <help short="Customer notification Preferences"/>
+            <arg type="object" var="$orderItemResource.properties.orderItemDetails.preferences.encryptionPreferences" options="encryption-preferences">
+              <help short="Preferences related to the Encryption."/>
+              <arg type="string" var="$orderItemResource.properties.orderItemDetails.preferences.encryptionPreferences.doubleEncryptionStatus" options="double-encryption-status">
+                <help short="Double encryption status as entered by the customer. It is compulsory to give this parameter if the 'Deny' or 'Disabled' policy is configured."/>
+                <enum>
+                  <item name="Disabled" value="Disabled"/>
+                  <item name="Enabled" value="Enabled"/>
+                </enum>
+              </arg>
+            </arg>
+            <arg type="object" var="$orderItemResource.properties.orderItemDetails.preferences.managementResourcePreferences" options="management-resource-preferences">
+              <help short="Preferences related to the Management resource."/>
+              <arg type="string" var="$orderItemResource.properties.orderItemDetails.preferences.managementResourcePreferences.preferredManagementResourceId" options="preferred-management-resource-id">
+                <help short="Customer preferred Management resource ARM ID"/>
+              </arg>
+            </arg>
+            <arg type="array<object>" var="$orderItemResource.properties.orderItemDetails.preferences.notificationPreferences" options="notification-preferences" singularOptions="notification-preference">
+              <help short="Notification preferences."/>
+              <item type="object">
+                <arg type="boolean" var="$orderItemResource.properties.orderItemDetails.preferences.notificationPreferences[].sendNotification" options="send-notification" required="True">
+                  <help short="Notification is required or not."/>
+                </arg>
+                <arg type="string" var="$orderItemResource.properties.orderItemDetails.preferences.notificationPreferences[].stageName" options="stage-name" required="True">
+                  <help short="Name of the stage."/>
+                  <enum>
+                    <item name="Delivered" value="Delivered"/>
+                    <item name="Shipped" value="Shipped"/>
+                  </enum>
+                </arg>
+              </item>
+            </arg>
+            <arg type="object" var="$orderItemResource.properties.orderItemDetails.preferences.transportPreferences" options="transport-preferences">
+              <help short="Preferences related to the shipment logistics of the order."/>
+              <arg type="string" var="$orderItemResource.properties.orderItemDetails.preferences.transportPreferences.preferredShipmentType" options="preferred-shipment-type" required="True">
+                <help short="Indicates Shipment Logistics type that the customer preferred."/>
+                <enum>
+                  <item name="CustomerManaged" value="CustomerManaged"/>
+                  <item name="MicrosoftManaged" value="MicrosoftManaged"/>
+                </enum>
+              </arg>
+            </arg>
+          </arg>
+          <arg type="object" var="$orderItemResource.properties.orderItemDetails.productDetails" options="product-details" required="True">
+            <help short="Unique identifier for configuration."/>
+            <arg type="object" var="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation" options="hierarchy-information" required="True">
+              <help short="Hierarchy of the product which uniquely identifies the product"/>
+              <arg type="string" var="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.configurationName" options="configuration-name">
+                <help short="Represents configuration name that uniquely identifies configuration"/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.productFamilyName" options="product-family-name">
+                <help short="Represents product family name that uniquely identifies product family"/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.productLineName" options="product-line-name">
+                <help short="Represents product line name that uniquely identifies product line"/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.productName" options="product-name">
+                <help short="Represents product name that uniquely identifies product"/>
+              </arg>
+            </arg>
+          </arg>
+        </arg>
+        <arg type="object" var="$orderItemResource.tags" options="tags">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="CreateOrderItem">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EdgeOrder/orderItems/{orderItemName}">
+          <request method="put">
+            <path>
+              <param type="string" name="orderItemName" arg="$Path.orderItemName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="2021-12-01"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="orderItemResource" clientFlatten="True">
+                  <prop type="ResourceLocation" name="location" arg="$orderItemResource.location" required="True"/>
+                  <prop type="object" name="properties" required="True" clientFlatten="True">
+                    <prop type="object" name="addressDetails" arg="$orderItemResource.properties.addressDetails" required="True">
+                      <prop type="object" name="forwardAddress" arg="$orderItemResource.properties.addressDetails.forwardAddress" required="True">
+                        <prop type="object" name="contactDetails" arg="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails" required="True">
+                          <prop type="string" name="contactName" arg="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.contactName" required="True"/>
+                          <prop type="array<string>" name="emailList" arg="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.emailList" required="True">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="mobile" arg="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.mobile"/>
+                          <prop type="string" name="phone" arg="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.phone" required="True"/>
+                          <prop type="string" name="phoneExtension" arg="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.phoneExtension"/>
+                        </prop>
+                        <prop type="object" name="shippingAddress" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress">
+                          <prop type="string" name="addressType" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.addressType">
+                            <enum>
+                              <item value="Commercial"/>
+                              <item value="None"/>
+                              <item value="Residential"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="city" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.city"/>
+                          <prop type="string" name="companyName" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.companyName"/>
+                          <prop type="string" name="country" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.country" required="True"/>
+                          <prop type="string" name="postalCode" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.postalCode"/>
+                          <prop type="string" name="stateOrProvince" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.stateOrProvince"/>
+                          <prop type="string" name="streetAddress1" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.streetAddress1" required="True"/>
+                          <prop type="string" name="streetAddress2" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.streetAddress2"/>
+                          <prop type="string" name="streetAddress3" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.streetAddress3"/>
+                          <prop type="string" name="zipExtendedCode" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.zipExtendedCode"/>
+                        </prop>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="orderId" arg="$orderItemResource.properties.orderId" required="True"/>
+                    <prop type="object" name="orderItemDetails" arg="$orderItemResource.properties.orderItemDetails" required="True">
+                      <prop type="array<string>" name="notificationEmailList" arg="$orderItemResource.properties.orderItemDetails.notificationEmailList">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="string" name="orderItemType" arg="$orderItemResource.properties.orderItemDetails.orderItemType" required="True">
+                        <enum>
+                          <item value="Purchase"/>
+                          <item value="Rental"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="preferences" arg="$orderItemResource.properties.orderItemDetails.preferences">
+                        <prop type="object" name="encryptionPreferences" arg="$orderItemResource.properties.orderItemDetails.preferences.encryptionPreferences">
+                          <prop type="string" name="doubleEncryptionStatus" arg="$orderItemResource.properties.orderItemDetails.preferences.encryptionPreferences.doubleEncryptionStatus">
+                            <enum>
+                              <item value="Disabled"/>
+                              <item value="Enabled"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="managementResourcePreferences" arg="$orderItemResource.properties.orderItemDetails.preferences.managementResourcePreferences">
+                          <prop type="string" name="preferredManagementResourceId" arg="$orderItemResource.properties.orderItemDetails.preferences.managementResourcePreferences.preferredManagementResourceId"/>
+                        </prop>
+                        <prop type="array<object>" name="notificationPreferences" arg="$orderItemResource.properties.orderItemDetails.preferences.notificationPreferences">
+                          <item type="object">
+                            <prop type="boolean" name="sendNotification" arg="$orderItemResource.properties.orderItemDetails.preferences.notificationPreferences[].sendNotification" required="True"/>
+                            <prop type="string" name="stageName" arg="$orderItemResource.properties.orderItemDetails.preferences.notificationPreferences[].stageName" required="True">
+                              <enum>
+                                <item value="Delivered"/>
+                                <item value="Shipped"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="transportPreferences" arg="$orderItemResource.properties.orderItemDetails.preferences.transportPreferences">
+                          <prop type="string" name="preferredShipmentType" arg="$orderItemResource.properties.orderItemDetails.preferences.transportPreferences.preferredShipmentType" required="True">
+                            <enum>
+                              <item value="CustomerManaged"/>
+                              <item value="MicrosoftManaged"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="productDetails" arg="$orderItemResource.properties.orderItemDetails.productDetails" required="True">
+                        <prop type="object" name="hierarchyInformation" arg="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation" required="True">
+                          <prop type="string" name="configurationName" arg="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.configurationName"/>
+                          <prop type="string" name="productFamilyName" arg="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.productFamilyName"/>
+                          <prop type="string" name="productLineName" arg="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.productLineName"/>
+                          <prop type="string" name="productName" arg="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.productName"/>
+                        </prop>
+                      </prop>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags" arg="$orderItemResource.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.EdgeOrder/orderItems/{}"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" required="True" clientFlatten="True">
+                    <prop type="object" name="addressDetails" required="True">
+                      <prop type="object" name="forwardAddress" required="True" cls="AddressProperties_read">
+                        <prop readOnly="True" type="string" name="addressValidationStatus">
+                          <enum>
+                            <item value="Ambiguous"/>
+                            <item value="Invalid"/>
+                            <item value="Valid"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="contactDetails" required="True">
+                          <prop type="string" name="contactName" required="True"/>
+                          <prop type="array<string>" name="emailList" required="True">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="mobile"/>
+                          <prop type="string" name="phone" required="True"/>
+                          <prop type="string" name="phoneExtension"/>
+                        </prop>
+                        <prop type="object" name="shippingAddress">
+                          <prop type="string" name="addressType">
+                            <enum>
+                              <item value="Commercial"/>
+                              <item value="None"/>
+                              <item value="Residential"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="city"/>
+                          <prop type="string" name="companyName"/>
+                          <prop type="string" name="country" required="True"/>
+                          <prop type="string" name="postalCode"/>
+                          <prop type="string" name="stateOrProvince"/>
+                          <prop type="string" name="streetAddress1" required="True"/>
+                          <prop type="string" name="streetAddress2"/>
+                          <prop type="string" name="streetAddress3"/>
+                          <prop type="string" name="zipExtendedCode"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="@AddressProperties_read" name="returnAddress"/>
+                    </prop>
+                    <prop type="string" name="orderId" required="True"/>
+                    <prop type="object" name="orderItemDetails" required="True">
+                      <prop readOnly="True" type="string" name="cancellationReason"/>
+                      <prop readOnly="True" type="string" name="cancellationStatus">
+                        <enum>
+                          <item value="Cancellable"/>
+                          <item value="CancellableWithFee"/>
+                          <item value="NotCancellable"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="object" name="currentStage" cls="StageDetails_read">
+                        <prop readOnly="True" type="string" name="displayName"/>
+                        <prop readOnly="True" type="string" name="stageName">
+                          <enum>
+                            <item value="Cancelled"/>
+                            <item value="Confirmed"/>
+                            <item value="Delivered"/>
+                            <item value="InReview"/>
+                            <item value="InUse"/>
+                            <item value="Placed"/>
+                            <item value="ReadyToShip"/>
+                            <item value="ReturnCompleted"/>
+                            <item value="ReturnInitiated"/>
+                            <item value="ReturnPickedUp"/>
+                            <item value="ReturnedToMicrosoft"/>
+                            <item value="Shipped"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="stageStatus">
+                          <enum>
+                            <item value="Cancelled"/>
+                            <item value="Cancelling"/>
+                            <item value="Failed"/>
+                            <item value="InProgress"/>
+                            <item value="None"/>
+                            <item value="Succeeded"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="startTime"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="deletionStatus">
+                        <enum>
+                          <item value="Allowed"/>
+                          <item value="NotAllowed"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="object" name="error" cls="ErrorDetail_read">
+                        <prop readOnly="True" type="array<object>" name="additionalInfo">
+                          <item readOnly="True" type="object">
+                            <prop readOnly="True" type="object" name="info">
+                              <additionalProp readOnly="True"/>
+                            </prop>
+                            <prop readOnly="True" type="string" name="type"/>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="string" name="code"/>
+                        <prop readOnly="True" type="array<@ErrorDetail_read>" name="details">
+                          <item readOnly="True" type="@ErrorDetail_read"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="message"/>
+                        <prop readOnly="True" type="string" name="target"/>
+                      </prop>
+                      <prop readOnly="True" type="object" name="forwardShippingDetails">
+                        <prop readOnly="True" type="string" name="carrierDisplayName"/>
+                        <prop readOnly="True" type="string" name="carrierName"/>
+                        <prop readOnly="True" type="string" name="trackingId"/>
+                        <prop readOnly="True" type="string" name="trackingUrl"/>
+                      </prop>
+                      <prop readOnly="True" type="object" name="managementRpDetails" cls="ResourceProviderDetails_read">
+                        <prop readOnly="True" type="string" name="resourceProviderNamespace"/>
+                      </prop>
+                      <prop readOnly="True" type="array<@ResourceProviderDetails_read>" name="managementRpDetailsList">
+                        <item readOnly="True" type="@ResourceProviderDetails_read"/>
+                      </prop>
+                      <prop type="array<string>" name="notificationEmailList">
+                        <item type="string"/>
+                      </prop>
+                      <prop readOnly="True" type="array<@StageDetails_read>" name="orderItemStageHistory">
+                        <item readOnly="True" type="@StageDetails_read"/>
+                      </prop>
+                      <prop type="string" name="orderItemType" required="True">
+                        <enum>
+                          <item value="Purchase"/>
+                          <item value="Rental"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="preferences">
+                        <prop type="object" name="encryptionPreferences">
+                          <prop type="string" name="doubleEncryptionStatus">
+                            <enum>
+                              <item value="Disabled"/>
+                              <item value="Enabled"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="managementResourcePreferences">
+                          <prop type="string" name="preferredManagementResourceId"/>
+                        </prop>
+                        <prop type="array<object>" name="notificationPreferences">
+                          <item type="object">
+                            <prop type="boolean" name="sendNotification" required="True"/>
+                            <prop type="string" name="stageName" required="True">
+                              <enum>
+                                <item value="Delivered"/>
+                                <item value="Shipped"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="transportPreferences">
+                          <prop type="string" name="preferredShipmentType" required="True">
+                            <enum>
+                              <item value="CustomerManaged"/>
+                              <item value="MicrosoftManaged"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="productDetails" required="True">
+                        <prop readOnly="True" type="integer32" name="count"/>
+                        <prop readOnly="True" type="array<object>" name="deviceDetails">
+                          <item readOnly="True" type="object">
+                            <prop readOnly="True" type="string" name="managementResourceId"/>
+                            <prop readOnly="True" type="string" name="managementResourceTenantId"/>
+                            <prop readOnly="True" type="string" name="serialNumber"/>
+                          </item>
+                        </prop>
+                        <prop type="object" name="displayInfo">
+                          <prop readOnly="True" type="string" name="configurationDisplayName"/>
+                          <prop readOnly="True" type="string" name="productFamilyDisplayName"/>
+                        </prop>
+                        <prop type="object" name="hierarchyInformation" required="True">
+                          <prop type="string" name="configurationName"/>
+                          <prop type="string" name="productFamilyName"/>
+                          <prop type="string" name="productLineName"/>
+                          <prop type="string" name="productName"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="productDoubleEncryptionStatus">
+                          <enum>
+                            <item value="Disabled"/>
+                            <item value="Enabled"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="returnReason"/>
+                      <prop readOnly="True" type="string" name="returnStatus">
+                        <enum>
+                          <item value="NotReturnable"/>
+                          <item value="Returnable"/>
+                          <item value="ReturnableWithFee"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="object" name="reverseShippingDetails">
+                        <prop readOnly="True" type="string" name="carrierDisplayName"/>
+                        <prop readOnly="True" type="string" name="carrierName"/>
+                        <prop readOnly="True" type="string" name="sasKeyForLabel"/>
+                        <prop readOnly="True" type="string" name="trackingId"/>
+                        <prop readOnly="True" type="string" name="trackingUrl"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="startTime"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop readOnly="True" type="dateTime" name="createdAt"/>
+                    <prop readOnly="True" type="string" name="createdBy"/>
+                    <prop readOnly="True" type="string" name="createdByType">
+                      <enum>
+                        <item value="Application"/>
+                        <item value="Key"/>
+                        <item value="ManagedIdentity"/>
+                        <item value="User"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="lastModifiedAt"/>
+                    <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                    <prop readOnly="True" type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="Application"/>
+                        <item value="Key"/>
+                        <item value="ManagedIdentity"/>
+                        <item value="User"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2021-12-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems/{}" version="2021-12-01" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZU9yZGVyL29yZGVySXRlbXMve29yZGVySXRlbU5hbWV9/V/MjAyMS0xMi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.orderItemName" options="order-item-name name n" required="True" idPart="name">
+          <help short="The name of the order item"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="object" var="$orderItemResource.properties.addressDetails" options="address-details" required="True">
+          <help short="Represents shipping and return address for order item"/>
+          <arg type="object" var="$orderItemResource.properties.addressDetails.forwardAddress" options="forward-address" required="True">
+            <help short="Customer address and contact details. It should be address resource"/>
+            <arg type="object" var="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails" options="contact-details" required="True">
+              <help short="Contact details for the address"/>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.contactName" options="contact-name" required="True">
+                <help short="Contact name of the person."/>
+              </arg>
+              <arg type="array<string>" var="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.emailList" options="email-list" required="True">
+                <help short="List of Email-ids to be notified about job progress."/>
+                <item type="string"/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.mobile" options="mobile">
+                <help short="Mobile number of the contact person."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.phone" options="phone" required="True">
+                <help short="Phone number of the contact person."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.phoneExtension" options="phone-extension">
+                <help short="Phone extension number of the contact person."/>
+              </arg>
+            </arg>
+            <arg type="object" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress" options="shipping-address">
+              <help short="Shipping details for the address"/>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.addressType" options="address-type">
+                <help short="Type of address."/>
+                <enum>
+                  <item name="Commercial" value="Commercial"/>
+                  <item name="None" value="None"/>
+                  <item name="Residential" value="Residential"/>
+                </enum>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.city" options="city">
+                <help short="Name of the City."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.companyName" options="company-name">
+                <help short="Name of the company."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.country" options="country" required="True">
+                <help short="Name of the Country."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.postalCode" options="postal-code">
+                <help short="Postal code."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.stateOrProvince" options="state-or-province">
+                <help short="Name of the State or Province."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.streetAddress1" options="street-address1" required="True">
+                <help short="Street Address line 1."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.streetAddress2" options="street-address2">
+                <help short="Street Address line 2."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.streetAddress3" options="street-address3">
+                <help short="Street Address line 3."/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.zipExtendedCode" options="zip-extended-code">
+                <help short="Extended Zip Code."/>
+              </arg>
+            </arg>
+          </arg>
+        </arg>
+        <arg type="string" var="$orderItemResource.properties.orderId" options="order-id" required="True">
+          <help short="Id of the order to which order item belongs to"/>
+        </arg>
+        <arg type="object" var="$orderItemResource.properties.orderItemDetails" options="order-item-details" required="True">
+          <help short="Represents order item details."/>
+          <arg type="array<string>" var="$orderItemResource.properties.orderItemDetails.notificationEmailList" options="notification-email-list">
+            <help short="Additional notification email list"/>
+            <item type="string"/>
+          </arg>
+          <arg type="string" var="$orderItemResource.properties.orderItemDetails.orderItemType" options="order-item-type" required="True">
+            <help short="Order item type."/>
+            <enum>
+              <item name="Purchase" value="Purchase"/>
+              <item name="Rental" value="Rental"/>
+            </enum>
+          </arg>
+          <arg type="object" var="$orderItemResource.properties.orderItemDetails.preferences" options="preferences">
+            <help short="Customer notification Preferences"/>
+            <arg type="object" var="$orderItemResource.properties.orderItemDetails.preferences.encryptionPreferences" options="encryption-preferences">
+              <help short="Preferences related to the Encryption."/>
+              <arg type="string" var="$orderItemResource.properties.orderItemDetails.preferences.encryptionPreferences.doubleEncryptionStatus" options="double-encryption-status">
+                <help short="Double encryption status as entered by the customer. It is compulsory to give this parameter if the 'Deny' or 'Disabled' policy is configured."/>
+                <enum>
+                  <item name="Disabled" value="Disabled"/>
+                  <item name="Enabled" value="Enabled"/>
+                </enum>
+              </arg>
+            </arg>
+            <arg type="object" var="$orderItemResource.properties.orderItemDetails.preferences.managementResourcePreferences" options="management-resource-preferences">
+              <help short="Preferences related to the Management resource."/>
+              <arg type="string" var="$orderItemResource.properties.orderItemDetails.preferences.managementResourcePreferences.preferredManagementResourceId" options="preferred-management-resource-id">
+                <help short="Customer preferred Management resource ARM ID"/>
+              </arg>
+            </arg>
+            <arg type="array<object>" var="$orderItemResource.properties.orderItemDetails.preferences.notificationPreferences" options="notification-preferences" singularOptions="notification-preference">
+              <help short="Notification preferences."/>
+              <item type="object">
+                <arg type="boolean" var="$orderItemResource.properties.orderItemDetails.preferences.notificationPreferences[].sendNotification" options="send-notification" required="True">
+                  <help short="Notification is required or not."/>
+                </arg>
+                <arg type="string" var="$orderItemResource.properties.orderItemDetails.preferences.notificationPreferences[].stageName" options="stage-name" required="True">
+                  <help short="Name of the stage."/>
+                  <enum>
+                    <item name="Delivered" value="Delivered"/>
+                    <item name="Shipped" value="Shipped"/>
+                  </enum>
+                </arg>
+              </item>
+            </arg>
+            <arg type="object" var="$orderItemResource.properties.orderItemDetails.preferences.transportPreferences" options="transport-preferences">
+              <help short="Preferences related to the shipment logistics of the order."/>
+              <arg type="string" var="$orderItemResource.properties.orderItemDetails.preferences.transportPreferences.preferredShipmentType" options="preferred-shipment-type" required="True">
+                <help short="Indicates Shipment Logistics type that the customer preferred."/>
+                <enum>
+                  <item name="CustomerManaged" value="CustomerManaged"/>
+                  <item name="MicrosoftManaged" value="MicrosoftManaged"/>
+                </enum>
+              </arg>
+            </arg>
+          </arg>
+          <arg type="object" var="$orderItemResource.properties.orderItemDetails.productDetails" options="product-details" required="True">
+            <help short="Unique identifier for configuration."/>
+            <arg type="object" var="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation" options="hierarchy-information" required="True">
+              <help short="Hierarchy of the product which uniquely identifies the product"/>
+              <arg type="string" var="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.configurationName" options="configuration-name">
+                <help short="Represents configuration name that uniquely identifies configuration"/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.productFamilyName" options="product-family-name">
+                <help short="Represents product family name that uniquely identifies product family"/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.productLineName" options="product-line-name">
+                <help short="Represents product line name that uniquely identifies product line"/>
+              </arg>
+              <arg type="string" var="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.productName" options="product-name">
+                <help short="Represents product name that uniquely identifies product"/>
+              </arg>
+            </arg>
+          </arg>
+        </arg>
+        <arg type="object" var="$orderItemResource.tags" options="tags">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="GetOrderItemByName">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EdgeOrder/orderItems/{orderItemName}">
+          <request method="get">
+            <path>
+              <param type="string" name="orderItemName" arg="$Path.orderItemName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="2021-12-01"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="OrderItemResource_read">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.EdgeOrder/orderItems/{}"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" required="True" clientFlatten="True">
+                    <prop type="object" name="addressDetails" required="True">
+                      <prop type="object" name="forwardAddress" required="True" cls="AddressProperties_read">
+                        <prop readOnly="True" type="string" name="addressValidationStatus">
+                          <enum>
+                            <item value="Ambiguous"/>
+                            <item value="Invalid"/>
+                            <item value="Valid"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="contactDetails" required="True">
+                          <prop type="string" name="contactName" required="True"/>
+                          <prop type="array<string>" name="emailList" required="True">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="mobile"/>
+                          <prop type="string" name="phone" required="True"/>
+                          <prop type="string" name="phoneExtension"/>
+                        </prop>
+                        <prop type="object" name="shippingAddress">
+                          <prop type="string" name="addressType">
+                            <enum>
+                              <item value="Commercial"/>
+                              <item value="None"/>
+                              <item value="Residential"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="city"/>
+                          <prop type="string" name="companyName"/>
+                          <prop type="string" name="country" required="True"/>
+                          <prop type="string" name="postalCode"/>
+                          <prop type="string" name="stateOrProvince"/>
+                          <prop type="string" name="streetAddress1" required="True"/>
+                          <prop type="string" name="streetAddress2"/>
+                          <prop type="string" name="streetAddress3"/>
+                          <prop type="string" name="zipExtendedCode"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="@AddressProperties_read" name="returnAddress"/>
+                    </prop>
+                    <prop type="string" name="orderId" required="True"/>
+                    <prop type="object" name="orderItemDetails" required="True">
+                      <prop readOnly="True" type="string" name="cancellationReason"/>
+                      <prop readOnly="True" type="string" name="cancellationStatus">
+                        <enum>
+                          <item value="Cancellable"/>
+                          <item value="CancellableWithFee"/>
+                          <item value="NotCancellable"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="object" name="currentStage" cls="StageDetails_read">
+                        <prop readOnly="True" type="string" name="displayName"/>
+                        <prop readOnly="True" type="string" name="stageName">
+                          <enum>
+                            <item value="Cancelled"/>
+                            <item value="Confirmed"/>
+                            <item value="Delivered"/>
+                            <item value="InReview"/>
+                            <item value="InUse"/>
+                            <item value="Placed"/>
+                            <item value="ReadyToShip"/>
+                            <item value="ReturnCompleted"/>
+                            <item value="ReturnInitiated"/>
+                            <item value="ReturnPickedUp"/>
+                            <item value="ReturnedToMicrosoft"/>
+                            <item value="Shipped"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="stageStatus">
+                          <enum>
+                            <item value="Cancelled"/>
+                            <item value="Cancelling"/>
+                            <item value="Failed"/>
+                            <item value="InProgress"/>
+                            <item value="None"/>
+                            <item value="Succeeded"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="startTime"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="deletionStatus">
+                        <enum>
+                          <item value="Allowed"/>
+                          <item value="NotAllowed"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="object" name="error" cls="ErrorDetail_read">
+                        <prop readOnly="True" type="array<object>" name="additionalInfo">
+                          <item readOnly="True" type="object">
+                            <prop readOnly="True" type="object" name="info">
+                              <additionalProp readOnly="True"/>
+                            </prop>
+                            <prop readOnly="True" type="string" name="type"/>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="string" name="code"/>
+                        <prop readOnly="True" type="array<@ErrorDetail_read>" name="details">
+                          <item readOnly="True" type="@ErrorDetail_read"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="message"/>
+                        <prop readOnly="True" type="string" name="target"/>
+                      </prop>
+                      <prop readOnly="True" type="object" name="forwardShippingDetails">
+                        <prop readOnly="True" type="string" name="carrierDisplayName"/>
+                        <prop readOnly="True" type="string" name="carrierName"/>
+                        <prop readOnly="True" type="string" name="trackingId"/>
+                        <prop readOnly="True" type="string" name="trackingUrl"/>
+                      </prop>
+                      <prop readOnly="True" type="object" name="managementRpDetails" cls="ResourceProviderDetails_read">
+                        <prop readOnly="True" type="string" name="resourceProviderNamespace"/>
+                      </prop>
+                      <prop readOnly="True" type="array<@ResourceProviderDetails_read>" name="managementRpDetailsList">
+                        <item readOnly="True" type="@ResourceProviderDetails_read"/>
+                      </prop>
+                      <prop type="array<string>" name="notificationEmailList">
+                        <item type="string"/>
+                      </prop>
+                      <prop readOnly="True" type="array<@StageDetails_read>" name="orderItemStageHistory">
+                        <item readOnly="True" type="@StageDetails_read"/>
+                      </prop>
+                      <prop type="string" name="orderItemType" required="True">
+                        <enum>
+                          <item value="Purchase"/>
+                          <item value="Rental"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="preferences">
+                        <prop type="object" name="encryptionPreferences">
+                          <prop type="string" name="doubleEncryptionStatus">
+                            <enum>
+                              <item value="Disabled"/>
+                              <item value="Enabled"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="managementResourcePreferences">
+                          <prop type="string" name="preferredManagementResourceId"/>
+                        </prop>
+                        <prop type="array<object>" name="notificationPreferences">
+                          <item type="object">
+                            <prop type="boolean" name="sendNotification" required="True"/>
+                            <prop type="string" name="stageName" required="True">
+                              <enum>
+                                <item value="Delivered"/>
+                                <item value="Shipped"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="transportPreferences">
+                          <prop type="string" name="preferredShipmentType" required="True">
+                            <enum>
+                              <item value="CustomerManaged"/>
+                              <item value="MicrosoftManaged"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="productDetails" required="True">
+                        <prop readOnly="True" type="integer32" name="count"/>
+                        <prop readOnly="True" type="array<object>" name="deviceDetails">
+                          <item readOnly="True" type="object">
+                            <prop readOnly="True" type="string" name="managementResourceId"/>
+                            <prop readOnly="True" type="string" name="managementResourceTenantId"/>
+                            <prop readOnly="True" type="string" name="serialNumber"/>
+                          </item>
+                        </prop>
+                        <prop type="object" name="displayInfo">
+                          <prop readOnly="True" type="string" name="configurationDisplayName"/>
+                          <prop readOnly="True" type="string" name="productFamilyDisplayName"/>
+                        </prop>
+                        <prop type="object" name="hierarchyInformation" required="True">
+                          <prop type="string" name="configurationName"/>
+                          <prop type="string" name="productFamilyName"/>
+                          <prop type="string" name="productLineName"/>
+                          <prop type="string" name="productName"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="productDoubleEncryptionStatus">
+                          <enum>
+                            <item value="Disabled"/>
+                            <item value="Enabled"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="returnReason"/>
+                      <prop readOnly="True" type="string" name="returnStatus">
+                        <enum>
+                          <item value="NotReturnable"/>
+                          <item value="Returnable"/>
+                          <item value="ReturnableWithFee"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="object" name="reverseShippingDetails">
+                        <prop readOnly="True" type="string" name="carrierDisplayName"/>
+                        <prop readOnly="True" type="string" name="carrierName"/>
+                        <prop readOnly="True" type="string" name="sasKeyForLabel"/>
+                        <prop readOnly="True" type="string" name="trackingId"/>
+                        <prop readOnly="True" type="string" name="trackingUrl"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="startTime"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop readOnly="True" type="dateTime" name="createdAt"/>
+                    <prop readOnly="True" type="string" name="createdBy"/>
+                    <prop readOnly="True" type="string" name="createdByType">
+                      <enum>
+                        <item value="Application"/>
+                        <item value="Key"/>
+                        <item value="ManagedIdentity"/>
+                        <item value="User"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="lastModifiedAt"/>
+                    <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                    <prop readOnly="True" type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="Application"/>
+                        <item value="Key"/>
+                        <item value="ManagedIdentity"/>
+                        <item value="User"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate instance="$Instance">
+          <json>
+            <schema type="object" name="orderItemResource" clientFlatten="True">
+              <prop type="object" name="properties" required="True" clientFlatten="True">
+                <prop type="object" name="addressDetails" arg="$orderItemResource.properties.addressDetails" required="True">
+                  <prop type="object" name="forwardAddress" arg="$orderItemResource.properties.addressDetails.forwardAddress" required="True">
+                    <prop type="object" name="contactDetails" arg="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails" required="True">
+                      <prop type="string" name="contactName" arg="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.contactName" required="True"/>
+                      <prop type="array<string>" name="emailList" arg="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.emailList" required="True">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="string" name="mobile" arg="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.mobile"/>
+                      <prop type="string" name="phone" arg="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.phone" required="True"/>
+                      <prop type="string" name="phoneExtension" arg="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.phoneExtension"/>
+                    </prop>
+                    <prop type="object" name="shippingAddress" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress">
+                      <prop type="string" name="addressType" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.addressType">
+                        <enum>
+                          <item value="Commercial"/>
+                          <item value="None"/>
+                          <item value="Residential"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="city" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.city"/>
+                      <prop type="string" name="companyName" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.companyName"/>
+                      <prop type="string" name="country" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.country" required="True"/>
+                      <prop type="string" name="postalCode" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.postalCode"/>
+                      <prop type="string" name="stateOrProvince" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.stateOrProvince"/>
+                      <prop type="string" name="streetAddress1" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.streetAddress1" required="True"/>
+                      <prop type="string" name="streetAddress2" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.streetAddress2"/>
+                      <prop type="string" name="streetAddress3" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.streetAddress3"/>
+                      <prop type="string" name="zipExtendedCode" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.zipExtendedCode"/>
+                    </prop>
+                  </prop>
+                </prop>
+                <prop type="string" name="orderId" arg="$orderItemResource.properties.orderId" required="True"/>
+                <prop type="object" name="orderItemDetails" arg="$orderItemResource.properties.orderItemDetails" required="True">
+                  <prop type="array<string>" name="notificationEmailList" arg="$orderItemResource.properties.orderItemDetails.notificationEmailList">
+                    <item type="string"/>
+                  </prop>
+                  <prop type="string" name="orderItemType" arg="$orderItemResource.properties.orderItemDetails.orderItemType" required="True">
+                    <enum>
+                      <item value="Purchase"/>
+                      <item value="Rental"/>
+                    </enum>
+                  </prop>
+                  <prop type="object" name="preferences" arg="$orderItemResource.properties.orderItemDetails.preferences">
+                    <prop type="object" name="encryptionPreferences" arg="$orderItemResource.properties.orderItemDetails.preferences.encryptionPreferences">
+                      <prop type="string" name="doubleEncryptionStatus" arg="$orderItemResource.properties.orderItemDetails.preferences.encryptionPreferences.doubleEncryptionStatus">
+                        <enum>
+                          <item value="Disabled"/>
+                          <item value="Enabled"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="managementResourcePreferences" arg="$orderItemResource.properties.orderItemDetails.preferences.managementResourcePreferences">
+                      <prop type="string" name="preferredManagementResourceId" arg="$orderItemResource.properties.orderItemDetails.preferences.managementResourcePreferences.preferredManagementResourceId"/>
+                    </prop>
+                    <prop type="array<object>" name="notificationPreferences" arg="$orderItemResource.properties.orderItemDetails.preferences.notificationPreferences">
+                      <item type="object">
+                        <prop type="boolean" name="sendNotification" arg="$orderItemResource.properties.orderItemDetails.preferences.notificationPreferences[].sendNotification" required="True"/>
+                        <prop type="string" name="stageName" arg="$orderItemResource.properties.orderItemDetails.preferences.notificationPreferences[].stageName" required="True">
+                          <enum>
+                            <item value="Delivered"/>
+                            <item value="Shipped"/>
+                          </enum>
+                        </prop>
+                      </item>
+                    </prop>
+                    <prop type="object" name="transportPreferences" arg="$orderItemResource.properties.orderItemDetails.preferences.transportPreferences">
+                      <prop type="string" name="preferredShipmentType" arg="$orderItemResource.properties.orderItemDetails.preferences.transportPreferences.preferredShipmentType" required="True">
+                        <enum>
+                          <item value="CustomerManaged"/>
+                          <item value="MicrosoftManaged"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="productDetails" arg="$orderItemResource.properties.orderItemDetails.productDetails" required="True">
+                    <prop type="object" name="hierarchyInformation" arg="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation" required="True">
+                      <prop type="string" name="configurationName" arg="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.configurationName"/>
+                      <prop type="string" name="productFamilyName" arg="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.productFamilyName"/>
+                      <prop type="string" name="productLineName" arg="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.productLineName"/>
+                      <prop type="string" name="productName" arg="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.productName"/>
+                    </prop>
+                  </prop>
+                </prop>
+              </prop>
+              <prop type="object" name="tags" arg="$orderItemResource.tags">
+                <additionalProp>
+                  <item type="string"/>
+                </additionalProp>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="CreateOrderItem">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EdgeOrder/orderItems/{orderItemName}">
+          <request method="put">
+            <path>
+              <param type="string" name="orderItemName" arg="$Path.orderItemName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="2021-12-01"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="@OrderItemResource_read"/>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
