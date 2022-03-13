@@ -285,7 +285,9 @@
               </const>
             </query>
           </request>
-          <response statusCode="200 202 204"/>
+          <response statusCode="200"/>
+          <response statusCode="202"/>
+          <response statusCode="204"/>
           <response isError="True">
             <body>
               <json>
@@ -305,10 +307,12 @@
           <help short="The name of the workspace."/>
           <format maxLength="64" minLength="3"/>
         </arg>
-        <arg type="ResourceLocation" var="$parameters.location" options="location l" required="True">
+      </argGroup>
+      <argGroup name="Parameters">
+        <arg type="ResourceLocation" var="$parameters.location" options="location l" required="True" group="Parameters">
           <help short="The geo-location where the resource lives"/>
         </arg>
-        <arg type="array<object>" var="$parameters.properties.authorizations" options="authorizations" singularOptions="authorization">
+        <arg type="array<object>" var="$parameters.properties.authorizations" options="authorizations" group="Parameters" singularOptions="authorization">
           <help short="The workspace provider authorizations."/>
           <item type="object">
             <arg type="uuid" var="$parameters.properties.authorizations[].principalId" options="principal-id" required="True">
@@ -319,7 +323,7 @@
             </arg>
           </item>
         </arg>
-        <arg type="object" var="$parameters.properties.encryption" options="encryption">
+        <arg type="object" var="$parameters.properties.encryption" options="encryption" group="Parameters">
           <help short="Encryption properties for databricks workspace"/>
           <arg type="object" var="$parameters.properties.encryption.entities" options="entities" required="True">
             <help short="Encryption entities definition for the workspace."/>
@@ -346,10 +350,10 @@
             </arg>
           </arg>
         </arg>
-        <arg type="string" var="$parameters.properties.managedResourceGroupId" options="managed-resource-group-id" required="True">
+        <arg type="string" var="$parameters.properties.managedResourceGroupId" options="managed-resource-group-id" required="True" group="Parameters">
           <help short="The managed resource group Id."/>
         </arg>
-        <arg type="object" var="$parameters.properties.parameters" options="parameters">
+        <arg type="object" var="$parameters.properties.parameters" options="parameters" group="Parameters">
           <help short="The workspace's custom parameters."/>
           <arg type="object" var="$parameters.properties.parameters.amlWorkspaceId" options="aml-workspace-id" cls="WorkspaceCustomStringParameter_create">
             <help short="The ID of a Azure Machine Learning workspace to link with Databricks workspace"/>
@@ -423,14 +427,14 @@
             <help short="Address prefix for Managed virtual network. Default value for this input is 10.139."/>
           </arg>
         </arg>
-        <arg type="string" var="$parameters.properties.publicNetworkAccess" options="public-network-access">
+        <arg type="string" var="$parameters.properties.publicNetworkAccess" options="public-network-access" group="Parameters">
           <help short="The network access type for accessing workspace. Set value to disabled to access workspace only via private link."/>
           <enum>
             <item name="Disabled" value="Disabled"/>
             <item name="Enabled" value="Enabled"/>
           </enum>
         </arg>
-        <arg type="string" var="$parameters.properties.requiredNsgRules" options="required-nsg-rules">
+        <arg type="string" var="$parameters.properties.requiredNsgRules" options="required-nsg-rules" group="Parameters">
           <help short="Gets or sets a value indicating whether data plane (clusters) to control plane communication happen over private endpoint. Supported values are 'AllRules' and 'NoAzureDatabricksRules'. 'NoAzureServiceRules' value is for internal use only."/>
           <enum>
             <item name="AllRules" value="AllRules"/>
@@ -438,10 +442,10 @@
             <item name="NoAzureServiceRules" value="NoAzureServiceRules"/>
           </enum>
         </arg>
-        <arg type="string" var="$parameters.properties.uiDefinitionUri" options="ui-definition-uri">
+        <arg type="string" var="$parameters.properties.uiDefinitionUri" options="ui-definition-uri" group="Parameters">
           <help short="The blob URI where the UI definition file is located."/>
         </arg>
-        <arg type="object" var="$parameters.sku" options="sku">
+        <arg type="object" var="$parameters.sku" options="sku" group="Parameters">
           <help short="The SKU of the resource."/>
           <arg type="string" var="$parameters.sku.name" options="name" required="True">
             <help short="The SKU name."/>
@@ -450,7 +454,7 @@
             <help short="The SKU tier."/>
           </arg>
         </arg>
-        <arg type="object" var="$parameters.tags" options="tags">
+        <arg type="object" var="$parameters.tags" options="tags" group="Parameters">
           <help short="Resource tags."/>
           <additionalProp>
             <item type="string"/>
@@ -800,24 +804,26 @@
           <help short="The name of the workspace."/>
           <format maxLength="64" minLength="3"/>
         </arg>
-        <arg type="array<object>" var="$parameters.properties.authorizations" options="authorizations" singularOptions="authorization">
+      </argGroup>
+      <argGroup name="Parameters">
+        <arg type="array<object>" var="$parameters.properties.authorizations" options="authorizations" group="Parameters" singularOptions="authorization">
           <help short="The workspace provider authorizations."/>
           <item type="object">
-            <arg type="uuid" var="$parameters.properties.authorizations[].principalId" options="principal-id" required="True">
+            <arg type="uuid" var="$parameters.properties.authorizations[].principalId" options="principal-id">
               <help short="The provider's principal identifier. This is the identity that the provider will use to call ARM to manage the workspace resources."/>
             </arg>
-            <arg type="uuid" var="$parameters.properties.authorizations[].roleDefinitionId" options="role-definition-id" required="True">
+            <arg type="uuid" var="$parameters.properties.authorizations[].roleDefinitionId" options="role-definition-id">
               <help short="The provider's role definition identifier. This role will define all the permissions that the provider must have on the workspace's container resource group. This role definition cannot have permission to delete the resource group."/>
             </arg>
           </item>
         </arg>
-        <arg type="object" var="$parameters.properties.encryption" options="encryption">
+        <arg type="object" var="$parameters.properties.encryption" options="encryption" group="Parameters">
           <help short="Encryption properties for databricks workspace"/>
-          <arg type="object" var="$parameters.properties.encryption.entities" options="entities" required="True">
+          <arg type="object" var="$parameters.properties.encryption.entities" options="entities">
             <help short="Encryption entities definition for the workspace."/>
             <arg type="object" var="$parameters.properties.encryption.entities.managedServices" options="managed-services">
               <help short="Encryption properties for the databricks managed services."/>
-              <arg type="string" var="$parameters.properties.encryption.entities.managedServices.keySource" options="key-source" required="True">
+              <arg type="string" var="$parameters.properties.encryption.entities.managedServices.keySource" options="key-source">
                 <help short="The encryption keySource (provider). Possible values (case-insensitive):  Microsoft.Keyvault"/>
                 <enum>
                   <item name="Microsoft.Keyvault" value="Microsoft.Keyvault"/>
@@ -825,27 +831,27 @@
               </arg>
               <arg type="object" var="$parameters.properties.encryption.entities.managedServices.keyVaultProperties" options="key-vault-properties">
                 <help short="Key Vault input properties for encryption."/>
-                <arg type="string" var="$parameters.properties.encryption.entities.managedServices.keyVaultProperties.keyName" options="key-name" required="True">
+                <arg type="string" var="$parameters.properties.encryption.entities.managedServices.keyVaultProperties.keyName" options="key-name">
                   <help short="The name of KeyVault key."/>
                 </arg>
-                <arg type="string" var="$parameters.properties.encryption.entities.managedServices.keyVaultProperties.keyVaultUri" options="key-vault-uri" required="True">
+                <arg type="string" var="$parameters.properties.encryption.entities.managedServices.keyVaultProperties.keyVaultUri" options="key-vault-uri">
                   <help short="The Uri of KeyVault."/>
                 </arg>
-                <arg type="string" var="$parameters.properties.encryption.entities.managedServices.keyVaultProperties.keyVersion" options="key-version" required="True">
+                <arg type="string" var="$parameters.properties.encryption.entities.managedServices.keyVaultProperties.keyVersion" options="key-version">
                   <help short="The version of KeyVault key."/>
                 </arg>
               </arg>
             </arg>
           </arg>
         </arg>
-        <arg type="string" var="$parameters.properties.managedResourceGroupId" options="managed-resource-group-id" required="True">
+        <arg type="string" var="$parameters.properties.managedResourceGroupId" options="managed-resource-group-id" group="Parameters">
           <help short="The managed resource group Id."/>
         </arg>
-        <arg type="object" var="$parameters.properties.parameters" options="parameters">
+        <arg type="object" var="$parameters.properties.parameters" options="parameters" group="Parameters">
           <help short="The workspace's custom parameters."/>
           <arg type="object" var="$parameters.properties.parameters.amlWorkspaceId" options="aml-workspace-id" cls="WorkspaceCustomStringParameter_update">
             <help short="The ID of a Azure Machine Learning workspace to link with Databricks workspace"/>
-            <arg type="string" var="@WorkspaceCustomStringParameter_update.value" options="value" required="True">
+            <arg type="string" var="@WorkspaceCustomStringParameter_update.value" options="value">
               <help short="The value which should be used for this field."/>
             </arg>
           </arg>
@@ -860,7 +866,7 @@
           </arg>
           <arg type="object" var="$parameters.properties.parameters.enableNoPublicIp" options="enable-no-public-ip" cls="WorkspaceCustomBooleanParameter_update">
             <help short="Should the Public IP be Disabled?"/>
-            <arg type="boolean" var="@WorkspaceCustomBooleanParameter_update.value" options="value" required="True">
+            <arg type="boolean" var="@WorkspaceCustomBooleanParameter_update.value" options="value">
               <help short="The value which should be used for this field."/>
             </arg>
           </arg>
@@ -915,14 +921,14 @@
             <help short="Address prefix for Managed virtual network. Default value for this input is 10.139."/>
           </arg>
         </arg>
-        <arg type="string" var="$parameters.properties.publicNetworkAccess" options="public-network-access">
+        <arg type="string" var="$parameters.properties.publicNetworkAccess" options="public-network-access" group="Parameters">
           <help short="The network access type for accessing workspace. Set value to disabled to access workspace only via private link."/>
           <enum>
             <item name="Disabled" value="Disabled"/>
             <item name="Enabled" value="Enabled"/>
           </enum>
         </arg>
-        <arg type="string" var="$parameters.properties.requiredNsgRules" options="required-nsg-rules">
+        <arg type="string" var="$parameters.properties.requiredNsgRules" options="required-nsg-rules" group="Parameters">
           <help short="Gets or sets a value indicating whether data plane (clusters) to control plane communication happen over private endpoint. Supported values are 'AllRules' and 'NoAzureDatabricksRules'. 'NoAzureServiceRules' value is for internal use only."/>
           <enum>
             <item name="AllRules" value="AllRules"/>
@@ -930,19 +936,19 @@
             <item name="NoAzureServiceRules" value="NoAzureServiceRules"/>
           </enum>
         </arg>
-        <arg type="string" var="$parameters.properties.uiDefinitionUri" options="ui-definition-uri">
+        <arg type="string" var="$parameters.properties.uiDefinitionUri" options="ui-definition-uri" group="Parameters">
           <help short="The blob URI where the UI definition file is located."/>
         </arg>
-        <arg type="object" var="$parameters.sku" options="sku">
+        <arg type="object" var="$parameters.sku" options="sku" group="Parameters">
           <help short="The SKU of the resource."/>
-          <arg type="string" var="$parameters.sku.name" options="name" required="True">
+          <arg type="string" var="$parameters.sku.name" options="name">
             <help short="The SKU name."/>
           </arg>
           <arg type="string" var="$parameters.sku.tier" options="tier">
             <help short="The SKU tier."/>
           </arg>
         </arg>
-        <arg type="object" var="$parameters.tags" options="tags">
+        <arg type="object" var="$parameters.tags" options="tags" group="Parameters">
           <help short="Resource tags."/>
           <additionalProp>
             <item type="string"/>

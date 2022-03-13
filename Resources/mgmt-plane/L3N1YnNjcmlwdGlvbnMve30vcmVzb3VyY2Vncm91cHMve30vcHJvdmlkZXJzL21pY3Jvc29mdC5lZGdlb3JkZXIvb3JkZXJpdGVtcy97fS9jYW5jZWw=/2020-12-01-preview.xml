@@ -10,7 +10,9 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True"/>
-        <arg type="string" var="$cancellationReason.reason" options="reason" required="True">
+      </argGroup>
+      <argGroup name="CancellationReason">
+        <arg type="string" var="$cancellationReason.reason" options="reason" required="True" group="CancellationReason">
           <help short="Reason for cancellation."/>
         </arg>
       </argGroup>
@@ -40,7 +42,8 @@
               </json>
             </body>
           </request>
-          <response statusCode="200 204"/>
+          <response statusCode="200"/>
+          <response statusCode="204"/>
           <response isError="True">
             <body>
               <json>

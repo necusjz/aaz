@@ -10,14 +10,16 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True"/>
-        <arg type="string" var="$body.operationName" options="operation-name">
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="string" var="$body.operationName" options="operation-name" group="Body">
           <help short="Operation to be performed for given VM."/>
           <enum>
             <item name="Add" value="Add"/>
             <item name="Delete" value="Delete"/>
           </enum>
         </arg>
-        <arg type="string" var="$body.vmResourceId" options="vm-resource-id">
+        <arg type="string" var="$body.vmResourceId" options="vm-resource-id" group="Body">
           <help short="ARM id of the VM resource."/>
         </arg>
       </argGroup>

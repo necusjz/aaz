@@ -153,7 +153,9 @@
               </const>
             </query>
           </request>
-          <response statusCode="200 202 204"/>
+          <response statusCode="200"/>
+          <response statusCode="202"/>
+          <response statusCode="204"/>
           <response isError="True">
             <body>
               <json>
@@ -173,10 +175,12 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="ResourceLocation" var="$addressResource.location" options="location l" required="True">
+      </argGroup>
+      <argGroup name="AddressResource">
+        <arg type="ResourceLocation" var="$addressResource.location" options="location l" required="True" group="AddressResource">
           <help short="The geo-location where the resource lives"/>
         </arg>
-        <arg type="object" var="$addressResource.properties.contactDetails" options="contact-details" required="True">
+        <arg type="object" var="$addressResource.properties.contactDetails" options="contact-details" required="True" group="AddressResource">
           <help short="Contact details for the address"/>
           <arg type="string" var="$addressResource.properties.contactDetails.contactName" options="contact-name" required="True">
             <help short="Contact name of the person."/>
@@ -195,7 +199,7 @@
             <help short="Phone extension number of the contact person."/>
           </arg>
         </arg>
-        <arg type="object" var="$addressResource.properties.shippingAddress" options="shipping-address">
+        <arg type="object" var="$addressResource.properties.shippingAddress" options="shipping-address" group="AddressResource">
           <help short="Shipping details for the address"/>
           <arg type="string" var="$addressResource.properties.shippingAddress.addressType" options="address-type">
             <help short="Type of address."/>
@@ -233,7 +237,7 @@
             <help short="Extended Zip Code."/>
           </arg>
         </arg>
-        <arg type="object" var="$addressResource.tags" options="tags">
+        <arg type="object" var="$addressResource.tags" options="tags" group="AddressResource">
           <help short="Resource tags."/>
           <additionalProp>
             <item type="string"/>
@@ -401,26 +405,28 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="object" var="$addressResource.properties.contactDetails" options="contact-details" required="True">
+      </argGroup>
+      <argGroup name="AddressResource">
+        <arg type="object" var="$addressResource.properties.contactDetails" options="contact-details" group="AddressResource">
           <help short="Contact details for the address"/>
-          <arg type="string" var="$addressResource.properties.contactDetails.contactName" options="contact-name" required="True">
+          <arg type="string" var="$addressResource.properties.contactDetails.contactName" options="contact-name">
             <help short="Contact name of the person."/>
           </arg>
-          <arg type="array<string>" var="$addressResource.properties.contactDetails.emailList" options="email-list" required="True">
+          <arg type="array<string>" var="$addressResource.properties.contactDetails.emailList" options="email-list">
             <help short="List of Email-ids to be notified about job progress."/>
             <item type="string"/>
           </arg>
           <arg type="string" var="$addressResource.properties.contactDetails.mobile" options="mobile">
             <help short="Mobile number of the contact person."/>
           </arg>
-          <arg type="string" var="$addressResource.properties.contactDetails.phone" options="phone" required="True">
+          <arg type="string" var="$addressResource.properties.contactDetails.phone" options="phone">
             <help short="Phone number of the contact person."/>
           </arg>
           <arg type="string" var="$addressResource.properties.contactDetails.phoneExtension" options="phone-extension">
             <help short="Phone extension number of the contact person."/>
           </arg>
         </arg>
-        <arg type="object" var="$addressResource.properties.shippingAddress" options="shipping-address">
+        <arg type="object" var="$addressResource.properties.shippingAddress" options="shipping-address" group="AddressResource">
           <help short="Shipping details for the address"/>
           <arg type="string" var="$addressResource.properties.shippingAddress.addressType" options="address-type">
             <help short="Type of address."/>
@@ -436,7 +442,7 @@
           <arg type="string" var="$addressResource.properties.shippingAddress.companyName" options="company-name">
             <help short="Name of the company."/>
           </arg>
-          <arg type="string" var="$addressResource.properties.shippingAddress.country" options="country" required="True">
+          <arg type="string" var="$addressResource.properties.shippingAddress.country" options="country">
             <help short="Name of the Country."/>
           </arg>
           <arg type="string" var="$addressResource.properties.shippingAddress.postalCode" options="postal-code">
@@ -445,7 +451,7 @@
           <arg type="string" var="$addressResource.properties.shippingAddress.stateOrProvince" options="state-or-province">
             <help short="Name of the State or Province."/>
           </arg>
-          <arg type="string" var="$addressResource.properties.shippingAddress.streetAddress1" options="street-address1" required="True">
+          <arg type="string" var="$addressResource.properties.shippingAddress.streetAddress1" options="street-address1">
             <help short="Street Address line 1."/>
           </arg>
           <arg type="string" var="$addressResource.properties.shippingAddress.streetAddress2" options="street-address2">
@@ -458,7 +464,7 @@
             <help short="Extended Zip Code."/>
           </arg>
         </arg>
-        <arg type="object" var="$addressResource.tags" options="tags">
+        <arg type="object" var="$addressResource.tags" options="tags" group="AddressResource">
           <help short="Resource tags."/>
           <additionalProp>
             <item type="string"/>

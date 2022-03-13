@@ -10,20 +10,22 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True"/>
-        <arg type="string" var="$body.emailId" options="email-id">
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="string" var="$body.emailId" options="email-id" group="Body">
           <help short="Email id of the user to be created or updated"/>
         </arg>
-        <arg type="string" var="$body.fullName" options="full-name">
+        <arg type="string" var="$body.fullName" options="full-name" group="Body">
           <help short="Full name of the user to be created or updated"/>
         </arg>
-        <arg type="string" var="$body.password" options="password">
+        <arg type="string" var="$body.password" options="password" group="Body">
           <help short="Password of the user to be created or updated"/>
         </arg>
-        <arg type="array<string>" var="$body.roles" options="roles" singularOptions="role">
+        <arg type="array<string>" var="$body.roles" options="roles" group="Body" singularOptions="role">
           <help short="Roles to be assigned for  created or updated user"/>
           <item type="string"/>
         </arg>
-        <arg type="string" var="$body.userName" options="user-name">
+        <arg type="string" var="$body.userName" options="user-name" group="Body">
           <help short="Username of the user to be created or updated"/>
         </arg>
       </argGroup>

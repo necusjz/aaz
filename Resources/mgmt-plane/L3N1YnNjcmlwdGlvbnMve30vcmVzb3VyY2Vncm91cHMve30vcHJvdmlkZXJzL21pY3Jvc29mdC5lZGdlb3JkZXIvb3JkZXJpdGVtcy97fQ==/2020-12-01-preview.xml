@@ -310,7 +310,9 @@
               </const>
             </query>
           </request>
-          <response statusCode="200 202 204"/>
+          <response statusCode="200"/>
+          <response statusCode="202"/>
+          <response statusCode="204"/>
           <response isError="True">
             <body>
               <json>
@@ -329,10 +331,12 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="ResourceLocation" var="$orderItemResource.location" options="location l" required="True">
+      </argGroup>
+      <argGroup name="OrderItemResource">
+        <arg type="ResourceLocation" var="$orderItemResource.location" options="location l" required="True" group="OrderItemResource">
           <help short="The geo-location where the resource lives"/>
         </arg>
-        <arg type="object" var="$orderItemResource.properties.addressDetails" options="address-details" required="True">
+        <arg type="object" var="$orderItemResource.properties.addressDetails" options="address-details" required="True" group="OrderItemResource">
           <help short="Represents shipping and return address for order item"/>
           <arg type="object" var="$orderItemResource.properties.addressDetails.forwardAddress" options="forward-address" required="True">
             <help short="Customer address and contact details. It should be address resource"/>
@@ -395,10 +399,10 @@
             </arg>
           </arg>
         </arg>
-        <arg type="string" var="$orderItemResource.properties.orderId" options="order-id" required="True">
+        <arg type="string" var="$orderItemResource.properties.orderId" options="order-id" required="True" group="OrderItemResource">
           <help short="Id of the order to which order item belongs to"/>
         </arg>
-        <arg type="object" var="$orderItemResource.properties.orderItemDetails" options="order-item-details" required="True">
+        <arg type="object" var="$orderItemResource.properties.orderItemDetails" options="order-item-details" required="True" group="OrderItemResource">
           <help short="Represents order item details."/>
           <arg type="array<string>" var="$orderItemResource.properties.orderItemDetails.notificationEmailList" options="notification-email-list">
             <help short="Additional notification email list"/>
@@ -474,7 +478,7 @@
             </arg>
           </arg>
         </arg>
-        <arg type="object" var="$orderItemResource.tags" options="tags">
+        <arg type="object" var="$orderItemResource.tags" options="tags" group="OrderItemResource">
           <help short="Resource tags."/>
           <additionalProp>
             <item type="string"/>
@@ -849,163 +853,135 @@
     <command name="update" version="2020-12-01-preview">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edgeorder/orderitems/{}" version="2020-12-01-preview" swagger="mgmt-plane/edgeorder/ResourceProviders/Microsoft.EdgeOrder/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZU9yZGVyL29yZGVySXRlbXMve29yZGVySXRlbU5hbWV9/V/MjAyMC0xMi0wMS1wcmV2aWV3"/>
       <argGroup name="">
+        <arg type="string" var="$Header.If-Match" options="if-match">
+          <help short="Defines the If-Match condition. The patch will be performed only if the ETag of the order on the server matches this value."/>
+        </arg>
         <arg type="string" var="$Path.orderItemName" options="order-item-name name n" required="True" idPart="name">
           <help short="The name of the order item"/>
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="object" var="$orderItemResource.properties.addressDetails" options="address-details" required="True">
-          <help short="Represents shipping and return address for order item"/>
-          <arg type="object" var="$orderItemResource.properties.addressDetails.forwardAddress" options="forward-address" required="True">
-            <help short="Customer address and contact details. It should be address resource"/>
-            <arg type="object" var="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails" options="contact-details" required="True">
-              <help short="Contact details for the address"/>
-              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.contactName" options="contact-name" required="True">
-                <help short="Contact name of the person."/>
-              </arg>
-              <arg type="array<string>" var="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.emailList" options="email-list" required="True">
-                <help short="List of Email-ids to be notified about job progress."/>
-                <item type="string"/>
-              </arg>
-              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.mobile" options="mobile">
-                <help short="Mobile number of the contact person."/>
-              </arg>
-              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.phone" options="phone" required="True">
-                <help short="Phone number of the contact person."/>
-              </arg>
-              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.phoneExtension" options="phone-extension">
-                <help short="Phone extension number of the contact person."/>
-              </arg>
+      </argGroup>
+      <argGroup name="OrderItemUpdateParameter">
+        <arg type="object" var="$orderItemUpdateParameter.properties.forwardAddress" options="forward-address" group="OrderItemUpdateParameter">
+          <help short="Updates forward shipping address and contact details."/>
+          <arg type="object" var="$orderItemUpdateParameter.properties.forwardAddress.contactDetails" options="contact-details" required="True">
+            <help short="Contact details for the address"/>
+            <arg type="string" var="$orderItemUpdateParameter.properties.forwardAddress.contactDetails.contactName" options="contact-name" required="True">
+              <help short="Contact name of the person."/>
             </arg>
-            <arg type="object" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress" options="shipping-address">
-              <help short="Shipping details for the address"/>
-              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.addressType" options="address-type">
-                <help short="Type of address."/>
-                <enum>
-                  <item name="Commercial" value="Commercial"/>
-                  <item name="None" value="None"/>
-                  <item name="Residential" value="Residential"/>
-                </enum>
-              </arg>
-              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.city" options="city">
-                <help short="Name of the City."/>
-              </arg>
-              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.companyName" options="company-name">
-                <help short="Name of the company."/>
-              </arg>
-              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.country" options="country" required="True">
-                <help short="Name of the Country."/>
-              </arg>
-              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.postalCode" options="postal-code">
-                <help short="Postal code."/>
-              </arg>
-              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.stateOrProvince" options="state-or-province">
-                <help short="Name of the State or Province."/>
-              </arg>
-              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.streetAddress1" options="street-address1" required="True">
-                <help short="Street Address line 1."/>
-              </arg>
-              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.streetAddress2" options="street-address2">
-                <help short="Street Address line 2."/>
-              </arg>
-              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.streetAddress3" options="street-address3">
-                <help short="Street Address line 3."/>
-              </arg>
-              <arg type="string" var="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.zipExtendedCode" options="zip-extended-code">
-                <help short="Extended Zip Code."/>
-              </arg>
+            <arg type="array<string>" var="$orderItemUpdateParameter.properties.forwardAddress.contactDetails.emailList" options="email-list" required="True">
+              <help short="List of Email-ids to be notified about job progress."/>
+              <item type="string"/>
+            </arg>
+            <arg type="string" var="$orderItemUpdateParameter.properties.forwardAddress.contactDetails.mobile" options="mobile">
+              <help short="Mobile number of the contact person."/>
+            </arg>
+            <arg type="string" var="$orderItemUpdateParameter.properties.forwardAddress.contactDetails.phone" options="phone" required="True">
+              <help short="Phone number of the contact person."/>
+            </arg>
+            <arg type="string" var="$orderItemUpdateParameter.properties.forwardAddress.contactDetails.phoneExtension" options="phone-extension">
+              <help short="Phone extension number of the contact person."/>
+            </arg>
+          </arg>
+          <arg type="object" var="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress" options="shipping-address">
+            <help short="Shipping details for the address"/>
+            <arg type="string" var="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.addressType" options="address-type">
+              <help short="Type of address."/>
+              <enum>
+                <item name="Commercial" value="Commercial"/>
+                <item name="None" value="None"/>
+                <item name="Residential" value="Residential"/>
+              </enum>
+            </arg>
+            <arg type="string" var="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.city" options="city">
+              <help short="Name of the City."/>
+            </arg>
+            <arg type="string" var="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.companyName" options="company-name">
+              <help short="Name of the company."/>
+            </arg>
+            <arg type="string" var="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.country" options="country" required="True">
+              <help short="Name of the Country."/>
+            </arg>
+            <arg type="string" var="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.postalCode" options="postal-code">
+              <help short="Postal code."/>
+            </arg>
+            <arg type="string" var="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.stateOrProvince" options="state-or-province">
+              <help short="Name of the State or Province."/>
+            </arg>
+            <arg type="string" var="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.streetAddress1" options="street-address1" required="True">
+              <help short="Street Address line 1."/>
+            </arg>
+            <arg type="string" var="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.streetAddress2" options="street-address2">
+              <help short="Street Address line 2."/>
+            </arg>
+            <arg type="string" var="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.streetAddress3" options="street-address3">
+              <help short="Street Address line 3."/>
+            </arg>
+            <arg type="string" var="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.zipExtendedCode" options="zip-extended-code">
+              <help short="Extended Zip Code."/>
             </arg>
           </arg>
         </arg>
-        <arg type="string" var="$orderItemResource.properties.orderId" options="order-id" required="True">
-          <help short="Id of the order to which order item belongs to"/>
+        <arg type="array<string>" var="$orderItemUpdateParameter.properties.notificationEmailList" options="notification-email-list" group="OrderItemUpdateParameter">
+          <help short="Additional notification email list."/>
+          <item type="string"/>
         </arg>
-        <arg type="object" var="$orderItemResource.properties.orderItemDetails" options="order-item-details" required="True">
-          <help short="Represents order item details."/>
-          <arg type="array<string>" var="$orderItemResource.properties.orderItemDetails.notificationEmailList" options="notification-email-list">
-            <help short="Additional notification email list"/>
-            <item type="string"/>
+        <arg type="object" var="$orderItemUpdateParameter.properties.preferences" options="preferences" group="OrderItemUpdateParameter">
+          <help short="Customer preference."/>
+          <arg type="object" var="$orderItemUpdateParameter.properties.preferences.encryptionPreferences" options="encryption-preferences">
+            <help short="Preferences related to the Encryption."/>
+            <arg type="string" var="$orderItemUpdateParameter.properties.preferences.encryptionPreferences.doubleEncryptionStatus" options="double-encryption-status">
+              <help short="Double encryption status as entered by the customer. It is compulsory to give this parameter if the 'Deny' or 'Disabled' policy is configured."/>
+              <enum>
+                <item name="Disabled" value="Disabled"/>
+                <item name="Enabled" value="Enabled"/>
+              </enum>
+            </arg>
           </arg>
-          <arg type="string" var="$orderItemResource.properties.orderItemDetails.orderItemType" options="order-item-type" required="True">
-            <help short="Order item type."/>
-            <enum>
-              <item name="Purchase" value="Purchase"/>
-              <item name="Rental" value="Rental"/>
-            </enum>
+          <arg type="object" var="$orderItemUpdateParameter.properties.preferences.managementResourcePreferences" options="management-resource-preferences">
+            <help short="Preferences related to the Management resource."/>
+            <arg type="string" var="$orderItemUpdateParameter.properties.preferences.managementResourcePreferences.preferredManagementResourceId" options="preferred-management-resource-id">
+              <help short="Customer preferred Management resource ARM ID"/>
+            </arg>
           </arg>
-          <arg type="object" var="$orderItemResource.properties.orderItemDetails.preferences" options="preferences">
-            <help short="Customer notification Preferences"/>
-            <arg type="object" var="$orderItemResource.properties.orderItemDetails.preferences.encryptionPreferences" options="encryption-preferences">
-              <help short="Preferences related to the Encryption."/>
-              <arg type="string" var="$orderItemResource.properties.orderItemDetails.preferences.encryptionPreferences.doubleEncryptionStatus" options="double-encryption-status">
-                <help short="Double encryption status as entered by the customer. It is compulsory to give this parameter if the 'Deny' or 'Disabled' policy is configured."/>
+          <arg type="array<object>" var="$orderItemUpdateParameter.properties.preferences.notificationPreferences" options="notification-preferences" singularOptions="notification-preference">
+            <help short="Notification preferences."/>
+            <item type="object">
+              <arg type="boolean" var="$orderItemUpdateParameter.properties.preferences.notificationPreferences[].sendNotification" options="send-notification" required="True">
+                <help short="Notification is required or not."/>
+              </arg>
+              <arg type="string" var="$orderItemUpdateParameter.properties.preferences.notificationPreferences[].stageName" options="stage-name" required="True">
+                <help short="Name of the stage."/>
                 <enum>
-                  <item name="Disabled" value="Disabled"/>
-                  <item name="Enabled" value="Enabled"/>
+                  <item name="Delivered" value="Delivered"/>
+                  <item name="Shipped" value="Shipped"/>
                 </enum>
               </arg>
-            </arg>
-            <arg type="object" var="$orderItemResource.properties.orderItemDetails.preferences.managementResourcePreferences" options="management-resource-preferences">
-              <help short="Preferences related to the Management resource."/>
-              <arg type="string" var="$orderItemResource.properties.orderItemDetails.preferences.managementResourcePreferences.preferredManagementResourceId" options="preferred-management-resource-id">
-                <help short="Customer preferred Management resource ARM ID"/>
-              </arg>
-            </arg>
-            <arg type="array<object>" var="$orderItemResource.properties.orderItemDetails.preferences.notificationPreferences" options="notification-preferences" singularOptions="notification-preference">
-              <help short="Notification preferences."/>
-              <item type="object">
-                <arg type="boolean" var="$orderItemResource.properties.orderItemDetails.preferences.notificationPreferences[].sendNotification" options="send-notification" required="True">
-                  <help short="Notification is required or not."/>
-                </arg>
-                <arg type="string" var="$orderItemResource.properties.orderItemDetails.preferences.notificationPreferences[].stageName" options="stage-name" required="True">
-                  <help short="Name of the stage."/>
-                  <enum>
-                    <item name="Delivered" value="Delivered"/>
-                    <item name="Shipped" value="Shipped"/>
-                  </enum>
-                </arg>
-              </item>
-            </arg>
-            <arg type="object" var="$orderItemResource.properties.orderItemDetails.preferences.transportPreferences" options="transport-preferences">
-              <help short="Preferences related to the shipment logistics of the order."/>
-              <arg type="string" var="$orderItemResource.properties.orderItemDetails.preferences.transportPreferences.preferredShipmentType" options="preferred-shipment-type" required="True">
-                <help short="Indicates Shipment Logistics type that the customer preferred."/>
-                <enum>
-                  <item name="CustomerManaged" value="CustomerManaged"/>
-                  <item name="MicrosoftManaged" value="MicrosoftManaged"/>
-                </enum>
-              </arg>
-            </arg>
+            </item>
           </arg>
-          <arg type="object" var="$orderItemResource.properties.orderItemDetails.productDetails" options="product-details" required="True">
-            <help short="Unique identifier for configuration."/>
-            <arg type="object" var="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation" options="hierarchy-information" required="True">
-              <help short="Hierarchy of the product which uniquely identifies the product"/>
-              <arg type="string" var="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.configurationName" options="configuration-name">
-                <help short="Represents configuration name that uniquely identifies configuration"/>
-              </arg>
-              <arg type="string" var="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.productFamilyName" options="product-family-name">
-                <help short="Represents product family name that uniquely identifies product family"/>
-              </arg>
-              <arg type="string" var="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.productLineName" options="product-line-name">
-                <help short="Represents product line name that uniquely identifies product line"/>
-              </arg>
-              <arg type="string" var="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.productName" options="product-name">
-                <help short="Represents product name that uniquely identifies product"/>
-              </arg>
+          <arg type="object" var="$orderItemUpdateParameter.properties.preferences.transportPreferences" options="transport-preferences">
+            <help short="Preferences related to the shipment logistics of the order."/>
+            <arg type="string" var="$orderItemUpdateParameter.properties.preferences.transportPreferences.preferredShipmentType" options="preferred-shipment-type" required="True">
+              <help short="Indicates Shipment Logistics type that the customer preferred."/>
+              <enum>
+                <item name="CustomerManaged" value="CustomerManaged"/>
+                <item name="MicrosoftManaged" value="MicrosoftManaged"/>
+              </enum>
             </arg>
           </arg>
         </arg>
-        <arg type="object" var="$orderItemResource.tags" options="tags">
-          <help short="Resource tags."/>
+        <arg type="object" var="$orderItemUpdateParameter.tags" options="tags" group="OrderItemUpdateParameter">
+          <help short="The list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups)."/>
           <additionalProp>
             <item type="string"/>
           </additionalProp>
         </arg>
       </argGroup>
-      <operation operationId="GetOrderItemByName">
+      <operation operationId="UpdateOrderItem">
+        <longRunning finalStateVia="azure-async-operation"/>
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EdgeOrder/orderItems/{orderItemName}">
-          <request method="get">
+          <request method="patch">
             <path>
               <param type="string" name="orderItemName" arg="$Path.orderItemName" required="True"/>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
@@ -1021,11 +997,91 @@
                 <format minLength="1"/>
               </const>
             </query>
+            <header>
+              <param type="string" name="If-Match" arg="$Header.If-Match"/>
+            </header>
+            <body>
+              <json>
+                <schema type="object" name="orderItemUpdateParameter" clientFlatten="True">
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="object" name="forwardAddress" arg="$orderItemUpdateParameter.properties.forwardAddress">
+                      <prop type="object" name="contactDetails" arg="$orderItemUpdateParameter.properties.forwardAddress.contactDetails" required="True">
+                        <prop type="string" name="contactName" arg="$orderItemUpdateParameter.properties.forwardAddress.contactDetails.contactName" required="True"/>
+                        <prop type="array<string>" name="emailList" arg="$orderItemUpdateParameter.properties.forwardAddress.contactDetails.emailList" required="True">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="string" name="mobile" arg="$orderItemUpdateParameter.properties.forwardAddress.contactDetails.mobile"/>
+                        <prop type="string" name="phone" arg="$orderItemUpdateParameter.properties.forwardAddress.contactDetails.phone" required="True"/>
+                        <prop type="string" name="phoneExtension" arg="$orderItemUpdateParameter.properties.forwardAddress.contactDetails.phoneExtension"/>
+                      </prop>
+                      <prop type="object" name="shippingAddress" arg="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress">
+                        <prop type="string" name="addressType" arg="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.addressType">
+                          <enum>
+                            <item value="Commercial"/>
+                            <item value="None"/>
+                            <item value="Residential"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="city" arg="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.city"/>
+                        <prop type="string" name="companyName" arg="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.companyName"/>
+                        <prop type="string" name="country" arg="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.country" required="True"/>
+                        <prop type="string" name="postalCode" arg="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.postalCode"/>
+                        <prop type="string" name="stateOrProvince" arg="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.stateOrProvince"/>
+                        <prop type="string" name="streetAddress1" arg="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.streetAddress1" required="True"/>
+                        <prop type="string" name="streetAddress2" arg="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.streetAddress2"/>
+                        <prop type="string" name="streetAddress3" arg="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.streetAddress3"/>
+                        <prop type="string" name="zipExtendedCode" arg="$orderItemUpdateParameter.properties.forwardAddress.shippingAddress.zipExtendedCode"/>
+                      </prop>
+                    </prop>
+                    <prop type="array<string>" name="notificationEmailList" arg="$orderItemUpdateParameter.properties.notificationEmailList">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="object" name="preferences" arg="$orderItemUpdateParameter.properties.preferences">
+                      <prop type="object" name="encryptionPreferences" arg="$orderItemUpdateParameter.properties.preferences.encryptionPreferences">
+                        <prop type="string" name="doubleEncryptionStatus" arg="$orderItemUpdateParameter.properties.preferences.encryptionPreferences.doubleEncryptionStatus">
+                          <enum>
+                            <item value="Disabled"/>
+                            <item value="Enabled"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="managementResourcePreferences" arg="$orderItemUpdateParameter.properties.preferences.managementResourcePreferences">
+                        <prop type="string" name="preferredManagementResourceId" arg="$orderItemUpdateParameter.properties.preferences.managementResourcePreferences.preferredManagementResourceId"/>
+                      </prop>
+                      <prop type="array<object>" name="notificationPreferences" arg="$orderItemUpdateParameter.properties.preferences.notificationPreferences">
+                        <item type="object">
+                          <prop type="boolean" name="sendNotification" arg="$orderItemUpdateParameter.properties.preferences.notificationPreferences[].sendNotification" required="True"/>
+                          <prop type="string" name="stageName" arg="$orderItemUpdateParameter.properties.preferences.notificationPreferences[].stageName" required="True">
+                            <enum>
+                              <item value="Delivered"/>
+                              <item value="Shipped"/>
+                            </enum>
+                          </prop>
+                        </item>
+                      </prop>
+                      <prop type="object" name="transportPreferences" arg="$orderItemUpdateParameter.properties.preferences.transportPreferences">
+                        <prop type="string" name="preferredShipmentType" arg="$orderItemUpdateParameter.properties.preferences.transportPreferences.preferredShipmentType" required="True">
+                          <enum>
+                            <item value="CustomerManaged"/>
+                            <item value="MicrosoftManaged"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags" arg="$orderItemUpdateParameter.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
           </request>
           <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="object" cls="OrderItemResource_read">
+                <schema type="object">
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.EdgeOrder/orderItems/{}"/>
                   </prop>
@@ -1255,143 +1311,6 @@
                   </prop>
                   <prop readOnly="True" type="string" name="type"/>
                 </schema>
-              </json>
-            </body>
-          </response>
-          <response isError="True">
-            <body>
-              <json>
-                <schema type="@MgmtErrorFormat"/>
-              </json>
-            </body>
-          </response>
-        </http>
-      </operation>
-      <operation>
-        <instanceUpdate instance="$Instance">
-          <json>
-            <schema type="object" name="orderItemResource" clientFlatten="True">
-              <prop type="object" name="properties" required="True" clientFlatten="True">
-                <prop type="object" name="addressDetails" arg="$orderItemResource.properties.addressDetails" required="True">
-                  <prop type="object" name="forwardAddress" arg="$orderItemResource.properties.addressDetails.forwardAddress" required="True">
-                    <prop type="object" name="contactDetails" arg="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails" required="True">
-                      <prop type="string" name="contactName" arg="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.contactName" required="True"/>
-                      <prop type="array<string>" name="emailList" arg="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.emailList" required="True">
-                        <item type="string"/>
-                      </prop>
-                      <prop type="string" name="mobile" arg="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.mobile"/>
-                      <prop type="string" name="phone" arg="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.phone" required="True"/>
-                      <prop type="string" name="phoneExtension" arg="$orderItemResource.properties.addressDetails.forwardAddress.contactDetails.phoneExtension"/>
-                    </prop>
-                    <prop type="object" name="shippingAddress" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress">
-                      <prop type="string" name="addressType" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.addressType">
-                        <enum>
-                          <item value="Commercial"/>
-                          <item value="None"/>
-                          <item value="Residential"/>
-                        </enum>
-                      </prop>
-                      <prop type="string" name="city" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.city"/>
-                      <prop type="string" name="companyName" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.companyName"/>
-                      <prop type="string" name="country" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.country" required="True"/>
-                      <prop type="string" name="postalCode" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.postalCode"/>
-                      <prop type="string" name="stateOrProvince" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.stateOrProvince"/>
-                      <prop type="string" name="streetAddress1" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.streetAddress1" required="True"/>
-                      <prop type="string" name="streetAddress2" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.streetAddress2"/>
-                      <prop type="string" name="streetAddress3" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.streetAddress3"/>
-                      <prop type="string" name="zipExtendedCode" arg="$orderItemResource.properties.addressDetails.forwardAddress.shippingAddress.zipExtendedCode"/>
-                    </prop>
-                  </prop>
-                </prop>
-                <prop type="string" name="orderId" arg="$orderItemResource.properties.orderId" required="True"/>
-                <prop type="object" name="orderItemDetails" arg="$orderItemResource.properties.orderItemDetails" required="True">
-                  <prop type="array<string>" name="notificationEmailList" arg="$orderItemResource.properties.orderItemDetails.notificationEmailList">
-                    <item type="string"/>
-                  </prop>
-                  <prop type="string" name="orderItemType" arg="$orderItemResource.properties.orderItemDetails.orderItemType" required="True">
-                    <enum>
-                      <item value="Purchase"/>
-                      <item value="Rental"/>
-                    </enum>
-                  </prop>
-                  <prop type="object" name="preferences" arg="$orderItemResource.properties.orderItemDetails.preferences">
-                    <prop type="object" name="encryptionPreferences" arg="$orderItemResource.properties.orderItemDetails.preferences.encryptionPreferences">
-                      <prop type="string" name="doubleEncryptionStatus" arg="$orderItemResource.properties.orderItemDetails.preferences.encryptionPreferences.doubleEncryptionStatus">
-                        <enum>
-                          <item value="Disabled"/>
-                          <item value="Enabled"/>
-                        </enum>
-                      </prop>
-                    </prop>
-                    <prop type="object" name="managementResourcePreferences" arg="$orderItemResource.properties.orderItemDetails.preferences.managementResourcePreferences">
-                      <prop type="string" name="preferredManagementResourceId" arg="$orderItemResource.properties.orderItemDetails.preferences.managementResourcePreferences.preferredManagementResourceId"/>
-                    </prop>
-                    <prop type="array<object>" name="notificationPreferences" arg="$orderItemResource.properties.orderItemDetails.preferences.notificationPreferences">
-                      <item type="object">
-                        <prop type="boolean" name="sendNotification" arg="$orderItemResource.properties.orderItemDetails.preferences.notificationPreferences[].sendNotification" required="True"/>
-                        <prop type="string" name="stageName" arg="$orderItemResource.properties.orderItemDetails.preferences.notificationPreferences[].stageName" required="True">
-                          <enum>
-                            <item value="Delivered"/>
-                            <item value="Shipped"/>
-                          </enum>
-                        </prop>
-                      </item>
-                    </prop>
-                    <prop type="object" name="transportPreferences" arg="$orderItemResource.properties.orderItemDetails.preferences.transportPreferences">
-                      <prop type="string" name="preferredShipmentType" arg="$orderItemResource.properties.orderItemDetails.preferences.transportPreferences.preferredShipmentType" required="True">
-                        <enum>
-                          <item value="CustomerManaged"/>
-                          <item value="MicrosoftManaged"/>
-                        </enum>
-                      </prop>
-                    </prop>
-                  </prop>
-                  <prop type="object" name="productDetails" arg="$orderItemResource.properties.orderItemDetails.productDetails" required="True">
-                    <prop type="object" name="hierarchyInformation" arg="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation" required="True">
-                      <prop type="string" name="configurationName" arg="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.configurationName"/>
-                      <prop type="string" name="productFamilyName" arg="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.productFamilyName"/>
-                      <prop type="string" name="productLineName" arg="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.productLineName"/>
-                      <prop type="string" name="productName" arg="$orderItemResource.properties.orderItemDetails.productDetails.hierarchyInformation.productName"/>
-                    </prop>
-                  </prop>
-                </prop>
-              </prop>
-              <prop type="object" name="tags" arg="$orderItemResource.tags">
-                <additionalProp>
-                  <item type="string"/>
-                </additionalProp>
-              </prop>
-            </schema>
-          </json>
-        </instanceUpdate>
-      </operation>
-      <operation operationId="CreateOrderItem">
-        <longRunning finalStateVia="azure-async-operation"/>
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EdgeOrder/orderItems/{orderItemName}">
-          <request method="put">
-            <path>
-              <param type="string" name="orderItemName" arg="$Path.orderItemName" required="True"/>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
-                <format minLength="1"/>
-              </param>
-            </path>
-            <query>
-              <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="2020-12-01-preview"/>
-                <format minLength="1"/>
-              </const>
-            </query>
-            <body>
-              <json ref="$Instance"/>
-            </body>
-          </request>
-          <response statusCode="200">
-            <body>
-              <json var="$Instance">
-                <schema type="@OrderItemResource_read"/>
               </json>
             </body>
           </response>

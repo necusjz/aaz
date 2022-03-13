@@ -147,7 +147,9 @@
               </const>
             </query>
           </request>
-          <response statusCode="200 202 204"/>
+          <response statusCode="200"/>
+          <response statusCode="202"/>
+          <response statusCode="204"/>
           <response isError="True">
             <body>
               <json>
@@ -169,7 +171,9 @@
           <help short="Tag Rule Set resource name"/>
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="object" var="$body.properties.logRules" options="log-rules">
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="object" var="$body.properties.logRules" options="log-rules" group="Body">
           <help short="Rules for sending logs."/>
           <arg type="array<object>" var="$body.properties.logRules.filteringTags" options="filtering-tags" singularOptions="filtering-tag">
             <help short="List of filtering tags to be used for capturing logs. This only takes effect if SendActivityLogs flag is enabled. If empty, all resources will be captured. If only Exclude action is specified, the rules will apply to the list of all available resources. If Include actions are specified, the rules will only include resources with the associated tags."/>
@@ -199,7 +203,7 @@
             <help short="Flag specifying if subscription logs should be sent for the Monitor resource."/>
           </arg>
         </arg>
-        <arg type="string" var="$body.properties.provisioningState" options="provisioning-state">
+        <arg type="string" var="$body.properties.provisioningState" options="provisioning-state" group="Body">
           <help short="Provisioning state of the monitoring tag rules."/>
           <enum>
             <item name="Accepted" value="Accepted"/>
@@ -362,7 +366,9 @@
           <help short="Tag Rule Set resource name"/>
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="object" var="$body.properties.logRules" options="log-rules">
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="object" var="$body.properties.logRules" options="log-rules" group="Body">
           <help short="Rules for sending logs."/>
           <arg type="array<object>" var="$body.properties.logRules.filteringTags" options="filtering-tags" singularOptions="filtering-tag">
             <help short="List of filtering tags to be used for capturing logs. This only takes effect if SendActivityLogs flag is enabled. If empty, all resources will be captured. If only Exclude action is specified, the rules will apply to the list of all available resources. If Include actions are specified, the rules will only include resources with the associated tags."/>
@@ -392,7 +398,7 @@
             <help short="Flag specifying if subscription logs should be sent for the Monitor resource."/>
           </arg>
         </arg>
-        <arg type="string" var="$body.properties.provisioningState" options="provisioning-state">
+        <arg type="string" var="$body.properties.provisioningState" options="provisioning-state" group="Body">
           <help short="Provisioning state of the monitoring tag rules."/>
           <enum>
             <item name="Accepted" value="Accepted"/>

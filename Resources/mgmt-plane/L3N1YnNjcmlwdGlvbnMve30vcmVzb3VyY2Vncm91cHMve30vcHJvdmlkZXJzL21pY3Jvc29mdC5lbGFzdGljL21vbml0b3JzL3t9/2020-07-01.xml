@@ -163,7 +163,9 @@
               </const>
             </query>
           </request>
-          <response statusCode="200 202 204"/>
+          <response statusCode="200"/>
+          <response statusCode="202"/>
+          <response statusCode="204"/>
           <response isError="True">
             <body>
               <json>
@@ -182,7 +184,9 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="object" var="$body.identity" options="identity">
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="object" var="$body.identity" options="identity" group="Body">
           <help short="Identity properties of the monitor resource."/>
           <arg type="string" var="$body.identity.type" options="type">
             <help short="Managed identity type."/>
@@ -191,17 +195,17 @@
             </enum>
           </arg>
         </arg>
-        <arg type="ResourceLocation" var="$body.location" options="location l" required="True">
+        <arg type="ResourceLocation" var="$body.location" options="location l" required="True" group="Body">
           <help short="The location of the monitor resource"/>
         </arg>
-        <arg type="string" var="$body.properties.monitoringStatus" options="monitoring-status">
+        <arg type="string" var="$body.properties.monitoringStatus" options="monitoring-status" group="Body">
           <help short="Flag specifying if the resource monitoring is enabled or disabled."/>
           <enum>
             <item name="Disabled" value="Disabled"/>
             <item name="Enabled" value="Enabled"/>
           </enum>
         </arg>
-        <arg type="string" var="$body.properties.provisioningState" options="provisioning-state">
+        <arg type="string" var="$body.properties.provisioningState" options="provisioning-state" group="Body">
           <help short="Provisioning state of the monitor resource."/>
           <enum>
             <item name="Accepted" value="Accepted"/>
@@ -215,7 +219,7 @@
             <item name="Updating" value="Updating"/>
           </enum>
         </arg>
-        <arg type="object" var="$body.properties.userInfo" options="user-info">
+        <arg type="object" var="$body.properties.userInfo" options="user-info" group="Body">
           <help short="User information."/>
           <arg type="object" var="$body.properties.userInfo.companyInfo" options="company-info">
             <help short="Company information of the user to be passed to partners."/>
@@ -257,13 +261,13 @@
             <format maxLength="50"/>
           </arg>
         </arg>
-        <arg type="object" var="$body.sku" options="sku">
+        <arg type="object" var="$body.sku" options="sku" group="Body">
           <help short="SKU of the monitor resource."/>
           <arg type="string" var="$body.sku.name" options="name" required="True">
             <help short="Name of the SKU."/>
           </arg>
         </arg>
-        <arg type="object" var="$body.tags" options="tags">
+        <arg type="object" var="$body.tags" options="tags" group="Body">
           <help short="The tags of the monitor resource."/>
           <additionalProp>
             <item type="string"/>
@@ -478,7 +482,9 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="object" var="$body.identity" options="identity">
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="object" var="$body.identity" options="identity" group="Body">
           <help short="Identity properties of the monitor resource."/>
           <arg type="string" var="$body.identity.type" options="type">
             <help short="Managed identity type."/>
@@ -487,14 +493,14 @@
             </enum>
           </arg>
         </arg>
-        <arg type="string" var="$body.properties.monitoringStatus" options="monitoring-status">
+        <arg type="string" var="$body.properties.monitoringStatus" options="monitoring-status" group="Body">
           <help short="Flag specifying if the resource monitoring is enabled or disabled."/>
           <enum>
             <item name="Disabled" value="Disabled"/>
             <item name="Enabled" value="Enabled"/>
           </enum>
         </arg>
-        <arg type="string" var="$body.properties.provisioningState" options="provisioning-state">
+        <arg type="string" var="$body.properties.provisioningState" options="provisioning-state" group="Body">
           <help short="Provisioning state of the monitor resource."/>
           <enum>
             <item name="Accepted" value="Accepted"/>
@@ -508,13 +514,13 @@
             <item name="Updating" value="Updating"/>
           </enum>
         </arg>
-        <arg type="object" var="$body.sku" options="sku">
+        <arg type="object" var="$body.sku" options="sku" group="Body">
           <help short="SKU of the monitor resource."/>
-          <arg type="string" var="$body.sku.name" options="name" required="True">
+          <arg type="string" var="$body.sku.name" options="name">
             <help short="Name of the SKU."/>
           </arg>
         </arg>
-        <arg type="object" var="$body.tags" options="tags">
+        <arg type="object" var="$body.tags" options="tags" group="Body">
           <help short="The tags of the monitor resource."/>
           <additionalProp>
             <item type="string"/>

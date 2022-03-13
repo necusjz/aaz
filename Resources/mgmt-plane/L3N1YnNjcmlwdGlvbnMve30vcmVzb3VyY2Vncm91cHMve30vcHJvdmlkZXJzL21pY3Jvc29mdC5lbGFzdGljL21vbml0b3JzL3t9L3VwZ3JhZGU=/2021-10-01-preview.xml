@@ -10,7 +10,9 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True"/>
-        <arg type="string" var="$body.version" options="version">
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="string" var="$body.version" options="version" group="Body">
           <help short="Version to which the elastic monitor should be upgraded to"/>
         </arg>
       </argGroup>
